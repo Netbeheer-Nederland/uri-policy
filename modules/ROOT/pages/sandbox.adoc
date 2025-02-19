@@ -1,0 +1,234 @@
+= URI Conventions
+Bart Kleijngeld <bart.kleijngeld@alliander.com>
+:description: Guideline document in which a strategy is laid out for minting IRIs in a standardized and uniform way.
+:url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
+
+
+== Introduction
+
+Data can be fully conceptualized as a set of  _statements_, each of which is an expressions of information about a (real-world or otherwise) _thing_. Many different languages and metamodels exist to make such statements, but to be able to state something about some _thing_, every single one of them relies on every _thing_ having an identifier to reference it by.
+
+== Goals
+
+For each definition created in the name of Netbeheer Nederland, the following IRIs MUST be devised:
+
+. **Identifier** of the real-world object or notion that's reing defined on the web.
+.
+
+. Each IRI must resolve to:
+** a formal, machine-readable representation of the meaning of the referent
+** human-friendly documentation on the .
+. Each IRI minted by Netbeheer Nederland MUST conform to the principles laid out in this document.
+
+== Principles
+
+== IRI pattern
+
+Every minted IRI MUST conform to the following pattern:
+
+.IRI pattern
+[[iri-pattern]]
+....
+https://{domain}/{concept}/{type}/{reference}
+....
+
+=== `{domain}`
+The domain encodes the namespace of the resources defined in it.
+
+
+<<iri-pattern>>
+
+.
+
+
+=== `{concept}`
+
+Optional,
+
+
+
+
+
+
+
+'''
+
+|===
+| Resource type | Opacity | Hash or 303 | Resolvable
+
+| Identity (individual?)
+| meaningful
+| hash
+| maybe
+
+| Description
+| meaningful
+| hash
+| yes
+
+| Document
+| meaningful
+| hash
+| yes
+
+|===
+
+'''
+
+===
+
+/core-eq/def#
+/core-eq/def#ACLineSegment
+
+adhv conneg verschillende representaties
+
+GET /core-eq/def#ACLineSegment HTTP/1.1
+Host: data.netbeheernederland.nl
+Accept: application/yaml
+Accept-Language: nl
+
+Dit geeft LinkML def met NL description
+
+GET /core-eq/def#ACLineSegment HTTP/1.1
+Host: data.netbeheernederland.nl
+Accept: text/html
+Accept-Language: en
+
+Dit geeft HTML doc in EN
+
+== IRI reference
+
+=== Taxonomy
+
+Let's look at an example taxonomy called _Energiesysteembeheer_.
+
+==== Identification
+
+.URI for taxonomy
+....
+https://id.nb.nl/taxonomy/energiesysteembeheer/
+....
+
+.URI for concepts and concept schemes
+....
+https://id.nb.nl/taxonomy/energiesysteembeheer/voedingsgebied
+....
+
+==== Formal description
+
+.URI for description of taxonomy
+....
+https://data.nb.nl/taxonomy/energiesysteembeheer/
+....
+
+.URI for description of concepts and concept schemes
+....
+https://data.nb.nl/taxonomy/energiesysteembeheer/voedingsgebied
+....
+
+==== Web documentation
+
+.URI for web page of taxonomy
+....
+https://www.nb.nl/taxonomy/energiesysteembeheer/
+....
+
+.URI for web page of concepts and concept schemes
+....
+https://www.nb.nl/taxonomy/energiesysteembeheer/voedingsgebied
+....
+
+==== Resolution
+
+===== Content negotiation
+
+
+
+
+
+
+
+
+== HTTP vs HTTPS
+
+IRIs MUST use the HTTPS scheme. (<<HALPIN>>, <<TRIPLY>>)
+
+== Cats are not descriptions of cats
+
+
+== Identity decoupled from definition
+
+* IRIs only identify, they don't define.
+* Many competing definitions may exist as to what the meaning of the resource is
+** Sometimes this is a justified different matter of perspective
+** Other times some perspectives might be incorrect in some sense
+* Meaningful names in IRIs are typically expressed in a language, but this too has no bearing on the definition of the resource
+
+== Hash vs 303
+
+* Using `/ontology#class` tightly couples the identity of `class` to the ontology `ontology`, which I believe to be a mistake.
+** Or can we regard the ontology to be the register of this resource?
+** I wouldn't think so, since several ontologies can have different definitions and descriptions of the resource, even within the same org.
+
+Furthermore, the <<def-resource-description,description>> of
+
+== IRIs, URIs, URLs and URNs
+
+== Decisions
+
+Should be available inline in the context of the discussion I think.
+
+IMPORTANT: IRIs MUST use the HTTPS scheme.
+
+[IMPORTANT]
+====
+Leave out version information from stable URIs.
+The Semantic Web standards provide ways to specify the version of a data or metadata set, other than changing URIs.
+====
+
+[IMPORTANT]
+====
+Identity URIs SHOULD resolve to _authoritative_ information representations:
+
+* If the agent is a machine, a formal and machine-readable description of the resource MUST be provided.
+====
+
+== Frequently asked questions
+
+Why not regard a SKOS conceptualization of some real-world object as just another representation of the same resource as a OWL conceptualization?::
+There is a simple pragmatic answer and a hard theoretical one.
+
+. asd
+. asd
+
+Why does a model like an ontology, thesaurus or schema need an identification URI? Aren't these information resources, i.e. isn't their existence inherently digital and on the web?::
+    What might help is asking yourself the question: does the existence of such a model depend on having a representation on the web, or can we refer to the resource in a meaningful way independent of a representation? Take, for example, a use case for which you are specifying a data product. Now suppose you are devising a formal definition of the data product and need to refer to the associated information model that belongs to it. It makes perfect sense to assign this model a URI, even though you may not have a representation yet. Moreover -- or another way of convincing yourself of the need of an identifier URI -- it should be noted that the information model could be represented in several metamodels or modeling languages, as well as an informal web page to provide human agents with more information. Since these are different
+
+[bibliography]
+== References
+
+* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web]. Work in progress.
+* [[[HTTPS]]] W3C. 2016. https://www.w3.org/blog/2016/https-and-the-semantic-weblinked-data/[HTTPS and the Semantic Web/Linked Data].
+* [[[LD-BP]]] W3C. 2014. https://www.w3.org/TR/ld-bp/#HTTP-URIS[Best Practices for Publishing Linked Data]. Section 5.
+* [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
+* [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
+* [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
+* [[[HALPIN]]] Harry Halpin. Semantic Insecurity: Security and the Semantic Web. PrivOn 2017 - Workshop Society,
+Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f
+* https://patterns.dataincubator.org/book/identifier-patterns.html
+* [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
+* [[[TRIPLY]]] https://triplydb.com/how-to-model/-/stories/how-to-model-iris
+* [[[LD-PATTERNS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
+//* https://www.stelselcatalogus.nl/documenten/linked_data_structuur
+* [[[BOOTH-2003]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance]
+* [[[HAWKE-2003]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
+* [[[TAG-HTTP-RANGE-14]]] https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html
+
+== Terms and definitions
+
+[[def-resource]] resource:: The term "resource" is used in a general sense for whatever might be identified by a URI. <<AWWW>>
+
+[[def-resource-description]] resource description:: A machine-readable representation of the resource, typically in some serialization of RDF.
+
+[[def-information-representation]] information resource:: A <<def-resource>> which has the property that all of its essential characteristics can be conveyed in a message.
+<<AWWW>>

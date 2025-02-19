@@ -1,3 +1,0 @@
-= IRI Strategy
-
-You're writing goes here.

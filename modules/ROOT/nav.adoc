@@ -1,1 +1,6 @@
-* Home
+* Purpose
+* Registers and namespaces
+* IRIs encode that
+* IRI reference
+* Motivation
+* Choices
