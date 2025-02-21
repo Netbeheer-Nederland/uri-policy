@@ -3,7 +3,6 @@ Bart Kleijngeld <bart.kleijngeld@alliander.com>
 :description: Guideline document in which a strategy is laid out for minting IRIs in a standardized and uniform way.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 
-
 == Introduction
 
 Data can be fully conceptualized as a set of  _statements_, each of which is an expressions of information about a (real-world or otherwise) _thing_. Many different languages and metamodels exist to make such statements, but to be able to state something about some _thing_, every single one of them relies on every _thing_ having an identifier to reference it by.
@@ -193,7 +192,16 @@ Identity URIs SHOULD resolve to _authoritative_ information representations:
 * If the agent is a machine, a formal and machine-readable description of the resource MUST be provided.
 ====
 
+IMPORTANT: If the meaning of some thing changes, it needs a new URI. Therefore, model element URIs are tightly coupled to their ontology definitions, and changing metamodel implementations -- which entails we cannot guarantee meaning is preserved -- means a new URI is necessary too. Therefore, it really makes sense to tightly couple specific ontologies (for example an OWL ontology) to their URIs.
+
+
+
+
 == Frequently asked questions
+
+Wouldn't it be more proper to assign real-world abstract concepts (such as _person_) an identity URI, and have different kinds of models such as ontologies and thesauri express different perspectives (i.e. definitions)?::
+    This seems like a great ambition, but there is a major issue with it, namely that identifying something is inherently coupled to the sense of that thing, i.e. the meaning is tightly coupled to the identifier. Assigning a URI to a real-world concept like _person_ seems straight-forward, but what is it you are referring to? With real-world objects that are concrete this could make sense, but with abstract concepts this is too vague. You need to define the sense of what you are referring to before you can refer to it. So, to simplify, the models you create and in which you express the sense/meaning of things, also provide the identifiers tightly coupled to them.
+
 
 Why not regard a SKOS conceptualization of some real-world object as just another representation of the same resource as a OWL conceptualization?::
 There is a simple pragmatic answer and a hard theoretical one.
@@ -207,22 +215,22 @@ Why does a model like an ontology, thesaurus or schema need an identification UR
 [bibliography]
 == References
 
-* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web]. Work in progress.
-* [[[HTTPS]]] W3C. 2016. https://www.w3.org/blog/2016/https-and-the-semantic-weblinked-data/[HTTPS and the Semantic Web/Linked Data].
+* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web].
+//* [[[HTTPS]]] W3C. 2016. https://www.w3.org/blog/2016/https-and-the-semantic-weblinked-data/[HTTPS and the Semantic Web/Linked Data].
 * [[[LD-BP]]] W3C. 2014. https://www.w3.org/TR/ld-bp/#HTTP-URIS[Best Practices for Publishing Linked Data]. Section 5.
 * [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
 * [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
 * [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
-* [[[HALPIN]]] Harry Halpin. Semantic Insecurity: Security and the Semantic Web. PrivOn 2017 - Workshop Society,
+* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society,
 Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f
 * https://patterns.dataincubator.org/book/identifier-patterns.html
 * [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
-* [[[TRIPLY]]] https://triplydb.com/how-to-model/-/stories/how-to-model-iris
-* [[[LD-PATTERNS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
-//* https://www.stelselcatalogus.nl/documenten/linked_data_structuur
-* [[[BOOTH-2003]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance]
-* [[[HAWKE-2003]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
-* [[[TAG-HTTP-RANGE-14]]] https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html
+//* [[[TRIPLY]]] https://triplydb.com/how-to-model/-/stories/how-to-model-iris
+// * [[[LD-PATTERNS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
+* [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus]
+* [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance]
+* [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
+* [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved]
 
 == Terms and definitions
 

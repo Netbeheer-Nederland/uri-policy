@@ -1,0 +1,50 @@
+= Reference
+
+== Registers
+
+<<dfn-register,Registers>> are logical collections of identities, each such identity represented by its identity URI.
+
+[caption=Decision]
+IMPORTANT: Each identity MUST belong to a <<dfn-register>>, and to only one register.
+
+
+[width=70%]
+|===
+|  Name | Resource kind
+
+| `data-product`
+| data product
+
+| `document`
+| document
+
+| `schema`
+| logical or technical schema
+
+| `taxonomy`
+|
+
+|===
+
+
+=== URIs
+
+Register URIs are simply:
+
+[source]
+....
+https://id.netbeheernederland.nl/
+....
+
+
+
+
+== Data product
+
+== Schema
+
+== Document
+
+
+== Glossary
+[[dfn-register]] register:: Logical, unordered collection of identities.

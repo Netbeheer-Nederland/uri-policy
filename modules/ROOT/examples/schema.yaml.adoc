@@ -1,0 +1,52 @@
+.Schema for the data product "Transitietechnieken" (abbreviated)
+[source,yaml]
+....
+id: https://id.netbeheernederland.nl/schema/transitietechnieken <1>
+name: transitietechnieken <2>
+title: Transitietechnieken
+description: |-
+  Information models for the Transitietechnieken data product.
+prefixes:
+  cim: https://cim.ucaiug.io/ns#
+  esb: https://id.netbeheernederland.nl/taxonomy/energiesysteembeheer/ <3>
+  ont: https://id.netbeheernederland.nl/ontology/transitietechnieken/def# <4>
+default_prefix: ont
+classes:
+  RegisteredResource:
+    description: A resource that is registered through the market participant registration
+      system. Examples include generating unit, load, and non-physical generator or
+      load.
+    attributes:
+      last_modified:
+        description: "Indication of the last time this item was modified/versioned."
+        slot_uri: cim:RegisteredResource.lastModified
+        multivalued: false
+        range: date
+        required: true
+        exact_mappings:
+          - nbnl:detectiemoment
+      resource_type:
+        description: 'The type of resource.'
+        slot_uri: this:RegisteredResource.resourceType
+        multivalued: false
+        range: ResourceKind
+        required: true
+        exact_mappings:
+          - nbnl:soortInstallatie
+enums:
+  ResourceKind:
+    description: Type of RegisteredResource.
+    enum_uri: this:ResourceKind
+    permissible_values:
+      pVInstallation:
+        meaning: nbnl:productie-installatie
+      eVChargingStation:
+        meaning: nbnl:laadinstallatie
+      battery:
+        meaning: nbnl:opslaginstallatie
+      conversion:
+        meaning: nbnl:verbruiksinstallatie
+....
+<1> This is the identity, so use the `id` subdomain. A case could be made that this is an information resource and therefore using the `data` subdomain is justified. However, then we couldn't place it into a register, and seeing how definitions in this model _are_ identities, you get this potentially confusing situation where the schema itself does not have an identity, but the elements defined in it do. Even though that might be semantically correct, the practical considerations of having an identity for the schema as well win out here. Note that there is nothing wrong with that semantically either.
+<2> The prefix `dp` used in GitHub and Antora is a technical limitation of namespace support in those technologies. It's fine to encode the register and name of the identity that way, but we have to remain semantically pure, so we name the thing its name, and leave out the register. Note also that a proper namespace encoding in those technologies would be `data-product--meetdata` for example, not `dp`, since that requires explanation to how it maps to the `data-product` register.
+<3> Prefixes will be used to reference URIs of elements, all of which represent some kind of entity type and are therefore real-world objects. Using `data` here would be wrong, since then you'd not reference the thing itself, but its formal description for machines on the web.
