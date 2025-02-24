@@ -1,11 +1,8 @@
 = Data Products
+:domain: nbnl.info
 
-
-//.Definition of <<dfn-data-product-version>>
-
-.Data product schema (LinkML)
+.Schema of the data product "Transitietechnieken" (abbreviated)
 include::example$schema.yaml.adoc[]
-
 
 == Glossary
 [[dfn-data-product-version]] data product version:: Specific version of a data product instance.

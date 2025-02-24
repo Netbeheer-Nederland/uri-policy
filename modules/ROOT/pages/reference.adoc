@@ -1,4 +1,115 @@
 = Reference
+:domain: nbnl.info
+
+== URI pattern
+
+[source,subs="attributes"]
+....
+https://\{type}.{domain}/\{namespace}/\{name}
+....
+
+=== Type
+A URI MUST be of any of the following three types:
+
+[cols="1h,2,5"]
+|===
+| `\{type}` | Type | Identifies
+
+| `id`
+| _identity URI_
+| generic resource
+
+| `data`
+| _definition URI_
+| the formal definition of the resource
+
+| `www`
+| _documentation URI_
+| the web documentation of the resource
+
+|===
+
+=== Namespace
+
+The namespace encodes what register or model some resource belongs to.
+
+==== Registers
+
+A register is a logical grouping of individuals of the same kind.
+
+[cols="2h,5"]
+|===
+| `\{namespace}` | Description
+
+| `data-product`
+| Register of data products.
+
+| `document`
+| Register of documents of various sorts.
+
+|===
+
+==== Models
+
+Models such as ontologies, taxonomies and schemas serve as namespaces for the concepts they provide definitions for.
+
+==== Data products
+
+Data products are compound information resources, consisting of parts -- such as an ontology, schema and taxonomy -- that are themselves information resources which can be identified and retrieved on the web.
+
+Furthermore, for such parts whose existence is dependent on and is merely in service of the data product, we shall follow <<DODDS-DAVIS>> and adopt _hierarchical URIs_ to encode this composition and make these URIs intuitively navigable.
+
+===== Ontology
+
+.URIs
+[cols="1h,3"]
+|===
+| Identity
+| `\https://id.{domain}/data-product/\{name}`
+
+| Definition
+| `\https://data.{domain}/data-product/\{name}`
+
+| Documentation
+| `\https://www.{domain}/data-product/\{name}`
+|===
+
+
+
+
+
+== Taxonomy
+
+.URIs
+[cols="1h,3"]
+|===
+| Identity
+| `\https://id.nbnl.io/taxonomy/\{name}`
+
+| Definition
+| `\https://data.nbnl.io/taxonomy/\{name}`
+
+| Documentation
+| `\https://www.nbnl.io/taxonomy/\{name}`
+|===
+
+=== Concept (scheme)
+
+.URIs
+[cols="1h,3"]
+|===
+| Identity
+| `\https://id.nbnl.io/taxonomy/\{name}/\{term}`
+
+| Definition
+| `\https://data.nbnl.io/taxonomy/\{name}/\{term}`
+
+| Documentation
+| `\https://www.nbnl.io/taxonomy/\{name}/\{term}`
+|===
+
+
+
 
 == Registers
 
@@ -27,21 +138,186 @@ IMPORTANT: Each identity MUST belong to a <<dfn-register>>, and to only one regi
 |===
 
 
-=== URIs
+=== Data products
 
-Register URIs are simply:
-
-[source]
+.Identifier URI
 ....
-https://id.netbeheernederland.nl/
+https://{type}.nbnl.io/data-product
 ....
-
-
 
 
 == Data product
 
-== Schema
+image::dataproduct-constituents.png[]
+
+Data products consist of the following parts:
+
+* _formal definition_
+* _taxonomy_
+* _ontology_
+* _schema_
+
+Data products and these constituents are information resources and therefore have no identifier URI since its data URI already serves as its identifier.
+
+
+NOTE: It is perfectly valid for a single document to represent several different resources. For example, one LinkML schema could represent the taxonomy, ontology and schema for a certain data product.
+
+=== Register
+
+The register for all data products has the URI:
+
+https://data.nbnl.io/data-product
+
+The web documentation can be found at:
+
+https://www.nbnl.io/data-product
+
+Content-negotiation can be used to
+
+=== Data product instance
+
+==== ID URIs
+
+....
+https://id.nbnl.io/data-product/hr
+-> DCAT-AP instance file (RDF)
+https://data.nbnl.io/data-product/hr/taxonomy
+-> SKOS model
+https://data.nbnl.io/data-product/hr/taxonomy/termName
+-> SKOS model statements defining `termName`
+https://data.nbnl.io/data-product/hr/ontology
+-> OWL/LinkML model
+https://data.nbnl.io/data-product/hr/ontology/ElementName
+-> OWL/LinkML model statements defining `ElementName`
+https://data.nbnl.io/data-product/hr/schema
+-> LinkML schema
+https://data.nbnl.io/data-product/hr/schema/ElementName
+-> LinkML sub-schema defining `ElementName`
+....
+
+
+
+....
+https://data.nbnl.io/data-product/hr
+-> DCAT-AP instance file (RDF)
+https://data.nbnl.io/data-product/hr/taxonomy
+-> SKOS model
+https://data.nbnl.io/data-product/hr/taxonomy/termName
+-> SKOS model statements defining `termName`
+https://data.nbnl.io/data-product/hr/ontology
+-> OWL/LinkML model
+https://data.nbnl.io/data-product/hr/ontology/ElementName
+-> OWL/LinkML model statements defining `ElementName`
+https://data.nbnl.io/data-product/hr/schema
+-> LinkML schema
+https://data.nbnl.io/data-product/hr/schema/ElementName
+-> LinkML sub-schema defining `ElementName`
+....
+
+.Identifier URI
+Data products are information resources, not real-world things, so they do
+--
+
+.Data product (formal description)
+....
+https://data.nbnl.io/data-product/hr
+....
+
+=== Definition
+....
+GET data-product/hr HTTP/1.1
+Host: data.nbnl.io
+Accept: text/html, application/xhtml+xml
+Accept-Language: en, de
+....
+
+
+
+
+=== Documentation
+https://www.nbnl.io/data-product/hr
+
+
+
+=== Schema
+
+
+
+=== Schema
+
+....
+https://{type}.nbnl.io/data-product/hr/schema
+....
+
+=== Schema element
+
+....
+https://id.nbnl.io/data-product/hr/schema/MarketEvaluationPoint
+....
+
+=== Register of data products
+
+
+=== Schemas
+
+
+
+
+
+
+
+
+
+== Ontology
+
+Ontologies are models that describe a domain in the real world.
+
+
+
+
+
+
+=== Element
+
+.LinkML schema for ontology "HR"
+====
+[source,yaml]
+....
+id: https://data.nb.nl/ontology/hr <1>
+classes:
+  Employee: <2>
+    class_uri: https://id.nb.nl/ontology/hr/Employee <3>
+....
+<1> Ontologies are information resources, so its identifying URI has the `data` subdomain.
+<2> The definition of the real-world concept _employee_ according to this ontology.
+<3> The URI that identifies the real-world concept _employee_, about which statements are made that comprise the definition.
+====
+
+.A cat and a description of a cat are not the same thing
+[CAUTION]
+--
+The astute reader might object: if the ontology is an information resource, shouldn't elements defined in it also be considered information resources?
+
+No. An ontology is a formal description of a domain in the real world, so while the definitions it provides could be regarded information resources, the concepts from the real-world domain which they define certainly can not.
+--
+
+==== Definition URI
+
+The definition of the concept _employee_ with respect to the ontology _HR_ can be obtained by sending a HTTP `GET` request to
+
+
+
+
+
+
+
+
+Class, attribute, slot, enumeration, enumeration value, or type.
+
+
+
+
+
 
 == Document
 

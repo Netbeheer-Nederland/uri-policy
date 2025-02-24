@@ -169,6 +169,11 @@ IRIs MUST use the HTTPS scheme. (<<HALPIN>>, <<TRIPLY>>)
 ** Or can we regard the ontology to be the register of this resource?
 ** I wouldn't think so, since several ontologies can have different definitions and descriptions of the resource, even within the same org.
 
+=== Generic documents
+
+For our models and data products we adopt the use of a single generic document to represent the resource on the web as per section 4.2 in <<COOL-URIS>>.
+
+
 Furthermore, the <<def-resource-description,description>> of
 
 == IRIs, URIs, URLs and URNs
@@ -226,17 +231,19 @@ Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria.
 * https://patterns.dataincubator.org/book/identifier-patterns.html
 * [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
 //* [[[TRIPLY]]] https://triplydb.com/how-to-model/-/stories/how-to-model-iris
-// * [[[LD-PATTERNS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
+* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
 * [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus]
 * [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance]
 * [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
 * [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved]
+* [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources]
 
 == Terms and definitions
 
-[[def-resource]] resource:: The term "resource" is used in a general sense for whatever might be identified by a URI. <<AWWW>>
+[[def-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI. See: <<AWWW>>.
+
+[[def-generic-resource]] generic resource:: A <<def-resource>> insufficiently specific to have only a single representation. See also: <<TBL-GENERIC>>.
 
 [[def-resource-description]] resource description:: A machine-readable representation of the resource, typically in some serialization of RDF.
 
-[[def-information-representation]] information resource:: A <<def-resource>> which has the property that all of its essential characteristics can be conveyed in a message.
-<<AWWW>>
+[[def-information-representation]] information resource:: A <<def-resource>> which has the property that all of its essential characteristics can be conveyed in a message. See also: <<AWWW>>.
