@@ -180,7 +180,18 @@ Furthermore, the <<def-resource-description,description>> of
 
 == Decisions
 
-Should be available inline in the context of the discussion I think.
+=== No punning
+
+A resource MUST NOT be an instance of both `skos:Concept` and `owl:Class`.
+
+Even though OWL 2 supports this practice of _punning_, this comes with the implication of needing to use the OWL Full profile which severely limits the reasoning capabilities:
+
+"However, an IRI may denote different entity-types (e.g. both an individual and a class) at the same time. This possibility, called “punning,” has been introduced to allow for a certain amount of metamodeling[...] To allow a more readable syntax, and for other technical reasons, OWL 2 DL requires that a name is not used for more than one property type (object, datatype or annotation property) nor can an IRI denote both a class and a datatype.[...]"
+-- Section 8.3 <<OWL2-PRIMER>>
+
+Several strategies of combining SKOS and OWL are described in <<OWL-SKOS>>. That article also explains in more detail what the implications of punning are.
+
+'''
 
 IMPORTANT: IRIs MUST use the HTTPS scheme.
 
@@ -237,6 +248,8 @@ Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria.
 * [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
 * [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved]
 * [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources]
+* [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)]
+* [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS]
 
 == Terms and definitions
 

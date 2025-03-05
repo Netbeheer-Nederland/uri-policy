@@ -3,29 +3,28 @@
 [source,yaml,subs="+attributes"]
 ....
 id: https://id.{domain}/data-product/transitietechnieken/schema <1>
-name: transitietechnieken <2>
+version: 1.0.1 <2>
+name: transitietechnieken <3>
 title: Transitietechnieken
 description: |-
   Schema of the Transitietechnieken data product.
 prefixes:
   cim: https://cim.ucaiug.io/ns#
-  esb: https://id.{domain}/taxonomy/energiesysteembeheer/ <3>
-  this: https://id.{domain}/ontology/transitietechnieken/ <4>
-default_prefix: this <5>
+  esb: https://id.{domain}/taxonomy/energiesysteembeheer/ <4>
+  this: https://data.{domain}/ontology/transitietechnieken/ <5>
+default_prefix: this <6>
 classes:
   RegisteredResource:
     class_uri: cim:RegisteredResource
     attributes:
       last_modified:
-        description: "Indication of the last time this item was modified/versioned."
         slot_uri: cim:RegisteredResource.lastModified
         multivalued: false
         range: date
         required: true
         exact_mappings:
-          - nbnl:detectiemoment <6>
+          - nbnl:detectiemoment <7>
       resource_type:
-        description: 'The type of resource.'
         slot_uri: this:RegisteredResource.resourceType  # Not necessary <7>
         multivalued: false
         range: ResourceKind
@@ -33,7 +32,7 @@ classes:
         exact_mappings:
           - nbnl:soortInstallatie
 enums:
-  ResourceKind: <8>
+  ResourceKind: <9>
     description: Type of RegisteredResource.
     permissible_values:
       pVInstallation:
@@ -46,13 +45,14 @@ enums:
         meaning: nbnl:verbruiksinstallatie
 ....
 <1> Specify the _identity URI_ of the schema here. More specific representations -- e.g. versions and serializations -- can be obtained through other means.
-<2> Technical name of the schema. This has local scope and therefore by convention it is equal to the name of the data product.
-<3> Prefix for easy referencing of definitions in one of the taxonomies maintained by us.
-<4> Prefix that refers to this schema, i.e. it is equal to the schema ID followed by a slash. The choice for `this` is merely a suggestion and left up to the modeller.
-<5> Specifying a `default_prefix` avoids having to manually specify URIs for our own definitions by implying URIs to be equal to the default prefix concatenated with the local element name.footnote:[More accurately, the local name undergoes some transformation as well.]
-<6> Example of a SKOS mapping to a definition in one of our taxonomies.
-<7> Example of a manual, explicit specification of URI for a definition created in this schema. This is unncessary, since the default prefix already takes care of this.
-<8> For this enumeration class we have defined ourselves in this schema, no class URI is specified. This leverages the default prefix to mint the correct URI.
+<2> Versions are spec
+<3> Technical name of the schema. This has local scope and therefore by convention it is equal to the name of the data product.
+<4> Prefix for easy referencing of definitions in one of the taxonomies maintained by us.
+<5> Prefix that refers to this schema, i.e. it is equal to the schema ID followed by a slash. The choice for `this` is merely a suggestion and left up to the modeller.
+<6> Specifying a `default_prefix` avoids having to manually specify URIs for our own definitions by implying URIs to be equal to the default prefix concatenated with the local element name.footnote:[More accurately, the local name undergoes some transformation as well.]
+<7> Example of a SKOS mapping to a definition in one of our taxonomies.
+<8> Example of a manual, explicit specification of URI for a definition created in this schema. This is unncessary, since the default prefix already takes care of this.
+<9> For this enumeration class we have defined ourselves in this schema, no class URI is specified. This leverages the default prefix to mint the correct URI.
 
 //<1> This is the identity, so use the `id` subdomain. A case could be made that this is an information resource and therefore using the `data` subdomain is justified. However, then we couldn't place it into a register, and seeing how definitions in this model _are_ identities, you get this potentially confusing situation where the schema itself does not have an identity, but the elements defined in it do. Even though that might be semantically correct, the practical considerations of having an identity for the schema as well win out here. Note that there is nothing wrong with that semantically either.
 

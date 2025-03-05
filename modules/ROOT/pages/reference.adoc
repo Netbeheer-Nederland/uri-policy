@@ -183,6 +183,8 @@ https://id.nbnl.io/data-product/hr
 -> DCAT-AP instance file (RDF)
 https://data.nbnl.io/data-product/hr/taxonomy
 -> SKOS model
+https://id.nbnl.io/data-product/hr/taxonomy/termName
+-> `termName` conceptualization through this SKOS model
 https://data.nbnl.io/data-product/hr/taxonomy/termName
 -> SKOS model statements defining `termName`
 https://data.nbnl.io/data-product/hr/ontology
@@ -216,7 +218,6 @@ https://data.nbnl.io/data-product/hr/schema/ElementName
 
 .Identifier URI
 Data products are information resources, not real-world things, so they do
---
 
 .Data product (formal description)
 ....
@@ -236,10 +237,6 @@ Accept-Language: en, de
 
 === Documentation
 https://www.nbnl.io/data-product/hr
-
-
-
-=== Schema
 
 
 

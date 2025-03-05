@@ -1,0 +1,231 @@
+= URI Strategy
+
+== Kinds of URIs
+
+Identity URIs (`id`) are the generic identifier of the resource.
+
+Unless you want to refer to some specific web representation and use the dedicated data or documentation URIs, this is the URI you use. Especially when you want to make statements about the resource, this is the URI to use, since it actually identifies the resource, and not one of its representations.
+
+Data URIs (`data`) identify the _normative_ data document which provides a formal description of the resource.
+
+These documents are typically various sorts of (information) models, containing formal descriptions of concepts. (Note that such concepts should also be considered resources in their own right to which the URI strategy applies.) Depending on the implementation, the URI resolves to the entire model or to a specialized submodel which provides only a definition for the specific resource.
+
+Document URIs (`www`) identify the _normative_ web document which provides documentation of the resource for humans.
+
+Like with data URIs, the implementation could differ in what exactly is returned, a page specifically about the resource, or a page that describes more than that.
+
+WARNING: If you wish to make statements about an `ACLineSegment` and would use the data URI to refer to the resource, what you're actually referring to is the data document describing it. Conversely, suppose we'd argue that we treat the ontology-bound resource `ACLineSegment` is an information resource and therefore does not need a identity URI, how then can we make statements about the `ACLineSegment` resource on the one hand, and its formal description on the other? There would be no way of disambiguating this. The same holds for the schema URI overall.
+
+=== Identity versus model definition
+
+Resource identification on the web requires only a URI, nothing more. This means that, technically, no definition needs to be given for a resource in order to identify it. Furthermore, because of the AAA-slogan of the web, one can find many competing views about resources, expressed as different sets of statements about the same URI. Specifically this could lead to competing definitions of the same resource.
+
+Let's be more precise about that.
+
+What even is a "definition of a resource"? This depends on the metamodel used to express the model in. In OWL, all you've got are statements involving the resource, from which additional information about the resource can be derived, or consistency thereof checked. It is this
+
+=== Justification for usage of same URI
+
+If one OWL ontology expresses statements which enable inference of instances of some class, and another OWL ontology does too for the exact same class (i.e. URI), can I safely regard instances of these classes as equivalent?
+
+Well, you should be able to: equal URIs means equal identity. However, if contradictory or unsuited statements lead to inferences of individuals belonging to the same class, then this is of course a modeling error.
+
+Preventing this issue is a matter of good modeling practice, especially in a decentralized architecture:
+
+1. Do not make inferences of membership of classes not under your own control, unless this is done in a way which does not alter (and particularly contradict) the authoritative meaning.
+2. Come up with your own URIs scoped to the ontology, so it serves as a natural context/perspective. Ontology alignment can be used to empower the use of other ontologies without affecting their definitions.
+	- Is this true? If I use A => x in X and then say X eq Y where Y is from some reference model, but the definition of all Y is such that Y => not A, then this is still a contradiction, no?
+
+=== Versioning
+
+Identifier URIs never have versions, since resources themselves do not change. If they do, you are talking about something else and so it should get its own URI.
+
+Data and documentation URIs,
+
+For instance, consider the following URI:
+`http://id.netbeheernederland.nl/data-product/meetdata/schema/MarketEvaluationPoint.sbiCodes`
+
+Let's take a careful look at how to interpret this URI.
+
+Most important of all, it is an identity URI,
+
+
+
+The way to interpret this URI is as following:
+* `data-product/meetdata` identifies the data product _Meetdata_
+* `meetdata/schema/MarketEvaluationPoint.sbiCodes` identifies the attribute `MarketEvaluationPoint.sbiCodes` in the data product's schema
+
+
+
+
+
+== Definition types
+
+=== Schema
+
+The identity of the schema:
+http://id.netbeheernederland.nl/data-product/meetdata/schema
+
+The data document describing the schema:
+http://data.netbeheernederland.nl/data-product/meetdata/schema
+
+The web document describing the schema:
+http://www.netbeheernederland.nl/data-product/meetdata/schema
+
+=== Schema element
+
+The identity of a schema element:
+http://id.netbeheernederland.nl/data-product/meetdata/schema/MarketEvaluationPoint
+
+The data document describing the element:
+http://data.netbeheernederland.nl/data-product/meetdata/schema/MarketEvaluationPoint
+
+The web document describing the element:
+http://www.netbeheernederland.nl/data-product/meetdata/schema/MarketEvaluationPoint
+
+NOTE: Using a hash strategy would not allow us to redirect schema element requests to its dedicated web page. This is a major benefit of using slashes.
+
+== Challenges
+
+=== Why is the identity URI necessary for schemas and their elements? Isn't it inherently data?
+
+Many other URI strategies choose to recognize models such as schemas to be information resources, i.e. they are not real-world things and therefore should not get and do not need an identity URI. This is a matter of perspective though, and it comes with consequences.
+
+One challenge with using only data URIs is the referential ambiguity it causes, especially when referring to schema elements. Ask yourself: when referring to the data URI of a schema element, am I referring to the concept it represents, or to the formal (sub)document that describes it?
+
+Furthermore, actual data documents such as a LinkML schema or OWL ontology always have a specific version. However, it can be useful to be able to refer to the generic, version-agnostic entity which represents the model. I mean, if I can say they are "versions of the same model", than this "same model" should have its own URI so I can actually make statements about it.
+
+For all of these reasons, it makes sense to have an identity URI for models and model elements just like for real-world things. Everything becomes more uniformous as a bonus.
+
+=== Are model elements of different versions of the same ontology semantically interoperable?
+
+Yes. This is why we are able to use and rely on generic model (element) URIs.
+
+For example, suppose we have the ontology:
+`http://id.netbeheernederland.nl/data-product/meetdata/ontology`
+
+Say there are two versions of this ontology:
+`http://data.netbeheernederland.nl/data-product/meetdata/ontology/v2.0.0`
+`http://data.netbeheernederland.nl/data-product/meetdata/ontology/v1.1.0`
+
+Now, consider the following model element defined in this ontology:
+`http://id.netbeheernederland.nl/data-product/meetdata/ontology/MarketEvaluationPoint.sbi_codes`
+
+And its corresponding two versions:
+`http://id.netbeheernederland.nl/data-product/meetdata/ontology/v2.0.0/MarketEvaluationPoint.sbi_codes`
+`http://id.netbeheernederland.nl/data-product/meetdata/ontology/v1.1.0/MarketEvaluationPoint.sbi_codes`
+
+
+
+
+Yes. It's important to recall the distinction between identity and definition here.
+
+
+
+This conceptualization is tighly coupled to the ontology,
+
+=== If models evolve and elements are created and deleted, how can we maintain the generic URI redirects?
+
+For example
+
+Worst case: some element gets removed, but a new one is introduced at a later stage.
+Solution could be to never delete, and only deprecate old elements.
+
+
+
+=== What exactly does a schema (element) URI identify?
+
+One option is to say: the URI represents
+
+
+The context is the schema, which therefore serves as a great namespace. But the question
+
+
+
+
+
+
+
+
+'''
+
+
+# v1.0
+IF \#x.wheelCount = 4 => x a Car
+IF x a Car => x a Vehicle
+
+# v2.0
+
+IF \#x.wheelCount = 5 => x a Car
+Car /\ Vehicle = {}
+
+'''
+
+De ontologie is enkel het perspectief waarmee je kijkt naar de wereld om kennis af te leiden en te controleren op consistentie.
+
+In de ogen van de ene ontologieversie kan iets een auto zijn, daar waar het in de ogen van de ander geen auto zou kunnen zijn.
+
+De vraag resteert natuurlijk: wat wijst de URI dan nog aan?
+
+Belangrijk gevolg: wat als ik een dataset heb die adhv ontologie v1.0 heeft geconcludeerd dat iets een auto is, terwijl ik ook een dataset heb die adhv ontologie v2.0 heeft geconcludeerd dat iets een auto is, kan ik beide auto's dan optellen?
+
+OWL heeft een heel precieze manier om dit te beantwoorden in een open wereld: krijg ik contradicties? Nou, ik moet eigenlijk per URI kunnen zeggen met respect tot welke ontologieversie deze geïnfereerd/gestate is, want stel bijv. dat ik een auto neem uit een of andere dataset die met ontologie v2 in gedachten is gemaakt, dan zou een auto
+
+*Belangrijker*:
+Er kunnen goede redenen zijn waarom in de ene ontologie (context) de conclusie wordt getrokken dat iets een Car is, terwijl die oorzaken tegensprekend zijn met hoe een Car wordt afgeleid in ontologie (context) B.
+
+M.a.w.:
+* Ontologie A: IF \#x.wheelCount = 4 => x a Car
+* Ontologie B: IF \#x.wheelCount != 4 => x a Car
+
+Aan de ene kant, wellicht is A gebruikt op aarde, en B op een andere planeet. Dit lijkt duidelijk een probleem, want het doet sterk vermoeden dat het verschillende conceptualisaties van Car zijn. Echter: hoe maak je dit formeel? Wat maakt dan dat beide een Car (horen te of niet) zijn?
+
+Aan de andere kant, het kan ook prima zo zijn dat in de context van A het tellen van exact 4 wielen inderdaad duidt op een Car, bijv. omdat het een systeem bedient dat bij de fabriek registreert welke vehicles afgerond zijn. Context B kan bijv. zijn waar alle afwijkende auto's terechtkomen, dus alles wat 4 wielen heeft is niet afwijkend, en de rest wel dus dat tel je als auto. Dit voorbeeld duidt - ondanks hoe slecht het uitgekauwd is - aan hoe tegensprekende oorzaken terecht kunnen zijn vanwege de context, en dus correct beide een Car instance kunnen infereren.
+
+Essentiële eigenschappen van wat een auto is mogen niet tegengesproken worden, en de autoritaire definitie ligt bij de URI-owner. Dus, beter voorbeeld volgt.
+
+Stel, ik heb de `vehicles`-ontologie als autoriteit voor de formele definitie van `vehicles:Car`, namelijk:
+	x a Car => \#x.wheelCount in 3..8
+
+Dan is er een afdeling verantwoordelijk voor de reparatie van fietsen en driewielerauto's. Op de lopende band komen ze langs de juiste monteurs, en ze worden verdeeld via machine learning die de wielen op de beelden leert tellen.
+
+	\#x.wheelCount = 3 => x a Car
+	\#x.wheelCount = 2 => x a Bike
+
+Tot slot is er de overheid die dezelfde machine learningsoftware gebruikt voor de analyse van hoeveel auto's op een drukke weg er zijn ten opzichte van andere vehikelen:
+
+	\#x.wheelCount = 4 => x a Car
+
+'''
+
+Gesprek met Robbert:
+
+* Generieke URI is nodig want anders kan ik de versies van een ding niet bij elkaar houden, plus ik wil dingen kunnen zeggen over het ding
+* Versies in URI's maken ze enorm vergankelijk. de manier om ze toch duurzaam te houden is het gebruik van de generieke URI
+** Belangrijk: dit zou betekenen dat je ontologie append-only wordt, aangezien anders de betekenis van dingen verandert en de URI niet meegaat (dat is fout)
+** Als je tóch een breaking change op semantisch niveau introduceert, betekent dit dus genoodzaakt dat je een nieuwe URI moet verzinnen.
+*** Labels en `skos:related` e.d. kunnen helpen met overzicht en leesbaarheid
+*** Je kan zelfs volledig opake namen gebruiken, maar dit is te costly op leesbaarheid denk ik
+
+'''
+
+Verademing:
+* Wij doen enkel:
+** Logisch model / structuur (LinkML)
+** Begrippenmodel (SKOS)
+** Verwijzing ertussen
+* Voor Linked Data echter gaan onze URI mappings wel degelijk effect hebben en dus meer zijn dan enkel een constraining shape
+** Moeten we daar wat mee echter?
+
+Use-casespecifieke, structurele modellen bedoeld voor validatie en uitwisseling hebben heel lokale en veranderlijke modellen. Je maakt geen verwijzingen naar dit soort dingen, het is heel lokaal, dus de URI's hoeven niet extreem duurzaam te zijn.
+
+De URI mappings die semantische URI's representeren die de buitenwereld in gaan, en mogelijk op allerlei plekken een rol gaan spelen is een ander verhaal. Die wil je heel duurzaam hebben.
+
+'''
+
+Stel ik heb geen tegenspraak met de statements over de URI van de autoriteit, dat is natuurlijk noodzakelijk, maar is dat ook voldoende om te zeggen dat ik bijv. mag zeggen dat iets van mij een instance is van die klasse?
+
+Dat lijkt me sterk, dat je zo precies kan zijn. Echter, beken je daarmee niet dat een ontologie en de klassen erin meer zijn dan een information resource? Immers, deze kloof tussen wat het model afvangt en wat ik nog zelf moet beoordelen qua of ik de URI zo kan gebruiken zegt me dat blijkbaar niet alles in een message te vangen is van de essential characteristics.
+
+Aan de andere kant, het moet machine-readable zijn toch? Reasoners gaan mijn hulp niet krijgen...
+
