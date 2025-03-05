@@ -1,0 +1,2 @@
+[[dfn-schema]]schema::
+    Machine-readable description of expected structure and form of the data.

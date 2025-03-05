@@ -3,6 +3,62 @@
 :dp-name: transitietechnieken
 :dp-title: Transitietechnieken
 
+== Versions
+It's important to distinguish between a data product and a specific version of a data product. Both assigned their own URIs.
+
+The data product _{dp-title}_ is identified by the URI:
+
+[source,subs="+attributes"]
+....
+http://id.{domain}/data-product/{dp-name}
+....
+
+The following URIs identify two specific versions of this data product:
+
+[source,subs="+attributes"]
+....
+http://id.{domain}/data-product/{dp-name}/v2.1.0
+http://id.{domain}/data-product/{dp-name}/v3.0.0
+....
+
+CAUTION: When leaving out the version number from these URIs you obtain the generic data product URI. This hierarchical pattern is on purpose for your convenience, but it should be noted that this is merely informal. Meaning in URIs must always be treated as incidental. Only once put in models, does meaning become formal.
+
+== Anatomy
+The constituents of a data product of interest from the perspective of this document are all those which we wish to be able to refer to:
+
+definition::
+Metadata describing the specific instance of a data product version.
+schema::
+Machine-readable description of expected structure and form of the data.
+
+From the schema mappings can be made to ontologies and taxonomies, but currently no other information model besides a schema is associated with a data product.
+
+=== Definition
+The data URI of the data product resolves to the instance document of the data product version, for example a JSON-LD document conforming to the DCAT-AP schema which describes data products.
+
+The documentation URI of the data product resolves to the web page of the data product.
+
+Both of these descriptions can be obtained through content-negotiation when requesting the identity URI.
+
+=== Schema
+
+Schemas do not have their own independent version, but follow the version of the data product. Different versions of data products therefore come with different versions of the associated schemas.
+
+Each schema and each schema version must be assigned their own URI, as does each element defined in these schemas.
+
+==== LinkML
+
+
+
+
+
+
+
+
+
+
+
+
 == Data product instance
 
 [cols="1h,3"]

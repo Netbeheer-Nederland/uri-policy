@@ -11,7 +11,7 @@ description: |-
 prefixes:
   cim: https://cim.ucaiug.io/ns#
   esb: https://id.{domain}/taxonomy/energiesysteembeheer/ <4>
-  this: https://data.{domain}/ontology/transitietechnieken/ <5>
+  this: https://id.{domain}/schema/transitietechnieken/ <5>
 default_prefix: this <6>
 classes:
   RegisteredResource:
