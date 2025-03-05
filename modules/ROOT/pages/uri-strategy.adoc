@@ -150,11 +150,11 @@ The context is the schema, which therefore serves as a great namespace. But the 
 '''
 
 
-# v1.0
+\# v1.0
 IF \#x.wheelCount = 4 => x a Car
 IF x a Car => x a Vehicle
 
-# v2.0
+\# v2.0
 
 IF \#x.wheelCount = 5 => x a Car
 Car /\ Vehicle = {}
