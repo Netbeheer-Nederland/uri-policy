@@ -32,7 +32,7 @@ It might be useful to say a few things about what it is we mean by _schema_ and 
 
 The word "shape" might ring a bell to those familiar with the W3C technology stack, in particular making one think of the Shapes Constraint Language (SHACL). This is deliberate on my part, since it is a helpful association, because LinkML and SHACL are both schema modeling languages with a similar purpose and plenty of overlap in semantics.
 
-For example, class definitGggions in LinkML schemas are basically the equivalence of class-targeting node shapes in SHACL. Furthermore, specifying cardinality constraints using LinkML meta slots like `required` and `maximum_cardinality`  follow the exact same semantics as the SHACL cardinality constraint components do.
+For example, class definition in LinkML schemas are basically the equivalence of class-targeting node shapes in SHACL. Furthermore, specifying cardinality constraints using LinkML meta slots like `required` and `maximum_cardinality`  follow the exact same semantics as the SHACL cardinality constraint components do.
 
 To hammer this point home beyond doubt: LinkML classes do not represent ontological definitions of entities from the domain, but shapes which express expectation with regard to what the data is supposed to look like. Again, LinkML is a data modeling language, and such models are about structure, constraints and syntactical correctness, not about expressing the semantics of the domain.
 
