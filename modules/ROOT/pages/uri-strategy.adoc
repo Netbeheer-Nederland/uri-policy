@@ -77,11 +77,18 @@ NOTE: Using the `data` URI for data products commits to the promise of providing
 
 | `document`
 | Documentation
-| `https://www.nbnl.info/doc/uri-strategy`
+| `https://www.nbnl.info/document/uri-strategy`
 
 |===
 
 NOTE: Because data products are information resources, they make use of the `data` and `www`.
+
+== Versioning
+
+* Models as part of a data product follow the version of the data product, i.e. they do not have an independent version.
+* Referring to model elements must be done in a version-less way to ensure durability of the URI.
+
+
 
 == Decisions and assumptions
 
@@ -94,4 +101,8 @@ NOTE: Because data products are information resources, they make use of the `dat
 ** `id` URIs _must not_ be used.
 * In URIs for model elements, a hash (`#`) character _must_ be used to discern the model element from the model.
 * Naming conventions of reference names are out of scope.
+* As part of their definition, models _must_ describe:
+** a versioned URIfootnote:[For example: LinkML would include a version in its schema ID];
+** a generic URI;
+** a version number according to the SemVer specification.
 --
