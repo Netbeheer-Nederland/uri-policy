@@ -1,0 +1,62 @@
+== LinkML
+
+First, let's take a look at an example LinkML model.
+
+[source,yaml]
+....
+classes:
+  Person:
+    attributes:  <1>
+      name:  <2>
+  Employee:
+    is_a: Person  <3>
+  Organisation:
+    attributes:
+      name:  <2>
+....
+<1> We choose to represent attributes as inlined slots using the `attributes` meta slot.
+<2> Attributes with equal names across classes imply different slots in LinkML, as is standard in UML and OO modeling.
+<3> Inheritance of attributes happens by reference, not by copy, so the `name` slot defined for the class `Employee` is the same one as for the class `Person`.
+
+== Mapping to RDF
+
+Clearly, LinkML is very well suited to represent OO models such as typically expressed in UML class diagrams. However, this also means it faces many of the same challenges when trying to generate an RDF model:
+
+. In RDF, properties are first-class citizens just like classes, i.e. there is no notion of encapsulation or attribute ownership.
+.
+
+
+
+
+
+== SHACL
+
+[source,turtle]
+....
+:PersonShape a sh:NodeShape ;
+    sh:targetClass :Person ;
+    sh:property [
+        sh:path :name ;
+        sh:datatype xsd:string
+    ] .
+
+:EmployeeShape a sh:NodeShape ;
+    sh:targetClass :Employee ;
+    sh:node :PersonShape .
+....
+
+This means:
+
+* Every value of the property `:name` for an instance of class `:Person` MUST HAVE datatype `xsd:string`
+* Every instance of `:Employee` must conform to the same constraints as instances of `Person` (inheritance)
+
+== RDFS
+
+[source,ttl]
+....
+:Person a rdfs:Classs .
+
+:name a rdf:Property ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string .
+....

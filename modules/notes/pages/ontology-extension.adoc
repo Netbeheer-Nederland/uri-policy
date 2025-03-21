@@ -1,0 +1,49 @@
+= Use Case Modeling
+
+== Necessities
+
+Modeling a use case involves several kinds of models:
+
+* _Taxonomy_ for defining and classifying terms in natural language intended for use by humans.
+* _Vocabulary_ or _ontology_ for a formal description of the domain, intended for use by both humans and machines.
+* _(Logical) schema_ for the description of the data model, intended for use by machines.
+
+We will take a closer look at each of these models, while exposing their relationship to one another in the process.
+
+== Taxonomy
+
+
+== Ontology
+
+* In the future, we might define OWL ontologies, but for now all we do is mint URIs which we use in our LinkML.
+
+
+
+== Profiling and data modeling
+
+_Profiling_ is the act of:
+
+* selecting a subset of the ontology suitable for the given domain/use case
+* constraining the elements in this subset accordingly, structurally and otherwise
+
+IMPORTANT: Profiling never alters the semantics of the ontologies used.
+
+== Extending semantics
+
+If no existing ontology can be found for some modeling requirement, you can create your own definition.
+
+=== Borrowing URIs
+
+=== Crafting own URIs
+
+One common practice is to introduce our own URIs, and then relate them to entities from other ontologies by using subclasses and subproperties.
+
+
+
+////
+. Analyze the requirements with stakeholders.
+. Create or enrich a taxonomy to describe the natural language used by stakeholders.
+. Create an ontology to model the use case.
+. Create a logical schema for the use case.
+. If applicable and feasible, compose formal business rules for the use case.
+////
