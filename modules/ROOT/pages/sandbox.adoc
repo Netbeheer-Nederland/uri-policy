@@ -213,6 +213,7 @@ IMPORTANT: If the meaning of some thing changes, it needs a new URI. Therefore, 
 
 
 
+
 == Frequently asked questions
 
 Wouldn't it be more proper to assign real-world abstract concepts (such as _person_) an identity URI, and have different kinds of models such as ontologies and thesauri express different perspectives (i.e. definitions)?::

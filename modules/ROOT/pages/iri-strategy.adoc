@@ -1,0 +1,147 @@
+= IRI Strategy
+:domain: nbnl.info
+:fn-doc-iri: pass:c,q[footnote:[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+
+
+== Registers
+
+
+== Data products
+
+
+== Documents
+
+.IRI pattern for documents {fn-doc-iri}
+[source,subs="attributes"]
+....
+https://www.{domain}/doc/\{path\}/\{reference}[/\{version}]
+....
+
+
+[cols="h,1",width=70%]
+|===
+| IRI types
+a| * `www`
+
+| Resource type
+| `doc`
+
+|===
+
+=== Versioning
+
+
+
+=== Example
+
+.IRI Strategy
+====
+Let's consider the IRI for the _IRI Strategy_ document.
+
+.Generic URI
+[source,subs="attributes"]
+....
+https://www.{domain}/doc/modeling-guide/iri-strategy
+....
+
+Note that it is part of the _Modeling Guide_ documentation project, which would act as its container.
+
+To request a specific version of the _Modeling Guide_ one could use the following IRI:
+
+.Versioned URI
+[source,subs="attributes"]
+....
+https://www.{domain}/doc/modeling-guide/1.1.0/iri-strategy
+....
+
+Note that it is not supported to version the _IRI Strategy_ document itself, only the project it is contained in. This is analogous to the inability to version ontology terms.
+====
+
+
+== Models
+.IRI pattern for models
+[source,subs="attributes"]
+....
+https://data.{domain}/\{model-type}/\{model\}[/\{version}]
+....
+
+.IRI pattern for model elements
+[source,subs="attributes"]
+....
+https://data.{domain}/\{model-type}/\{model\}[/\{version}]/\{element}
+....
+
+[cols="h,1",width=70%]
+|===
+| Model type
+a| Any of:
+
+* `<<x,thesaurus>>`
+* `<<x,ont>>`
+* `<<x,ontology>>`
+
+| Model
+| Name of the model
+
+| Version +
+_(optional)_
+a| Version of the model, following the pattern:
+
+`X.Y.Z` +
+
+(where `X, Y, Z` are non-negative integers)
+
+| Element
+| Name (local to the model) of the model element which corresponds to the resource
+
+|===
+
+=== Referencing
+
+==== Models
+
+==== Model elements
+
+Models are information resources, so their document URL (data IRI) also serves as the identity URI:
+
+`id`
+
+=== Data
+
+
+
+=== Documentation
+
+=== Versioning
+
+
+
+=== Example
+
+.LinkML schema of data product _Transitietechnieken_
+====
+[source,yaml,subs="+attributes"]
+....
+id: https://data.{domain}/schema/transitietechnieken <1>
+version: 1.0.1 <2>
+name: transitietechnieken <3>
+prefixes: <4>
+  nbnl: https://data.{domain}/taxonomy/energiesysteembeheer/
+  cimnl: https://data.{domain}/ont/cim-nl/
+classes:
+  RegisteredResource:
+    class_uri: cim:RegisteredResource
+    attributes:
+      resource_type:
+        slot_uri: cimnl:RegisteredResource.resourceType <5>
+        range: ResourceKind
+        exact_mappings:
+          - nbnl:soortInstallatie <6>
+....
+<1> The generic IRI of the schema, i.e. not a specific version.
+<2> The version of the schema this document represents.
+<3> Technical name of the schema. This has local scope, but it is good practice to keep it equal to model name in the IRI.
+<4> Prefixes for easy referring to terms from other models.
+<5> Referring to a term from another ontology.
+<6> Referring to a term from another thesaurus.
+====

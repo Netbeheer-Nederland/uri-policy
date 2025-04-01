@@ -1,92 +1,174 @@
-= URI Strategy for Models
-
-
+= URI Strategy
+:domain: nbnl.info
 
 == URI pattern
 
-NOTE: For data products hierarchical URIs have been considered, which make the tight coupling of some models to its data product more explicit. This quickly gets complicated though.
-
 [source,subs="attributes"]
 ....
-https://\{type}.{domain}/\{namespace}#\{name}
+https://\{uri-type}.{domain}/\{container-type}/\{container}{[/\{version}]/\{reference}
 ....
-
-URIs are about durable identification, so stating what things exist. Opacity is favored. Relations between models and other things should be part of models. This line of reasoning would lead one towards using flat URIs.
-
-Simple is usually better, and one great example here is how complicated it is to have separate versions for the data product itself and some part. This can be really confusing and difficult to parse. For that reason mostly, I would stick with simple flat URIs.
-
-Then, URIs have no meaning, and the hierarchical relations between things suggested by it merely a convention for humans. Using flat URIs we could come up with another convention to help out humans in relating things to one another. For example, we could have reference names such as `netburen` be unique across the namespaces `data-product`, `ontology`, `schema` and `taxonomy`. That's a very costly and hard to maintain convention though.
-
-Even with flat URIs, conventions will get one a long way. When creating the data product `netburen`, creating an ontology URI for `netburen` could be done immediately. This way, users could simplt replace `data-product` in the URI with `schema` or `ontology` or whatever.
 
 === Scheme
 
-The entire web moves to HTTPS, so should the Semantic Web. Especially since HTTPS rewrites of HTTP URIs are not equivalent, and since RDF models cannot make statements about URIs themselves to declare them equivalent either, any freshly minted URI should be a HTTPS URI.
+The HTTPS scheme is used for all URIs.
 
-=== Type
 
-We will only be looking at the following two types of URIs:
+=== URI type
 
-* `data` URIs, which identify models and model elements and their formal, machine-readable representation of resources;
-* `www` URIs, which identify web page representations of resources.
+The following types of URIs are discerned:
 
-[NOTE,caption=scope note]
---
-Non-information resourcesfootnote:[Resources whose informational representation is complete are called _information resources_. Effectively their representation is equal to their identity.] -- typically real-world objects -- are identified by a `id` URI which redirects to the various web representations using a 303 redirect. However, this is out of scope for this (version of the) URI strategy, which exclusively deals with models and model elements.
---
-
-=== Namespace
-
-Each model forms the namespace for some element.
-
-CAUTION: Once we start working with registers of instance data as namespaces as well, it is likely the case that slashes will be used there. Out of scope for now.
-
-== Namespaces
-
-=== Models
-
-[cols="1h,1,1"]
+[cols="1h,1,4"]
 |===
-| Namespace | Description | Example
+| `\{uri-type}` | URI type | Identifies
 
-| `taxonomy`
-| Taxonomy
-| `https://data.nbnl.info/taxonomy/nbnl-energiesysteembeheer`
+| `id`
+| _identity_
+| the resource itself, independent of any representation
 
-| `ontology`
-| Ontology
-| `https://data.nbnl.info/ontology/topology`
+| `data`
+| _definition_
+| the formal, machine-readable representation of the resource
+
+| `www`
+| _documentation_
+| the web page representation of the resource
+|===
+
+[NOTE]
+--
+Unlike many other URI strategies who use identity URIs solely for registers of real-world objects, we also use them for information resources such as ontologies.
+--
+
+=== Domain
+
+The domain for every URI is: `nbnl.info`.
+
+=== Container type
+
+Resources are part of a container, and each container is of a certain type.
+
+The following types are recognized:
+
+[cols="2h,5"]
+|===
+| `\{container-type}` | Description
+
+| `reg`
+| Register of individuals
+
+| `dprod`
+| Register of data products
+
+| `doc`
+| Documentation, for humans
+
+| `ont`
+| Ontology or conceptual model
 
 | `schema`
-| Schema
-| `https://data.nbnl.info/schema/netburen`
+| Logical or technical schema
 
+| `thesaurus`
+| Thesaurus, taxonomy, controlled vocabulary or glossary.
 |===
 
-NOTE: Using the `data` URI for data products commits to the promise of providing a machine-readable representation of it.
+NOTE: Unlike other registers which are part of the `reg` register, the `dprod` register is a special case living at the top-level for convenience.
 
-=== Registers
+=== Container
 
-[cols="1h,1,1"]
+Each resource must be part of a container. Containers are of a certain <<_container_type,type>>, and complete the namespace for the resource being identified.
+
+=== Version
+
+This is an optional path component used to version models such as thesauri and ontologies.
+
+NOTE: Versioning of individual resources such as a real-world building or an ontology term is not supported by this URI strategy. This is by design.
+
+=== Reference
+
+Names referencing the resource local to its container.
+
+Conventions regarding the naming of these references depend on the container type. For example, registers may contain numeric references, whereas ontologies should not (#TODO#).
+
+.Identity URIs for an ontology and register
+====
+The ontology _Core equipment_ describes the term _Wire_. This would yield the following identity URI:
+
+[source,subs="attributes"]
+....
+https://id.nbnl.info/ont/core-eq/Wire
+....
+
+The person _Bart Kleijngeld_ is an individual that is registered with the people register:
+
+[source,subs="attributes"]
+....
+https://id.nbnl.info/reg/people/bartkl
+....
+====
+
+
+
+
+
+== Registers
+
+== Data products
+
+== Documentation
+
+Documentation resources are information resources which are human-readable and on the web.
+
+[source,subs="attributes"]
+....
+https://\{uri-type}.{domain}/doc/\{container}{[/\{version}]/\{reference}
+....
+
+[cols="1h,1"]
 |===
-| Namespace | Description | Example
-
-| `data-product`
-| Data product
-| `https://data.nbnl.info/data-product/netburen`
-
-| `document`
-| Documentation
-| `https://www.nbnl.info/document/uri-strategy`
-
+| asd | asdasd
+| asdasd | asdasd
 |===
 
-NOTE: Because data products are information resources, they make use of the `data` and `www`.
+== Models
+
+Because of the informational nature of <<_information_resources,information resources>>, the _data URI_ which identifies the formal definition also identifies the resource itself, i.e. there is no need for an identity URI.
+
+=== Thesauri
+
+=== Ontologies
+
+=== Schemas
+
+== Types
+
+[cols="2h,5"]
+|===
+| `\{container-type}` | Description
+
+| `doc`
+| Documentation, for humans
+
+| `dprod`
+| Register of data products
+
+| `thesaurus`
+| Thesaurus, taxonomy, controlled vocabulary or glossary.
+
+| `ont`
+| Ontology or conceptual model
+
+| `schema`
+| Logical or technical schema
+|===
+
 
 == Versioning
 
 * Models as part of a data product follow the version of the data product, i.e. they do not have an independent version.
 * Referring to model elements must be done in a version-less way to ensure durability of the URI.
+
+Models can be versioned, model elements must not be versioned.
 
 
 
@@ -106,3 +188,11 @@ NOTE: Because data products are information resources, they make use of the `dat
 ** a generic URI;
 ** a version number according to the SemVer specification.
 --
+
+== Terms and definitions
+
+[[def-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI. See: <<AWWW>>.
+
+[[def-resource-description]] resource description:: A machine-readable representation of the resource, typically in some serialization of RDF.
+
+[[def-information-resource]] information resource:: A <<def-resource>> which has the property that all of its essential characteristics can be conveyed in a message. See also: <<AWWW>>.
