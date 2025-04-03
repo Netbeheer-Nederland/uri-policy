@@ -1,37 +1,53 @@
-= Work Document
+= Decisions
 
 == Whether to use `id`  or not for model definitions
 
 === Option 1: Use `id`
+
+When using `id` for model definitions, we should carefully consider what its meaning is, and where we wish to use it.
+
+.Meanings of URI types
 * `id`: the identifier of the thing itself (_identity URI_)
 * `data`: refers to the data representation (i.e. a machine-readable document)
 * `www`: refers to the documentation representation (i.e. a human-readable document)
 
-.Ontology term IRIs
+.IRIs for `core-equipment` ontology
 ====
 [source]
 ....
-# Generic identifier
-https://id.nbnl.info/data-product/meetdata/information-model/MarketEvaluationPoint
+# Identity URI of generic (version-less) ontology
+https://id.nbnl.info/ontology/core-equipment
 
-# Machine-readable definition
-https://data.nbnl.info/data-product/meetdata/information-model/MarketEvaluationPoint
+# Identity URI of specific version of ontology
+https://id.nbnl.info/ontology/core-equipment/2.1.0
+
+# Machine-readable definition of ontology
+https://data.nbnl.info/ontology/core-equipment/2.1.0
 
 # Web page
-https://www.nbnl.info/data-product/meetdata/information-model/MarketEvaluationPoint
+https://www.nbnl.info/ontology/meetdata/MarketEvaluationPoint
 ....
 ====
 
 Content-negotiation with the `id` URI would redirect you to either the `data` or `www` representation of the resource.
 
+==== Challenges
+
+* Is it confusing to have an `id` URI for an ontology, which we are used to thinking of as an information resource? The generic ontology may or may not be considered an information resource, so this is quite nuanced.
+** If generic ontologies are information resources, what information is it which describes them? If this is no single document, but a dynamically negotiable document, could you still call it an information resource?
+* Information resources such ontology and web document versions should not need `id` URIs, since their `data` URI already identifies them. Semantically speaking, this is not great.
+* Using `id` for referring to ontology terms as subjects, whilst using `data` for the ontology itself can be quite confusing. However, both that subject identifier and the generic ontology URI are `id` URIs, so in that sense stuff lines up pretty well.
+
 ==== Pros
 * Consistent with how we deal with real-world objects, providing total uniformity in our approach and thereby enhancing predictability.
 * No ambiguity regarding the meaning of a data URI with a fragment: does it refer to a (part of a) document or to the subject?
 * Provides a proper means of semantically connecting both representations as being merely that: *representations* of some thing, and that thing then gets its own URI.
-* This includes a more semantically proper conneg setup.
+** This includes a more semantically proper conneg setup.
 
 ==== Cons
-* Can be confusing when to use `id` and when to use `data`, especially since it is a in information resource already.
+* Can be confusing when to use `id` and when to use `data`, especially since when it is an information resource already.
+** Generic URIs for ontologies are arguably not documents, should these even get the `
+
 * It's also less commonplace: most other standards seem to not go for this option.
 * Adds another URI and therefore more complexity, which is harder to follow, maintain and could be more brittle.
 

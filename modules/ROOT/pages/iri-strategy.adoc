@@ -1,32 +1,202 @@
 = IRI Strategy
 :domain: nbnl.info
-:fn-doc-iri: pass:c,q[footnote:[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
+== Introduction
+
+#TODO#
+
+////
+== IRI pattern
+
+<<x,Resources>> and their representations are identified by IRIs, each of which must be of the following form:
+
+.IRI pattern
+[source,subs="attributes"]
+....
+https://\{uri-type}.{domain}/\{category}/\{path}{[/\{version}]/\{reference}
+....
+
+Where:
+
+* The path `/\{category}/\{container}[/\{version]}/\{reference}` is the fully qualified name of the resource being identified.
+* The `\{uri-type}` indicates what representation of the resource is desired.
+
+#TODO#: Write more. Including explanation of all path components.
+////
+
+////
+== Reference
+
+[cols="1h,3,1,1"]
+|===
+| |Description |URI type |Category
+
+|Register
+|Register of real-world entities
+|`id`
+|`register`
+
+|<<_data_product>>
+|Data product definitions
+|`www`
+|`dprod`
+
+|Ontology
+|Ontology or conceptual model
+|`data`
+|`ontology`
+
+|Schema
+|Logical or technical data model
+|`data`
+|`schema`
+
+|Thesaurus
+|Thesaurus, taxonomy, controlled vocabulary or glossary
+|`data`
+|`thesaurus`
+
+|<<_documentation_project>>
+|Documentation for humans
+|`www`
+|`doc`
+
+|===
+////
+
+////
+.IRIs for each category (version-less)
+====
+[cols="2h,5"]
+|===
+|Documentation project
+|`\https://www.{domain}/doc/modeling-guidelines`
+
+|Documentation project page
+|`\https://www.{domain}/doc/modeling-guidelines/iri-strategy/decisions`
+
+|Data product
+|`\https://data.{domain}/dprod/measurements`
+
+|Ontology
+|`\https://data.{domain}/ontology/core-equipment`
+
+|Ontology term
+|`\https://data.{domain}/ontology/core-equipment#Wire`
+
+|Schema
+|`\https://data.{domain}/schema/forecasting`
+
+|Schema element
+|`\https://data.{domain}/schema/forecasting#OpertionalLimit`
+
+|Thesaurus
+|`\https://data.{domain}/thesaurus/energy-system`
+
+|Thesaurus term
+|`\https://data.{domain}/thesaurus/energy-system#usage-point`
+
+|Register
+|`\https://id.{domain}/lv-measurements/`
+
+|Register entity
+|`\https://id.{domain}/lv-measurements/021`
+
+|===
+====
+////
 
 == Registers
 
+A register is a logical container of resources which represent entities from the real-world domain. Each register contains one type of entity.
 
-== Data products
+Entities in registers, on the other hand, represent real-world entities and are
+ not information resources. Therefore, they are identified using an `id` type.
+
+=== Register
+
+.IRI pattern for register
+[source,subs="attributes"]
+....
+https://data.{domain}/register/\{register}
+....
+
+Registers are information resources, so they are identified by their `data` URIs.
+
+[cols="h,2",width=70%]
+|===
+| Information resource
+| yes; `data`
+
+| IRI types
+a| * `data` (identifier) +
+* `www`
+
+| Category
+| `register`
+
+| Register
+| Namespace identifying the register
+
+| Version
+| _n/a_
+
+|===
+
+=== Entity
+
+.IRI pattern for entity in register
+[source,subs="attributes"]
+....
+https://id.{domain}/register/\{register}/\{entity}
+....
+
+Entities in registers represent real-world entities, and are therefore not information resources. To identify them on the web, the `id` IRI type is used.
+
+[cols="h,2",width=70%]
+|===
+| IRI type
+| `id`
+
+| Category
+| `register`
+
+| Register
+| Namespace identifying the register
+
+| Version
+| _n/a_
+
+| Entity
+| Local name of the entity in the register
+|===
+
+== Data product
 
 
-== Documents
+== Documentation project
 
-.IRI pattern for documents {fn-doc-iri}
+A _documentation project_ is documentation intended for reading by humans, not machines. A documentation project can consist of a mere single-page document, but also be comprised of a complex nested structure containing many pages and potentially many layers of organisation.
+
+NOTE: Do not confuse the category _documentation project_ with _documentation representations_ as obtained through using `www` URIs. See also: {fn-doc-iri}
+
+.IRI pattern for a documentation project
 [source,subs="attributes"]
 ....
 https://www.{domain}/doc/\{path\}/\{reference}[/\{version}]
 ....
 
 
-[cols="h,1",width=70%]
+[cols="h,2",width=70%]
 |===
-| IRI types
-a| * `www`
+| IRI type
+| `www`
 
-| Resource type
-| `doc`
-
+| Category
+| `doc` footnote:doc-iri[]
 |===
+
 
 === Versioning
 
@@ -38,7 +208,7 @@ a| * `www`
 ====
 Let's consider the IRI for the _IRI Strategy_ document.
 
-.Generic URI
+.Generic IRI
 [source,subs="attributes"]
 ....
 https://www.{domain}/doc/modeling-guide/iri-strategy
@@ -48,27 +218,35 @@ Note that it is part of the _Modeling Guide_ documentation project, which would 
 
 To request a specific version of the _Modeling Guide_ one could use the following IRI:
 
-.Versioned URI
+.Versioned IRI
 [source,subs="attributes"]
 ....
 https://www.{domain}/doc/modeling-guide/1.1.0/iri-strategy
 ....
 
 Note that it is not supported to version the _IRI Strategy_ document itself, only the project it is contained in. This is analogous to the inability to version ontology terms.
-====
 
+.IRI to Specific page
+[source,subs="attributes"]
+....
+https://www.{domain}/doc/modeling-guide/iri-strategy/decisions
+....
+
+If documentation consists of multiple pages, these can be referenced simply by expanding the path as illustrated in this example.
+
+====
 
 == Models
 .IRI pattern for models
 [source,subs="attributes"]
 ....
-https://data.{domain}/\{model-type}/\{model\}[/\{version}]
+https://data.{domain}/\{model-type}/\{model}[/\{version}]
 ....
 
 .IRI pattern for model elements
 [source,subs="attributes"]
 ....
-https://data.{domain}/\{model-type}/\{model\}[/\{version}]/\{element}
+https://data.{domain}/\{model-type}/\{model}[/\{version}]/\{element}
 ....
 
 [cols="h,1",width=70%]
@@ -78,7 +256,7 @@ a| Any of:
 
 * `<<x,thesaurus>>`
 * `<<x,ont>>`
-* `<<x,ontology>>`
+* `<<x,schema>>`
 
 | Model
 | Name of the model
@@ -93,7 +271,6 @@ a| Version of the model, following the pattern:
 
 | Element
 | Name (local to the model) of the model element which corresponds to the resource
-
 |===
 
 === Referencing
