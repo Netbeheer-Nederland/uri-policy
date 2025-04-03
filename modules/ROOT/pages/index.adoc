@@ -217,6 +217,8 @@ _(optional)_
 
 CAUTION: Generic (version-less) models are information resources too. They can be completely described by information such as what its name, purpose and owner is, and what versions exist of it (like one way DCAT recommends managing versions).
 
+IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
+
 .Example: Data product schema
 --
 .Show
@@ -245,7 +247,7 @@ classes:
 <1> The generic IRI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the IRI.
 <2> The version of the schema this document represents.
 <3> Technical name of the schema. This has local scope, but it is good practice to keep it equal to the model name in the IRI.
-<4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts.
+<4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts. Also: never use versions in IRIs which represent real-world concepts.
 <5> Referring to a term from an ontology.
 <6> Referring to a term from a thesaurus.
 ====
