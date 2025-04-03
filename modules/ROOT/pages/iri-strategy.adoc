@@ -2,12 +2,6 @@
 :domain: nbnl.info
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
-== Introduction
-
-#TODO#
-
-== IRI patterns
-
 <<x,Resources>> and their representations are identified by IRIs, each of which must be of the following form:
 
 .Base IRI pattern
@@ -18,15 +12,15 @@ https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 
 [horizontal,labelwidth=25%]
 `\{kind}`::
-    `data` | `id` | `www` +
+`data` | `id` | `www` +
 `\{category}`::
-    <<_data_products,`data-product`>> | <<_documentation,`doc`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
+<<_data_products,`data-product`>> | <<_documentation,`doc`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
 `\{namespace}`::
-    Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
+Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
-    Version specifier (if applicable).
+Version specifier (if applicable).
 `\{reference}`::
-    Local name of some referrent in the namespace (if applicable).
+Local name of some referrent in the namespace (if applicable).
 
 .Resource kinds
 ****
@@ -46,6 +40,8 @@ If you get confused, just remember:
 *Use `id` only if and only if the resource is a real-world concept or entity*.
 --
 ****
+
+== Categories
 
 === Data products
 
