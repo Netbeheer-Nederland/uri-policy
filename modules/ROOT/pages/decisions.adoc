@@ -1,5 +1,7 @@
 = Decisions
 
+WARNING: Work in progress.
+
 == Whether to use `id`  or not for model definitions
 
 === Option 1: Use `id`

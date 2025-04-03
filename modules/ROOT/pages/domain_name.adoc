@@ -1,5 +1,7 @@
 = Domain Name
 
+WARNING: Work in progress.
+
 == Criteria and considerations
 
 * _Opacity_. The domain name should encode as little information as possible, and avoid highly versatile information such as organisation names and classifications in particular.
