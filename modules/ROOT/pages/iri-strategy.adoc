@@ -261,20 +261,27 @@ Any resource can have several representations associated with them. Each of thos
 
 Resources which represent real-world entities or concepts are not information resources and therefore do not have an inherent representation on the web. However, other information resources can represent them.
 
-.Content negotiation for real-world entitiy
-image::conneg-real-world-entities.png[]
+.Example content negotiation for a real-world entity resource
+image::conneg-real-world-entities.svg[]
 
-A `GET` request to the `id` IRI can utilize _content negotiation_ to clarify what type of representation is desired. The web server can then use a _303 See Other_ redirect to the URI of an information resource which provides appropriate representation.
+In a `GET` request to the `id` IRI one can make use of _content negotiation_ to clarify what type of representation is desired. The web server can then use a _303 See Other_ redirect to the URI of an information resource which provides the appropriate representation.
 
-
+Typical parameters for negotiating content are language, media type or format, and version.
 
 === Information resources
 
+Information resources too can have several representations, even though they are already informational in essence.
 
+.Example content negotiation for an information resource
+image::conneg-information-resources.svg[width=300]
 
+It is especially common for data information resources such as ontologies and data products to also have documentation for humans.
+
+'''
+
+NOTE: Of course, if one knows the URI of some desired representation, this URI can be used directly instead of using the redirection mechanism.
 
 ////
-
 == Versioning
 
 
@@ -354,7 +361,6 @@ a| Version of the model, following the pattern:
 
 == Versioning
 
-////
 //== Example
 
 .LinkML schema of data product _Transitietechnieken_
@@ -387,3 +393,4 @@ classes:
 <6> Referring to a term from another thesaurus.
 ====
 --
+////
