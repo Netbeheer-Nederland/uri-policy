@@ -186,7 +186,6 @@ a|_n/a_
 |===
 
 CAUTION: Generic (version-less) models are information resources too. They can be completely described by information such as what its name, purpose and owner is, and what versions exist of it (like one way DCAT recommends managing versions).
-****
 
 .Data product schema
 ====
