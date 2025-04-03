@@ -84,7 +84,7 @@ _(optional)_
 [%collapsible]
 ====
 
-.Generic (version-less) IRIs
+.Generic (version-less) data product IRIs
 [cols="h,3"]
 |===
 | Identity
@@ -94,7 +94,7 @@ _(optional)_
 | `\https://www.{domain}/data-product/measurements`
 |===
 
-.Versioned IRIs
+.Versioned data product IRIs
 [cols="h,3"]
 |===
 | Identity
@@ -289,36 +289,36 @@ a| (`data`) data information resource
 | Reference name (local to the register) of the contained entity
 |===
 
-._Substation_ register
-====
-To keep track of all substations in the Netherlands, a register has been called into life:
-
-.Register IRI
-[source,subs="attributes"]
-....
-https://data.{domain}/register/substation
-....
-
-This register contains all known substations, and nothing else.
-
-.Individual substation IRI
-[source,subs="attributes"]
-....
-https://id.{domain}/register/substation/001231
-....
-
-Since a substation is a real-world entity and not an information resource, the `id` subdomain must be used.
-
-There is an information web page available for this substation at the following IRI:
-
-._Substation_ web page IRI
-[source,subs="attributes"]
-....
-https://www.{domain}/register/substation/001231
-....
+.Example: _Substation_ register
+--
+.Show
+[%collapsible]
 ====
 
+.Register IRIs
+[cols="h,3"]
+|===
+| Identity
+.2+.^| `\https://data.{domain}/register/substation`
+| Data representation
 
+| Documentation part representation
+| `\https://www.{domain}/register/substation`
+|===
+
+.Entity IRIs
+[cols="h,3"]
+|===
+| Identity
+| `\https://id.{domain}/register/substation/001231`
+| Data representation
+| `\https://data.{domain}/register/substation/001231`
+
+| Documentation representation
+| `\https://www.{domain}/register/substation/001231`
+|===
+====
+--
 
 == Resource representations
 
