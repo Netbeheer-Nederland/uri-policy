@@ -20,14 +20,11 @@ https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 `\{kind}`::
     `data` | `id` | `www` +
 `\{category}`::
-    `data-product` | `doc` |`ontology` | `register` | `schema` | `thesaurus`
-
+    <<_data_product,`data-product`>> | <<_documentation,`doc`>> |<<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
 `\{namespace}`::
     Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
-
 `\{version}`::
     Version specifier (if applicable).
-
 `\{reference}`::
     Local name of some referrent in the namespace (if applicable).
 
@@ -125,6 +122,27 @@ a| (`data`) data information resource
 | Reference name (local to the register) of the contained entity
 |===
 
+.Substation register
+====
+To keep track of all substations in the Netherlands, a register has been called into life:
+
+.The register
+[source,subs="attributes"]
+....
+https://data.{domain}/register/substation
+....
+
+This register contains all known substations, and nothing else.
+
+.An individual substation
+[source,subs="attributes"]
+....
+https://id.{domain}/register/substation/001231
+....
+
+Since a substation is a real-world entity and not an information resource, the `id` subdomain must be used.
+====
+
 === Models
 
 .IRI pattern for a model
@@ -145,7 +163,7 @@ https://id.{domain}/ontology/\{namespace}[/{version}]/\{reference}
 
 | Resource kind
 a| (`data`) data information resource
-| (`id`) real-world concept
+| (`id`) real-world conceptfootnote:[Is this always accurate? For ontologies and thesauri: yes. But do SHACL shapes and LinkML classes, for example, also represent something from the real world?]
 
 | Category
 2+| `ontology` \| `thesaurus` \| `schema`
@@ -167,11 +185,38 @@ a|_n/a_
 | Name (local to the model) of the element
 |===
 
-.Are version-less models information resources?
+CAUTION: Generic (version-less) models are information resources too. They can be completely described by information such as what its name, purpose and owner is, and what versions exist of it (like one way DCAT recommends managing versions).
 ****
-#TODO#.
-Yes, since it can be represented by information which describes metadata about it and what versions exist of it. Similar to how DCAT manages versions.
-****
+
+.Data product schema
+====
+Suppose we are composing a schema for the data product _Transitietechnieken_.
+
+.LinkML schema
+[source,yaml,subs="+attributes"]
+....
+id: https://data.{domain}/schema/data-product/transitietechnieken
+version: 1.0.1 <2>
+name: transitietechnieken <3>
+prefixes: <4>
+  nbnl: https://id.{domain}/taxonomy/energiesysteembeheer/
+  cimnl: https://id.{domain}/ont/cim-nl/
+classes:
+  RegisteredResource:
+    attributes:
+      resource_type:
+        slot_uri: cimnl:RegisteredResource.resourceType <5>
+        range: ResourceKind
+        exact_mappings:
+          - nbnl:soortInstallatie <6>
+....
+<1> The generic IRI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the IRI.footnote:[#TODO#: Should this be enforced and therefore documented outside a mere example?]
+<2> The version of the schema this document represents.
+<3> Technical name of the schema. This has local scope, but it is good practice to keep it equal to the model name in the IRI.
+<4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts.
+<5> Referring to a term from an ontology.
+<6> Referring to a term from a thesaurus.
+====
 
 === Documentation
 
