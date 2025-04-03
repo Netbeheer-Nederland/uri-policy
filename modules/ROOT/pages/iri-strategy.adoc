@@ -6,64 +6,44 @@
 
 #TODO#
 
-////
-== IRI pattern
+== IRI patterns
 
 <<x,Resources>> and their representations are identified by IRIs, each of which must be of the following form:
 
-.IRI pattern
+.Base IRI pattern
 [source,subs="attributes"]
 ....
-https://\{uri-type}.{domain}/\{category}/\{path}{[/\{version}]/\{reference}
+https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 ....
 
-Where:
+[horizontal,labelwidth=25%]
+`\{kind}`::
+    `data` | `id` | `www` +
+`\{category}`::
+    `data-product` | `doc` |`ontology` | `register` | `schema` | `thesaurus`
 
-* The path `/\{category}/\{container}[/\{version]}/\{reference}` is the fully qualified name of the resource being identified.
-* The `\{uri-type}` indicates what representation of the resource is desired.
+`\{namespace}`::
+    Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 
-#TODO#: Write more. Including explanation of all path components.
-////
+`\{version}`::
+    Version specifier (if applicable).
 
-////
-== Reference
+`\{reference}`::
+    Local name of some referrent in the namespace (if applicable).
 
-[cols="1h,3,1,1"]
-|===
-| |Description |URI type |Category
+.Resource kinds
+****
+Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called _information resources_. In this document we further distinguish two types of information resources:
 
-|Register
-|Register of real-world entities
-|`id`
-|`register`
+* documentation information resources (indicated by the `www` subdomain)
+* data information resources (indicated by the `data` subdomain)
 
-|<<_data_product>>
-|Data product definitions
-|`www`
-|`dprod`
+Since the dawn of the Semantic Web, however, we want anyone to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
 
-|Ontology
-|Ontology or conceptual model
-|`data`
-|`ontology`
+* real-world entities or concepts (indicated by the `id` subdomain)
 
-|Schema
-|Logical or technical data model
-|`data`
-|`schema`
-
-|Thesaurus
-|Thesaurus, taxonomy, controlled vocabulary or glossary
-|`data`
-|`thesaurus`
-
-|<<_documentation_project>>
-|Documentation for humans
-|`www`
-|`doc`
-
-|===
-////
+Note there can be information representations which represent another resource. For example,
+****
 
 ////
 .IRIs for each category (version-less)
@@ -77,7 +57,7 @@ Where:
 |`\https://www.{domain}/doc/modeling-guidelines/iri-strategy/decisions`
 
 |Data product
-|`\https://data.{domain}/dprod/measurements`
+|`\https://data.{domain}/data-product/measurements`
 
 |Ontology
 |`\https://data.{domain}/ontology/core-equipment`
@@ -107,7 +87,7 @@ Where:
 ====
 ////
 
-== Registers
+=== Registers
 
 A register is a logical container of resources which represent entities from the real-world domain. Each register contains one type of entity.
 
@@ -129,7 +109,7 @@ https://id.{domain}/register/\{namespace}/\{reference}
 
 | Resource kind
 a| (`data`) data information resource
-| (`id`) real-world concept
+| (`id`) real-world entity
 
 | Category
 2+| `register`
@@ -145,11 +125,7 @@ a| (`data`) data information resource
 | Reference name (local to the register) of the contained entity
 |===
 
-== Data product
-
-#TODO#
-
-== Models
+=== Models
 
 .IRI pattern for a model
 [source,subs="attributes"]
@@ -197,7 +173,7 @@ a|_n/a_
 Yes, since it can be represented by information which describes metadata about it and what versions exist of it. Similar to how DCAT manages versions.
 ****
 
-== Documentation
+=== Documentation
 
 Documentation intended for reading by humans, not machines. A documentation project can consist of a mere single-page document, but also be comprised of a complex nested structure containing many pages and potentially many layers of organisation.
 
@@ -242,7 +218,7 @@ a|_n/a_
 | Name (local to the project) of the part (e.g. page)
 |===
 
-== Data product
+=== Data product
 
 Special category which contains data products.
 
@@ -251,7 +227,7 @@ NOTE: This is much like a register, but data product are information resources w
 .IRI pattern for a data product
 [source,subs="attributes"]
 ....
-https://data.{domain}/dprod/\{reference}[/{version}]
+https://data.{domain}/data-product/\{reference}[/{version}]
 ....
 
 [cols="h,2",width=70%]
@@ -260,7 +236,7 @@ https://data.{domain}/dprod/\{reference}[/{version}]
 | (`data`) data information resource
 
 | Category
-| `dprod`
+| `data-product`
 
 | Namespace
 | _n/a_
@@ -276,6 +252,23 @@ a| Data product version, following the pattern:
 | Reference
 | Name of the data product
 |===
+
+== Resource representations
+
+Any resource can have several representations associated with them. Each of those representations are themselves information resources, either of the data or documentation kind.
+
+=== Real-world entities and concepts
+
+Resources which represent real-world entities or concepts are not information resources and therefore do not have an inherent representation on the web. However, other information resources can represent them.
+
+.Content negotiation for real-world entitiy
+image::conneg-real-world-entities.png[]
+
+A `GET` request to the `id` IRI can utilize _content negotiation_ to clarify what type of representation is desired. The web server can then use a _303 See Other_ redirect to the URI of an information resource which provides appropriate representation.
+
+
+
+=== Information resources
 
 
 
@@ -361,13 +354,16 @@ a| Version of the model, following the pattern:
 
 == Versioning
 
-== Example
+////
+//== Example
 
 .LinkML schema of data product _Transitietechnieken_
+--
+[%collapsible]
 ====
 [source,yaml,subs="+attributes"]
 ....
-id: https://data.{domain}/schema/dprod/transitietechnieken <1>
+id: https://data.{domain}/schema/data-product/transitietechnieken <1>
 version: 1.0.1 <2>
 name: transitietechnieken <3>
 prefixes: <4>
@@ -390,4 +386,4 @@ classes:
 <5> Referring to a term from another ontology.
 <6> Referring to a term from another thesaurus.
 ====
-////
+--
