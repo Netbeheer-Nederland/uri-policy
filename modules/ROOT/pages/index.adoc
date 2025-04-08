@@ -1,8 +1,47 @@
 = IRI Strategy
+
 :domain: nbnl.info
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
-<<def-resource,Resources>> and their representations are identified by IRIs, each of which must be of the following form:
+This document outlines the required approach for defining and implementing a
+URI (Uniform Resource Identifier) strategy across the power and utilities
+industry. A well-defined URI strategy is crucial to ensuring that resources on
+are uniquely and consistently identified, enabling the reliable linking,
+discovery, and integration of data. As the industry generates and shares large
+volumes of data across various stakeholders, a standardized URI strategy is
+essential to achieving data interoperability, scalability, and long-term
+sustainability.
+
+A core challenge within the industry is making data FAIR—Findable, Accessible,
+Interoperable, and Reusable. The use of Linked Data enables the seamless
+connection of diverse data sources, ensuring that data is discoverable,
+accessible, and machine-processable. The adoption of Linked Data within the
+power and utilities industry delivers the following key benefits:
+
+* interoperability: ensures that data can be exchanged across different
+systems, independent of technology, enhancing integration within the power and
+utilities industry.
+
+* discoverability: facilitates better data discovery by creating structured
+URIs, making it easier for stakeholders to identify and access relevant
+information.
+
+* machine-readability: enables machines to interpret and process data
+automatically, supporting advanced querying, analysis, and decision-making,
+which improves operational efficiency.
+
+This URI strategy is essential to ensuring the consistent identification and
+linkage of resources across the industry, advancing the broader goal of making
+data FAIR. This will contribute to a more connected, efficient, and sustainable
+power and utilities data ecosystem.
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in https://www.rfc-editor.org/rfc/rfc2119[RFC 2119].
+
+== Resources
+
+<<def-resource,Resources>> and their representations are identified by IRIs, each of which MUST be of the following form:
 
 .Base IRI pattern
 [source,subs="attributes"]
