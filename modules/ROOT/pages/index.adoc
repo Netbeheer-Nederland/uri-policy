@@ -76,7 +76,7 @@ Since the dawn of the Semantic Web, however, we want anyone to be able to say an
 --
 If you get confused, just remember:
 
-*Use `id` only if and only if the resource is a real-world concept or entity*.
+*Use `id` if and only if the resource is a real-world concept or entity*.
 --
 ****
 
