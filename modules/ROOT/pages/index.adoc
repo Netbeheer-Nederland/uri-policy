@@ -1,43 +1,19 @@
 = IRI Strategy
 
 :domain: nbnl.info
-:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `dumentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
-This document lays out the required approach for defining IRIs (_Internationalized Resource Identifiers_) for a variety of kinds of resources across the power and utilities industry. A well-defined IRI strategy is crucial to ensure that resources are uniquely and consistently identified on the web, enabling the reliable linking, discovery, and integration of data. As the industry generates and
-shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
+== Abstract
 
-A core challenge within the industry is making data FAIR -— Findable, Accessible,
-Interoperable, and Reusable. The use of Linked Data enables the seamless
-connection of diverse data sources, ensuring that data is discoverable,
-accessible, and machine-processable. The adoption of Linked Data within the
-power and utilities industry delivers the following key benefits:
-
-* _interoperability_: ensures that data can be exchanged across different
-systems, independent of technology, enhancing integration within the power and
-utilities industry.
-
-* _discoverability_: facilitates better data discovery by creating structured
-URIs, making it easier for stakeholders to identify and access relevant
-information.
-
-* _machine-readability_: enables machines to interpret and process data
-automatically, supporting advanced querying, analysis, and decision-making,
-which improves operational efficiency.
-
-This IRI strategy is essential to ensuring the consistent identification and
-linkage of resources across the industry, advancing the broader goal of making
-data FAIR. This will contribute to a more connected, efficient, and sustainable
-power and utilities data ecosystem.
+This document lays out a standardized way for assigning <<RFC3987,IRI>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry. This ensure that resources can be unambiguously and consistently identified on the web, enabling the reliable linking, discovery, and integration of data, advancing the broader goal of making data FAIR by adopting the <<LD,Linked Data principles>>. This will contribute to a more connected, efficient, and sustainable power and utilities data ecosystem.
 
 == Conformance
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in <<RFC2119>>
+The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
 == Resources
 
-<<def-resource,Resources>> and their representations are identified by IRIs, each of which MUST be of the following form:
+<<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
 
 .Base IRI pattern
 [source,subs="attributes"]
@@ -47,16 +23,17 @@ https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 
 [horizontal,labelwidth=25%]
 `\{kind}`::
-Resource kind: +
+Resource kind. _MUST_ be one of: +
 `data` | `id` | `www` +
 `\{category}`::
+Resource category. _SHOULD_ be one of: +
 <<_data_products,`data-product`>> | <<_documentation,`documentation`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
 `\{namespace}`::
 Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
-Version specifier (if applicable).
+Version specifier _(if applicable)_.
 `\{reference}`::
-Local name of some referent in the namespace (if applicable).
+Local name of some referent in the namespace _(if applicable)_.
 
 .Resource kinds
 ****
@@ -83,7 +60,7 @@ If you get confused, just remember:
 
 Special category which contains data products.
 
-NOTE: This is much like a register, but data product are information resources whereas other registers are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
+NOTE: This is much like a dedicated register, but data products are information resources whereas register entities are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
 
 .IRI pattern for a data product
 [source,subs="attributes"]
@@ -144,13 +121,13 @@ NOTE: Do not confuse the category _documentation_ with documentation representat
 .IRI pattern for a project
 [source,subs="attributes"]
 ....
-https://www.{domain}/doc/\{namespace}[/{version}]
+https://www.{domain}/documentation/\{namespace}[/{version}]
 ....
 
 .IRI pattern for a part
 [source,subs="attributes"]
 ....
-https://www.{domain}/doc/\{namespace}[/{version}]/\{reference}
+https://www.{domain}/documentation/\{namespace}[/{version}]/\{reference}
 ....
 
 [cols="h,2,2",width=70%]
@@ -184,11 +161,11 @@ _(optional)_
 [cols="h,3",width=99%]
 |===
 | Identity
-.2+| `\https://www.{domain}/doc/modeling-guidelines`
+.2+| `\https://www.{domain}/documentation/modeling-guidelines`
 | Documentation representation
 
 | Part identity
-.2+| `\https://www.{domain}/doc/modeling-guidelines/cim-profiling`
+.2+| `\https://www.{domain}/documentation/modeling-guidelines/cim-profiling`
 | Documentation part representation
 |===
 
@@ -196,11 +173,11 @@ _(optional)_
 [cols="h,3",width=99%]
 |===
 | Identity
-.2+| `\https://www.{domain}/doc/modeling-guidelines/1.0.0`
+.2+| `\https://www.{domain}/documentation/modeling-guidelines/1.0.0`
 | Documentation representation
 
 | Part identity
-.2+| `\https://www.{domain}/doc/modeling-guidelines/1.0.0/cim-profiling`
+.2+| `\https://www.{domain}/documentation/modeling-guidelines/1.0.0/cim-profiling`
 | Documentation part representation
 |===
 ====
@@ -400,3 +377,5 @@ Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria.
 * [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources]
 * [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)]
 * [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS]
+* [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data]
+* [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)]
