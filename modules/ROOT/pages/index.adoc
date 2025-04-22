@@ -1,7 +1,7 @@
 = IRI Strategy
 
 :domain: nbnl.info
-:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `doc` container type: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `doc` container type tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `dumentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
 This document outlines the required approach for defining and implementing a
 IRI (Internationalized Resource Identifier) strategy across the power and
@@ -51,9 +51,9 @@ https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 
 [horizontal,labelwidth=25%]
 `\{kind}`::
-`data` | `id` | `www` +
+Resource kind: `data` | `id` | `www` +
 `\{category}`::
-<<_data_products,`data-product`>> | <<_documentation,`doc`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
+<<_data_products,`data-product`>> | <<_documentation,`documentation`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
 `\{namespace}`::
 Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
@@ -164,7 +164,7 @@ https://www.{domain}/doc/\{namespace}[/{version}]/\{reference}
 2+| (`www`) documentation information resource
 
 | Category
-2+| `doc` footnote:doc-iri[]
+2+| `documentation` footnote:doc-iri[]
 
 | Namespace
 2+| Namespace identifying the project
