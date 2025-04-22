@@ -114,8 +114,6 @@ _(optional)_
 |===
 
 .Example: _Measurements_
---
-.Show
 [%collapsible]
 ====
 
@@ -123,7 +121,7 @@ _(optional)_
 [cols="h,3"]
 |===
 | Identity
-.2+.^| `\https://data.{domain}/data-product/measurements`
+.2+| `\https://data.{domain}/data-product/measurements`
 | Data representation
 | Documentation representation
 | `\https://www.{domain}/data-product/measurements`
@@ -133,13 +131,12 @@ _(optional)_
 [cols="h,3"]
 |===
 | Identity
-.2+.^| `\https://data.{domain}/data-product/measurements/2.1.1`
+.2+| `\https://data.{domain}/data-product/measurements/2.1.1`
 | Data representation
 | Documentation representation
 | `\https://www.{domain}/data-product/measurements/2.1.1`
 |===
 ====
---
 
 === Documentation
 
@@ -183,8 +180,6 @@ _(optional)_
 |===
 
 .Example: _Modeling Guidelines_
---
-.Show
 [%collapsible]
 ====
 
@@ -192,11 +187,11 @@ _(optional)_
 [cols="h,3"]
 |===
 | Identity
-.2+.^| `\https://www.{domain}/doc/modeling-guidelines`
+.2+| `\https://www.{domain}/doc/modeling-guidelines`
 | Documentation representation
 
 | Part identity
-.2+.^| `\https://www.{domain}/doc/modeling-guidelines/cim-profiling`
+.2+| `\https://www.{domain}/doc/modeling-guidelines/cim-profiling`
 | Documentation part representation
 |===
 
@@ -204,15 +199,14 @@ _(optional)_
 [cols="h,3"]
 |===
 | Identity
-.2+.^| `\https://www.{domain}/doc/modeling-guidelines/1.0.0`
+.2+| `\https://www.{domain}/doc/modeling-guidelines/1.0.0`
 | Documentation representation
 
 | Part identity
-.2+.^| `\https://www.{domain}/doc/modeling-guidelines/1.0.0/cim-profiling`
+.2+| `\https://www.{domain}/doc/modeling-guidelines/1.0.0/cim-profiling`
 | Documentation part representation
 |===
 ====
---
 
 === Models
 
@@ -259,8 +253,6 @@ CAUTION: Generic (version-less) models are information resources too. They can b
 IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
 
 .Example: Data product schema
---
-.Show
 [%collapsible]
 ====
 Suppose we are composing a schema for the data product _Transitietechnieken_.
@@ -290,7 +282,6 @@ classes:
 <5> Referring to a term from an ontology.
 <6> Referring to a term from a thesaurus.
 ====
---
 
 === Registers
 
@@ -331,8 +322,6 @@ a| (`data`) data information resource
 |===
 
 .Example: _Substation_ register
---
-.Show
 [%collapsible]
 ====
 
@@ -340,7 +329,7 @@ a| (`data`) data information resource
 [cols="h,3"]
 |===
 | Identity
-.2+.^| `\https://data.{domain}/register/substation`
+.2+| `\https://data.{domain}/register/substation`
 | Data representation
 
 | Documentation part representation
@@ -359,7 +348,6 @@ a| (`data`) data information resource
 | `\https://www.{domain}/register/substation/001231`
 |===
 ====
---
 
 == Resource representations
 
