@@ -3,30 +3,24 @@
 :domain: nbnl.info
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `dumentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
-This document outlines the required approach for defining and implementing a
-IRI (Internationalized Resource Identifier) strategy across the power and
-utilities industry. A well-defined IRI strategy is crucial to ensuring that
-resources on are uniquely and consistently identified, enabling the reliable
-linking, discovery, and integration of data. As the industry generates and
-shares large volumes of data across various stakeholders, a standardized IRI
-strategy is essential to achieving data interoperability, scalability, and
-long-term sustainability.
+This document lays out the required approach for defining IRIs (_Internationalized Resource Identifiers_) for a variety of kinds of resources across the power and utilities industry. A well-defined IRI strategy is crucial to ensure that resources are uniquely and consistently identified on the web, enabling the reliable linking, discovery, and integration of data. As the industry generates and
+shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
 
-A core challenge within the industry is making data FAIR—Findable, Accessible,
+A core challenge within the industry is making data FAIR -— Findable, Accessible,
 Interoperable, and Reusable. The use of Linked Data enables the seamless
 connection of diverse data sources, ensuring that data is discoverable,
 accessible, and machine-processable. The adoption of Linked Data within the
 power and utilities industry delivers the following key benefits:
 
-* interoperability: ensures that data can be exchanged across different
+* _interoperability_: ensures that data can be exchanged across different
 systems, independent of technology, enhancing integration within the power and
 utilities industry.
 
-* discoverability: facilitates better data discovery by creating structured
+* _discoverability_: facilitates better data discovery by creating structured
 URIs, making it easier for stakeholders to identify and access relevant
 information.
 
-* machine-readability: enables machines to interpret and process data
+* _machine-readability_: enables machines to interpret and process data
 automatically, supporting advanced querying, analysis, and decision-making,
 which improves operational efficiency.
 
@@ -35,9 +29,11 @@ linkage of resources across the industry, advancing the broader goal of making
 data FAIR. This will contribute to a more connected, efficient, and sustainable
 power and utilities data ecosystem.
 
+== Conformance
+
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in https://www.rfc-editor.org/rfc/rfc2119[RFC 2119].
+interpreted as described in <<RFC2119>>
 
 == Resources
 
@@ -51,7 +47,8 @@ https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
 
 [horizontal,labelwidth=25%]
 `\{kind}`::
-Resource kind: `data` | `id` | `www` +
+Resource kind: +
+`data` | `id` | `www` +
 `\{category}`::
 <<_data_products,`data-product`>> | <<_documentation,`documentation`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
 `\{namespace}`::
@@ -76,7 +73,7 @@ Since the dawn of the Semantic Web, however, we want anyone to be able to say an
 --
 If you get confused, just remember:
 
-*Use `id` if and only if the resource is a real-world concept or entity*.
+*Use `id` if and only if the resource refers to a real-world concept or entity*.
 --
 ****
 
@@ -118,7 +115,7 @@ _(optional)_
 ====
 
 .Generic (version-less) data product IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 .2+| `\https://data.{domain}/data-product/measurements`
@@ -128,7 +125,7 @@ _(optional)_
 |===
 
 .Versioned data product IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 .2+| `\https://data.{domain}/data-product/measurements/2.1.1`
@@ -184,7 +181,7 @@ _(optional)_
 ====
 
 .Generic (version-less) documentation IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 .2+| `\https://www.{domain}/doc/modeling-guidelines`
@@ -196,7 +193,7 @@ _(optional)_
 |===
 
 .Versioned documentation IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 .2+| `\https://www.{domain}/doc/modeling-guidelines/1.0.0`
@@ -252,7 +249,7 @@ CAUTION: Generic (version-less) models are information resources too. They can b
 
 IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
 
-.Example: Data product schema
+.Example: data product schema
 [%collapsible]
 ====
 Suppose we are composing a schema for the data product _Transitietechnieken_.
@@ -326,7 +323,7 @@ a| (`data`) data information resource
 ====
 
 .Register IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 .2+| `\https://data.{domain}/register/substation`
@@ -337,7 +334,7 @@ a| (`data`) data information resource
 |===
 
 .Entity IRIs
-[cols="h,3"]
+[cols="h,3",width=99%]
 |===
 | Identity
 | `\https://id.{domain}/register/substation/001231`
