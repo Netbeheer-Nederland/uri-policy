@@ -5,7 +5,7 @@
 
 == Abstract
 
-This document lays out a standardized way for assigning <<RFC3987,IRI>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry. This ensure that resources can be unambiguously and consistently identified on the web, enabling the reliable linking, discovery, and integration of data, advancing the broader goal of making data FAIR by adopting the <<LD,Linked Data principles>>. This will contribute to a more connected, efficient, and sustainable power and utilities data ecosystem.
+This document lays out a standardized way for assigning <<RFC3987,IRI>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry. This ensures that resources can be unambiguously and consistently identified on the web, enabling the reliable linking, discovery, and integration of data, advancing the broader goal of making data FAIR by adopting the <<LD,Linked Data principles>>. This will contribute to a more connected, efficient, and sustainable power and utilities data ecosystem.
 
 == Conformance
 
@@ -87,7 +87,7 @@ _(optional)_
 | Name of the data product
 |===
 
-.Example: _Measurements_
+.Example: _Netburen_
 [%collapsible]
 ====
 
@@ -95,20 +95,20 @@ _(optional)_
 [cols="h,3",width=99%]
 |===
 | Identity
-.2+| `\https://data.{domain}/data-product/measurements`
+.2+| `\https://data.{domain}/data-product/netburen`
 | Data representation
 | Documentation representation
-| `\https://www.{domain}/data-product/measurements`
+| `\https://www.{domain}/data-product/netburen`
 |===
 
 .Versioned data product IRIs
 [cols="h,3",width=99%]
 |===
 | Identity
-.2+| `\https://data.{domain}/data-product/measurements/2.1.1`
+.2+| `\https://data.{domain}/data-product/netburen/2.1.1`
 | Data representation
 | Documentation representation
-| `\https://www.{domain}/data-product/measurements/2.1.1`
+| `\https://www.{domain}/data-product/netburen/2.1.1`
 |===
 ====
 
@@ -226,28 +226,29 @@ CAUTION: Generic (version-less) models are information resources too. They can b
 
 IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
 
-.Example: data product schema
+.Example: data product _Netburen_ schema
 [%collapsible]
 ====
-Suppose we are composing a schema for the data product _Transitietechnieken_.
+Suppose we are composing a schema for the data product _Netburen_.
 
 .LinkML schema
 [source,yaml,subs="+attributes"]
 ....
-id: https://data.{domain}/schema/data-product/transitietechnieken <1>
+id: https://data.{domain}/schema/data-product/netburen <1>
 version: 1.0.1 <2>
-name: transitietechnieken <3>
+name: netburen <3>
 prefixes: <4>
   nbnl: https://id.{domain}/taxonomy/energiesysteembeheer/
   cimnl: https://id.{domain}/ont/cim-nl/
 classes:
-  RegisteredResource:
-    attributes:
-      resource_type:
-        slot_uri: cimnl:RegisteredResource.resourceType <5>
-        range: ResourceKind
-        exact_mappings:
-          - nbnl:soortInstallatie <6>
+  MarketEvaluationPoint:
+    class_uri: cim:MarketEvaluationPoint <5>
+    description: The identification of an entity where energy products are measured
+      or computed.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC62325.MarketManagement
+    exact_mappings:
+    - nbnl:aansluiting <6>
+    is_a: UsagePoint
 ....
 <1> The generic IRI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the IRI.
 <2> The version of the schema this document represents.
