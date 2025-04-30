@@ -226,9 +226,32 @@ CAUTION: Generic (version-less) models are information resources too. They can b
 
 IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
 
-.Example: data product _Netburen_ schema
+.Example: Data product _Netburen_ schema
 [%collapsible]
 ====
+
+.Generic (version-less) data product schema IRIs
+[cols="h,3",width=99%]
+|===
+| Identity
+.2+| `\https://data.{domain}/schema/data-product/netburen`
+| Data representation
+| Schema documentation
+| `\https://www.{domain}/schema/data-product/netburen`
+|===
+
+.Versioned data product schema IRIs
+[cols="h,3",width=99%]
+|===
+| Identity
+.2+| `\https://data.{domain}/data-product/netburen/2.1.1`
+| Data representation
+| Documentation representation
+| `\https://www.{domain}/data-product/netburen/2.1.1`
+|===
+
+'''
+
 Suppose we are composing a schema for the data product _Netburen_.
 
 .LinkML schema
@@ -256,6 +279,25 @@ classes:
 <4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts. Also: never use versions in IRIs which represent real-world concepts.
 <5> Referring to a term from an ontology.
 <6> Referring to a term from a thesaurus.
+====
+
+.Example: _CIM NL_ ontology extension
+[%collapsible]
+====
+.Generic (version-less) ontology IRIs
+[cols="h,3,3",width=99%]
+|===
+| | Ontology | Term
+
+| Identity
+.2+| `\https://data.{domain}/ontology/cim-nl`
+.2+| `\https://data.{domain}/ontology/cim-nl/EAN18Code`
+| Data representation
+| Documentation representation
+| `\https://www.{domain}/ontology/cim-nl`
+| `\https://www.{domain}/ontology/cim-nl/EAN18Code`
+|===
+
 ====
 
 === Registers
