@@ -9,7 +9,7 @@ This document lays out a standardized way for assigning <<RFC3987,IRI>> (_Intern
 
 == Conformance
 
-The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
+The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
 == Resources
 
@@ -27,7 +27,7 @@ Resource kind. _MUST_ be one of: +
 `data` | `id` | `www` +
 `\{category}`::
 Resource category. _SHOULD_ be one of: +
-<<_data_products,`data-product`>> | <<_documentation,`documentation`>> | <<_models,`ontology`>> | <<_models,`register`>> | <<_models,`schema`>> | <<_models,`thesaurus`>>
+<<data-products,`data-product`>> | <<documentation,`documentation`>> | <<models,`ontology`>> | <<models,`register`>> | <<models,`schema`>> | <<models,`thesaurus`>>
 `\{namespace}`::
 Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
@@ -56,6 +56,7 @@ If you get confused, just remember:
 
 == Categories
 
+[#data-products]
 === Data products
 
 Special category which contains data products.
@@ -112,6 +113,7 @@ _(optional)_
 |===
 ====
 
+[#documentation]
 === Documentation
 
 Documentation intended for reading by humans, not machines. A documentation project can consist of a mere single-page document, but also be comprised of a complex nested structure containing many pages and potentially many layers of organisation.
@@ -182,6 +184,7 @@ _(optional)_
 |===
 ====
 
+[#models]
 === Models
 
 .IRI pattern for a model
@@ -257,20 +260,20 @@ Suppose we are composing a schema for the data product _Netburen_.
 .LinkML schema
 [source,yaml,subs="+attributes"]
 ....
-id: https://data.{domain}/schema/data-product/netburen <1>
-version: 1.0.1 <2>
-name: netburen <3>
-prefixes: <4>
+id: https://data.{domain}/schema/data-product/netburen # <1>
+version: 1.0.1 # <2>
+name: netburen # <3>
+prefixes: # <4>
   nbnl: https://id.{domain}/taxonomy/energiesysteembeheer/
   cimnl: https://id.{domain}/ont/cim-nl/
 classes:
   MarketEvaluationPoint:
-    class_uri: cim:MarketEvaluationPoint <5>
+    class_uri: cim:MarketEvaluationPoint # <5>
     description: The identification of an entity where energy products are measured
       or computed.
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC62325.MarketManagement
     exact_mappings:
-    - nbnl:aansluiting <6>
+    - nbnl:aansluiting # <6>
     is_a: UsagePoint
 ....
 <1> The generic IRI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the IRI.
@@ -285,7 +288,7 @@ classes:
 [%collapsible]
 ====
 .Generic (version-less) ontology IRIs
-[cols="h,3,3",width=99%]
+[cols="h,3,3",width=98%]
 |===
 | | Ontology | Term
 
