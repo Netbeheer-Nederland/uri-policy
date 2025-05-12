@@ -1,11 +1,39 @@
 = IRI Strategy
-
+Bart Kleijngeld <bart.kleijngeld@alliander.com>
+v0.1, May 12, 2025
+:description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
+:url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 :domain: nbnl.info
+
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
 == Abstract
 
-This document lays out a standardized way for assigning <<RFC3987,IRI>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry. This ensures that resources can be unambiguously and consistently identified on the web, enabling the reliable linking, discovery, and integration of data, advancing the broader goal of making data FAIR by adopting the <<LD,Linked Data principles>>. This will contribute to a more connected, efficient, and sustainable power and utilities data ecosystem.
+This document lays out a standardized way for assigning <<RFC3987,IRIs>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry in the Netherlands.
+
+Assigning IRIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data [FAIR], specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
+
+== Background
+A well-defined IRI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
+
+A core challenge within the industry is making data https://www.go-fair.org/fair-principles/[FAIR]: _Findable_, _accessible_, _interoperable_ and _reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
+
+* _interoperability_: ensures that data can be exchanged across different
+systems, independent of technology, enhancing integration within the power and
+utilities industry.
+
+* _discoverability_: facilitates better data discovery by creating structured
+URIs, making it easier for stakeholders to identify and access relevant
+information.
+
+* _machine-readability_: enables machines to interpret and process data
+automatically, supporting advanced querying, analysis, and decision-making,
+which improves operational efficiency.
+
+This IRI strategy is essential to ensuring the consistent identification and
+linkage of resources across the industry, advancing the broader goal of making
+data FAIR. This will contribute to a more connected, efficient, and sustainable
+power and utilities data ecosystem.
 
 == Conformance
 
@@ -410,18 +438,17 @@ NOTE: Of course, if one knows the IRI of some desired representation, this IRI c
 * [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
 * [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
 * [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
-* [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus]
+* [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus].
 * [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
 * [[[LD-BP]]] W3C. 2014. https://www.w3.org/TR/ld-bp/#HTTP-URIS[Best Practices for Publishing Linked Data]. Section 5.
-* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society,
-Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f
+* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society, Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f.
 * [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
-//* [[[TRIPLY]]] https://triplydb.com/how-to-model/-/stories/how-to-model-iris
-* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns]
-* [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance]
-* [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved]
-* [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources]
-* [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)]
-* [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS]
-* [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data]
-* [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)]
+* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns].
+* [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance].
+* [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved].
+* [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources].
+* [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)].
+* [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS].
+* [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data].
+* [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
+* [[[FAIR]]] GO FAIR. https://www.go-fair.org/fair-principles/[FAIR Principles].
