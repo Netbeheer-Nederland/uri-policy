@@ -4,8 +4,20 @@ v0.1, May 12, 2025
 :description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 :domain: nbnl.info
+:version: 0.1.0
 
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+
+[cols="h,5"]
+|===
+.2+| Authors
+| Bart Kleijngeld, Alliander (bart.kleijngeld@alliander.com)
+a| Ritger Teunissen, Alliander (ritger.teunissen@alliander.com)
+
+| Version
+| 0.1
+|===
+
 
 == Abstract
 
@@ -38,18 +50,20 @@ power and utilities data ecosystem.
 == Conformance
 The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
+== Scope
+
+This document is normative for -- and only for -- minting IRIs for resources defined or maintained by Netbeheer Nederland (NBNL).
+
+Naming conventions for the variety of categories of resources are not part of the scope of this document, and neither are versioning strategies.
+
 [#resources]
 == Resources
 A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
 === Resource kinds
-Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources, each of which will be explained in the following sections.
+Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources: _documentation information resources_, _data information resources_ and _real-world entities or concepts_.
 
-// .Kinds of resources
-// * _real-world entity or concept_
-// * _information resource_ (or _web document_)
-// ** _documentation information resource_ (or _web page_)
-// ** _data information resource_
+Each of these will be explained in the following sections.
 
 ==== Information resources
 Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
@@ -77,7 +91,7 @@ Ontology terms represent real-world concepts and are therefore of the `id` kind.
 
 The IRI that identifies a resource will sometimes be referred to as its _identity IRI_, to distinguish it explicitly from IRIs that identify representations of the resource.
 
-We must be careful to not conflate what an IRI represents. Does it represent the thing itself, or a document describing the thing? The following example might help grasp this point.
+We must be careful not to conflate what an IRI represents. Does it represent the thing itself, or a document describing the thing? The following example might help grasp this point.
 
 [%collapsible]
 .Example: _Cats are not descriptions of cats_
@@ -129,10 +143,10 @@ It is especially common for data information resources such as ontologies and da
 
 NOTE: Of course, if one knows the IRI of some desired representation, this IRI can be used directly instead of using conneg.
 
-== IRI form
-<<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
+== IRI syntax
+<<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following syntax:
 
-.Base IRI form
+.Base IRI syntax
 [source,subs="attributes"]
 ....
 https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
@@ -161,7 +175,7 @@ Special category which contains data products.
 
 NOTE: This is much like a dedicated register, but data products are <<def-information-resource,information resources>>, whereas register entities are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
 
-.IRI form for a data product
+.IRI syntax for a data product
 [source,subs="attributes"]
 ....
 https://data.{domain}/data-product/\{reference}[/{version}]
@@ -218,13 +232,13 @@ Documentation intended for reading by humans, not machines. A documentation proj
 
 NOTE: Do not confuse the category _documentation_ with documentation representations as obtained through using `www` IRIs. See also: {fn-doc-iri}
 
-.IRI form for a project
+.IRI syntax for a project
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/{version}]
 ....
 
-.IRI form for a part
+.IRI syntax for a part
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/{version}]/\{reference}
@@ -285,13 +299,13 @@ _(optional)_
 [#models]
 === Models
 
-.IRI form for a model
+.IRI syntax for a model
 [source,subs="attributes"]
 ....
 https://data.{domain}/ontology/\{namespace}[/{version}]
 ....
 
-.IRI form for a model element
+.IRI syntax for a model element
 [source,subs="attributes"]
 ....
 https://id.{domain}/ontology/\{namespace}[/{version}]/\{reference}
@@ -405,13 +419,13 @@ classes:
 
 A register is a logical container of resources which represent entities from the real-world domain. Each register contains one type of entity.
 
-.IRI form for a register
+.IRI syntax for a register
 [source,subs="attributes"]
 ....
 https://data.{domain}/register/\{namespace}
 ....
 
-.IRI form for a register entity
+.IRI syntax for a register entity
 [source,subs="attributes"]
 ....
 https://id.{domain}/register/\{namespace}/\{reference}
