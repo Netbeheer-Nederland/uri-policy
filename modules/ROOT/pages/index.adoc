@@ -43,7 +43,7 @@ The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SH
 
 <<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
 
-.Base IRI pattern
+.Base IRI form
 [source,subs="attributes"]
 ....
 https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
@@ -65,7 +65,7 @@ Local name of some referent in the namespace _(if applicable)_.
 
 .Resource kinds
 ****
-Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called _information resources_. In this document we further distinguish two types of information resources:
+Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>>. In this document we further distinguish two types of information resources:
 
 * documentation information resources (indicated by the `www` subdomain)
 * data information resources (indicated by the `data` subdomain)
@@ -89,9 +89,9 @@ If you get confused, just remember:
 
 Special category which contains data products.
 
-NOTE: This is much like a dedicated register, but data products are information resources whereas register entities are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
+NOTE: This is much like a dedicated register, but data products are <<def-information-resource,information resources>>, whereas register entities are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
 
-.IRI pattern for a data product
+.IRI form for a data product
 [source,subs="attributes"]
 ....
 https://data.{domain}/data-product/\{reference}[/{version}]
@@ -148,13 +148,13 @@ Documentation intended for reading by humans, not machines. A documentation proj
 
 NOTE: Do not confuse the category _documentation_ with documentation representations as obtained through using `www` IRIs. See also: {fn-doc-iri}
 
-.IRI pattern for a project
+.IRI form for a project
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/{version}]
 ....
 
-.IRI pattern for a part
+.IRI form for a part
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/{version}]/\{reference}
@@ -215,13 +215,13 @@ _(optional)_
 [#models]
 === Models
 
-.IRI pattern for a model
+.IRI form for a model
 [source,subs="attributes"]
 ....
 https://data.{domain}/ontology/\{namespace}[/{version}]
 ....
 
-.IRI pattern for a model element
+.IRI form for a model element
 [source,subs="attributes"]
 ....
 https://id.{domain}/ontology/\{namespace}[/{version}]/\{reference}
@@ -335,13 +335,13 @@ classes:
 
 A register is a logical container of resources which represent entities from the real-world domain. Each register contains one type of entity.
 
-.IRI pattern for a register
+.IRI form for a register
 [source,subs="attributes"]
 ....
 https://data.{domain}/register/\{namespace}
 ....
 
-.IRI pattern for a register entity
+.IRI form for a register entity
 [source,subs="attributes"]
 ....
 https://id.{domain}/register/\{namespace}/\{reference}
