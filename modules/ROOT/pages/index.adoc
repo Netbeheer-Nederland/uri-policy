@@ -36,11 +36,80 @@ data FAIR. This will contribute to a more connected, efficient, and sustainable
 power and utilities data ecosystem.
 
 == Conformance
-
 The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
-== IRI form
+== Resources and resource kinds
+A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
+Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources:
+
+.Kinds of resources
+* _real-world entity or concept_
+* _information resource_ (or _web document_)
+** _documentation information resource_ (or _web page_)
+** _data information resource_
+
+
+Note that each resource can have several resources of different kinds associated with it, as is illustrated in the following example.
+
+.Example: _Cats are not descriptions of cats_
+====
+Suppose I want to say things about _cats_.
+
+First, the real-world concept of a _cat_ needs a IRI so that it becomes a resource on the web I can refer to:
+
+[cols="h,3",width=80%]
+|===
+| Cat
+| `\https://id.example.com/animals/Cat`
+|===
+
+Then, I create a machine-readable model -- which is a _data information resource_ -- in which I make statements about cats. This model gets its own IRI:
+
+[cols="h,3",width=80%]
+|===
+| Model of cats
+| `\https://data.example.com/models/animals`
+|===
+
+Finally, there could exist some web page with information about cats as well:
+
+[cols="h,3",width=80%]
+|===
+| Web page about cats
+| `\https://www.example.com/my-cats-page`
+|===
+
+.Takeaway point
+TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
+====
+
+
+
+=== Information resources
+Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>>. In this document we further distinguish two types of information resources:
+
+* documentation information resources (indicated by the `www` subdomain)
+* data information resources (indicated by the `data` subdomain)
+
+=== Real-world entities or concepts
+
+Since the dawn of the Semantic Web, however, we want anyone to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
+
+* real-world entities or concepts (indicated by the `id` subdomain)
+
+[TIP]
+--
+If you get confused, just remember:
+
+*Use `id` if and only if the resource refers to a real-world concept or entity*.
+--
+[CAUTION]
+--
+Ontology terms represent real-world concepts and are therefore of the `id` kind. A validation class or SHACL shape, on the other hand, are mere information resources and have no connection to the real world.
+--
+
+== IRI form
 <<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
 
 .Base IRI form
@@ -62,25 +131,6 @@ Path which encodes the namespace of the resource. This can be nested as deeply a
 Version specifier _(if applicable)_.
 `\{reference}`::
 Local name of some referent in the namespace _(if applicable)_.
-
-.Resource kinds
-****
-Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>>. In this document we further distinguish two types of information resources:
-
-* documentation information resources (indicated by the `www` subdomain)
-* data information resources (indicated by the `data` subdomain)
-
-Since the dawn of the Semantic Web, however, we want anyone to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
-
-* real-world entities or concepts (indicated by the `id` subdomain)
-
-[TIP]
---
-If you get confused, just remember:
-
-*Use `id` if and only if the resource refers to a real-world concept or entity*.
---
-****
 
 == Categories
 
