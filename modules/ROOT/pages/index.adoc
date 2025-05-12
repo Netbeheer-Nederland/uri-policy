@@ -64,15 +64,15 @@ Naming conventions for the variety of categories of resources are not part of th
 A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
 === Resource kinds
-Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources: _documentation information resources_, _data information resources_ and _real-world entities or concepts_.
+Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources: _documentation resources_, _data resources_ and _real-world entities or concepts_.
 
 Each of these will be explained in the following sections.
 
 ==== Information resources
 Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
 
-* **_documentation information resources_**, colloquially referred to as _web pages_ (indicated by the `www` subdomain)
-* **_data information resources_** (indicated by the `data` subdomain)
+* **_documentation resources_**, colloquially referred to as _web pages_ (indicated by the `www` subdomain)
+* **_data resources_** (indicated by the `data` subdomain)
 
 ==== Real-world entities or concepts
 Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
@@ -109,7 +109,7 @@ First, the real-world concept of a _cat_ needs a IRI so that it becomes a resour
 | `\https://id.example.com/animals/Cat`
 |===
 
-Then, I create a machine-readable model -- which is a _data information resource_ -- in which I make statements about cats. This model gets its own IRI:
+Then, I create a machine-readable model -- which is a _data resource_ -- in which I make statements about cats. This model gets its own IRI:
 
 [cols="h,3",width=80%]
 |===
@@ -142,7 +142,7 @@ Note that information resources too can have _several_ representations, even tho
 .Example content negotiation for an information resource
 image::conneg-information-resources.svg[width=300]
 
-It is especially common for data information resources such as ontologies and data products to also have documentation for humans.
+It is especially common for data resources such as ontologies and data products to also have documentation for humans.
 
 NOTE: Of course, if one knows the IRI of some desired representation, this IRI can be used directly instead of using conneg.
 
@@ -187,7 +187,7 @@ https://data.{domain}/data-product/\{reference}[/{version}]
 [cols="h,2",width=70%]
 |===
 | Resource kind
-| (`data`) data information resource
+| (`data`) data resource
 
 | Category
 | `data-product`
@@ -252,7 +252,7 @@ https://www.{domain}/documentation/\{namespace}[/{version}]/\{reference}
 | | Project | Part
 
 | Resource kind
-2+| (`www`) documentation information resource
+2+| (`www`) documentation resource
 
 | Category
 2+| `documentation` footnote:doc-iri[]
@@ -319,10 +319,10 @@ https://id.{domain}/ontology/\{namespace}[/{version}]/\{reference}
 | | Model | Element
 
 | Resource kind
-a| (`data`) data information resource
+a| (`data`) data resource
 a|
 * (`id`) real-world concept if category is `ontology` or `thesaurus`
-* (`data`) data information resource if category is `schema`
+* (`data`) data resource if category is `schema`
 
 | Category
 2+| `ontology` \| `schema` \| `thesaurus`
@@ -439,7 +439,7 @@ https://id.{domain}/register/\{namespace}/\{reference}
 | | Register | Entity
 
 | Resource kind
-a| (`data`) data information resource
+a| (`data`) data resource
 | (`id`) real-world entity
 
 | Category
