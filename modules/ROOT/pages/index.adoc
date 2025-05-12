@@ -38,20 +38,45 @@ power and utilities data ecosystem.
 == Conformance
 The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
+[#resources-and-resource-kinds]
 == Resources and resource kinds
 A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
-Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources:
+Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources, each of which will be explained in the following sections.
 
-.Kinds of resources
-* _real-world entity or concept_
-* _information resource_ (or _web document_)
-** _documentation information resource_ (or _web page_)
-** _data information resource_
+// .Kinds of resources
+// * _real-world entity or concept_
+// * _information resource_ (or _web document_)
+// ** _documentation information resource_ (or _web page_)
+// ** _data information resource_
 
+=== Information resources
+Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
 
-Note that each resource can have several resources of different kinds associated with it, as is illustrated in the following example.
+* **_documentation information resources_**, colloquially referred to as _web pages_ (indicated by the `www` subdomain)
+* **_data information resources_** (indicated by the `data` subdomain)
 
+=== Real-world entities or concepts
+Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
+
+* **_real-world entities or concepts_** (indicated by the `id` subdomain)
+
+[TIP]
+--
+If you get confused, just remember:
+
+*Use `id` if and only if the resource refers to a real-world concept or entity*.
+--
+[CAUTION]
+--
+Ontology terms represent real-world concepts and are therefore of the `id` kind. A validation class or SHACL shape, on the other hand, are mere information resources and have no connection to the real world.
+--
+
+'''
+
+Each resource can have several resources of different kinds associated with it, as is illustrated in the following example.
+
+[%collapsible]
 .Example: _Cats are not descriptions of cats_
 ====
 Suppose I want to say things about _cats_.
@@ -83,31 +108,6 @@ Finally, there could exist some web page with information about cats as well:
 .Takeaway point
 TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
 ====
-
-
-
-=== Information resources
-Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>>. In this document we further distinguish two types of information resources:
-
-* documentation information resources (indicated by the `www` subdomain)
-* data information resources (indicated by the `data` subdomain)
-
-=== Real-world entities or concepts
-
-Since the dawn of the Semantic Web, however, we want anyone to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
-
-* real-world entities or concepts (indicated by the `id` subdomain)
-
-[TIP]
---
-If you get confused, just remember:
-
-*Use `id` if and only if the resource refers to a real-world concept or entity*.
---
-[CAUTION]
---
-Ontology terms represent real-world concepts and are therefore of the `id` kind. A validation class or SHACL shape, on the other hand, are mere information resources and have no connection to the real world.
---
 
 == IRI form
 <<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
@@ -372,7 +372,7 @@ classes:
 
 | Identity
 .2+| `\https://data.{domain}/ontology/cim-nl`
-.2+| `\https://data.{domain}/ontology/cim-nl/EAN18Code`
+.2+| `\https://id.{domain}/ontology/cim-nl/EAN18Code`
 | Data representation
 | Documentation representation
 | `\https://www.{domain}/ontology/cim-nl`
@@ -449,11 +449,11 @@ a| (`data`) data information resource
 
 == Resource representations
 
-Any resource can have several representations associated with them. Each of those representations are themselves information resources, either of the data or documentation kind.
+A resource can have a variety of representations associated with them. Each of those representations are themselves information resources, either of the data or documentation kind.
 
 === Real-world entities and concepts
 
-Resources which represent real-world entities or concepts are not information resources and therefore do not have an inherent representation on the web. However, other information resources can represent them.
+As discussed in <<resources-and-resource-kinds>>, resources which represent real-world entities or concepts are not information resources and therefore do not have an inherent representation on the web. However, other information resources can represent them.
 
 .Example content negotiation for a real-world entity resource
 image::conneg-real-world-entities.svg[]
