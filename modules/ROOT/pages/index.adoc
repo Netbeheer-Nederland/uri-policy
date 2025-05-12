@@ -38,10 +38,11 @@ power and utilities data ecosystem.
 == Conformance
 The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
-[#resources-and-resource-kinds]
-== Resources and resource kinds
+[#resources]
+== Resources
 A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
+=== Resource kinds
 Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources, each of which will be explained in the following sections.
 
 // .Kinds of resources
@@ -50,13 +51,13 @@ Furthermore, following <<COOL-URIS>> (among others), we distinguish between thre
 // ** _documentation information resource_ (or _web page_)
 // ** _data information resource_
 
-=== Information resources
+==== Information resources
 Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
 
 * **_documentation information resources_**, colloquially referred to as _web pages_ (indicated by the `www` subdomain)
 * **_data information resources_** (indicated by the `data` subdomain)
 
-=== Real-world entities or concepts
+==== Real-world entities or concepts
 Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
 
 * **_real-world entities or concepts_** (indicated by the `id` subdomain)
@@ -72,9 +73,11 @@ If you get confused, just remember:
 Ontology terms represent real-world concepts and are therefore of the `id` kind. A validation class or SHACL shape, on the other hand, are mere information resources and have no connection to the real world.
 --
 
-'''
+=== Identity and representations
 
-Each resource can have several resources of different kinds associated with it, as is illustrated in the following example.
+The IRI that identifies a resource will sometimes be referred to as its _identity IRI_, to distinguish it explicitly from IRIs that identify representations of the resource.
+
+We must be careful to not conflate what an IRI represents. Does it represent the thing itself, or a document describing the thing? The following example might help grasp this point.
 
 [%collapsible]
 .Example: _Cats are not descriptions of cats_
@@ -108,6 +111,23 @@ Finally, there could exist some web page with information about cats as well:
 .Takeaway point
 TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
 ====
+
+==== Content negotiation
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Content_negotiation[Content negotiation] (or _conneg)_ makes it possible to negotiate what representation to obtain when retrieving a resource.
+
+This becomes a powerful mechanism when retrieving resources using their identity IRI, using 303 redirects which -- based on the provided request headers by the <<USER-AGENT,user agent>> -- to negotiate the appropriate representation which are served at different URLs. Typical parameters for negotiating content are language, media type or format, and version.
+
+.Example content negotiation for a real-world entity resource
+image::conneg-real-world-entities.svg[]
+
+Note that information resources too can have _several_ representations, even though they are already informational in essence. No different from the previous example, here too, the identity IRI is used for retrieval:
+
+.Example content negotiation for an information resource
+image::conneg-information-resources.svg[width=300]
+
+It is especially common for data information resources such as ontologies and data products to also have documentation for humans.
+
+NOTE: Of course, if one knows the IRI of some desired representation, this IRI can be used directly instead of using conneg.
 
 == IRI form
 <<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
@@ -447,32 +467,6 @@ a| (`data`) data information resource
 |===
 ====
 
-== Resource representations
-
-A resource can have a variety of representations associated with them. Each of those representations are themselves information resources, either of the data or documentation kind.
-
-=== Real-world entities and concepts
-
-As discussed in <<resources-and-resource-kinds>>, resources which represent real-world entities or concepts are not information resources and therefore do not have an inherent representation on the web. However, other information resources can represent them.
-
-.Example content negotiation for a real-world entity resource
-image::conneg-real-world-entities.svg[]
-
-In a `GET` request to the `id` IRI one can make use of _content negotiation_ to clarify what type of representation is desired. The web server can then use a _303 See Other_ redirect to the IRI of an information resource which provides the appropriate representation.
-
-Typical parameters for negotiating content are language, media type or format, and version.
-
-=== Information resources
-
-Information resources too can have several representations, even though they are already informational in essence.
-
-.Example content negotiation for an information resource
-image::conneg-information-resources.svg[width=300]
-
-It is especially common for data information resources such as ontologies and data products to also have documentation for humans.
-
-NOTE: Of course, if one knows the IRI of some desired representation, this IRI can be used directly instead of using the redirection mechanism.
-
 == Terms and definitions
 
 [[def-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI. See: <<AWWW>>.
@@ -502,3 +496,4 @@ NOTE: Of course, if one knows the IRI of some desired representation, this IRI c
 * [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data].
 * [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
 * [[[FAIR]]] GO FAIR. https://www.go-fair.org/fair-principles/[FAIR Principles].
+* [[[USER-AGENT]]] W3C. 2011. https://www.w3.org/WAI/UA/work/wiki/Definition_of_User_Agent[Definition of User Agent].
