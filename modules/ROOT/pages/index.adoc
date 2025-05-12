@@ -8,11 +8,14 @@ v0.1, May 12, 2025
 
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
-[cols="h,5"]
+[cols="h,5", width=70%]
 |===
-.2+| Authors
+| Author
 | Bart Kleijngeld, Alliander (bart.kleijngeld@alliander.com)
+.2+| Editors
 a| Ritger Teunissen, Alliander (ritger.teunissen@alliander.com)
+a| Robbert Hardin, Alliander (robbert.hardin@alliander.com)
+
 
 | Version
 | 0.1
@@ -121,10 +124,10 @@ Finally, there could exist some web page with information about cats as well:
 | Web page about cats
 | `\https://www.example.com/my-cats-page`
 |===
+====
 
 .Takeaway point
 TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
-====
 
 ==== Content negotiation
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Content_negotiation[Content negotiation] (or _conneg)_ makes it possible to negotiate what representation to obtain when retrieving a resource.
