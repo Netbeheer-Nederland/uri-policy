@@ -39,7 +39,7 @@ power and utilities data ecosystem.
 
 The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
-== Resources
+== IRI form
 
 <<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following form:
 
@@ -57,7 +57,7 @@ Resource kind. _MUST_ be one of: +
 Resource category. _SHOULD_ be one of: +
 <<data-products,`data-product`>> | <<documentation,`documentation`>> | <<models,`ontology`>> | <<models,`register`>> | <<models,`schema`>> | <<models,`thesaurus`>>
 `\{namespace}`::
-Path which encodes the namespace of the component. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
+Path which encodes the namespace of the resource. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
 Version specifier _(if applicable)_.
 `\{reference}`::
