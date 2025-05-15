@@ -4,7 +4,7 @@ v0.1, May 12, 2025
 :description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 :domain: nbnl.info
-:version: 0.1.0
+:version: 1.0.0 (draft)
 
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
@@ -14,18 +14,20 @@ Editors::
     mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
     mailto:robbert.hardin@alliander.com[Robbert Hardin] (Alliander)
 Version::
-    0.1
+    {version}
+Feedback::
+    https://github.com/Netbeheer-Nederland/doc-iri-strategy/issues[Issue on GitHub] (https://github.com/Netbeheer-Nederland/doc-iri-strategy[`Netbeheer-Nederland/doc-iri-strategy`])
 
 == Abstract
 
 This document lays out a standardized way for assigning <<RFC3987,IRIs>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry in the Netherlands.
 
-Assigning IRIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data [FAIR], specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
+Assigning IRIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data <<FAIR,FAIR>>, specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
 
 == Background
 A well-defined IRI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
 
-A core challenge within the industry is making data https://www.go-fair.org/fair-principles/[FAIR]: _Findable_, _accessible_, _interoperable_ and _reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
+A core challenge within the industry is making data <<FAIR,FAIR>>: _Findable_, _accessible_, _interoperable_ and _reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
 
 * _interoperability_: ensures that data can be exchanged across different
 systems, independent of technology, enhancing integration within the power and
@@ -58,7 +60,7 @@ Naming conventions for the variety of categories of resources are not part of th
 A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
 
 === Resource kinds
-Furthermore, following <<COOL-URIS>> (among others), we distinguish between three kinds of resources: _documentation resources_, _data resources_ and _real-world entities or concepts_.
+Furthermore, following <<COOL-URIS,Cool URIs for the Semantic Web>> (among others), we distinguish between three kinds of resources: _documentation resources_, _data resources_ and _real-world entities or concepts_.
 
 Each of these will be explained in the following sections.
 
