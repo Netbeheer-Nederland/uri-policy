@@ -301,13 +301,13 @@ _(optional)_
 .IRI syntax for a model
 [source,subs="attributes"]
 ....
-https://data.{domain}/ontology/\{namespace}[/\{version}]
+https://data.{domain}/\{category}/\{namespace}[/\{version}]
 ....
 
 .IRI syntax for a model element
 [source,subs="attributes"]
 ....
-https://id.{domain}/ontology/\{namespace}[/\{version}]/\{reference}
+https://id.{domain}/\{category}/\{namespace}[/\{version}]/\{reference}
 ....
 
 [cols="h,2,2",width=70%]
