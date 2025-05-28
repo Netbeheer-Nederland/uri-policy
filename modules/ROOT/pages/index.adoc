@@ -177,7 +177,7 @@ NOTE: This is much like a dedicated register, but data products are <<def-inform
 .IRI syntax for a data product
 [source,subs="attributes"]
 ....
-https://data.{domain}/data-product/\{reference}[/{version}]
+https://data.{domain}/data-product/\{reference}[/\{version}]
 ....
 
 [cols="h,2",width=70%]
@@ -234,13 +234,13 @@ NOTE: Do not confuse the category _documentation_ with documentation representat
 .IRI syntax for a project
 [source,subs="attributes"]
 ....
-https://www.{domain}/documentation/\{namespace}[/{version}]
+https://www.{domain}/documentation/\{namespace}[/\{version}]
 ....
 
 .IRI syntax for a part
 [source,subs="attributes"]
 ....
-https://www.{domain}/documentation/\{namespace}[/{version}]/\{reference}
+https://www.{domain}/documentation/\{namespace}[/\{version}]/\{reference}
 ....
 
 [cols="h,2,2",width=70%]
@@ -301,13 +301,13 @@ _(optional)_
 .IRI syntax for a model
 [source,subs="attributes"]
 ....
-https://data.{domain}/ontology/\{namespace}[/{version}]
+https://data.{domain}/ontology/\{namespace}[/\{version}]
 ....
 
 .IRI syntax for a model element
 [source,subs="attributes"]
 ....
-https://id.{domain}/ontology/\{namespace}[/{version}]/\{reference}
+https://id.{domain}/ontology/\{namespace}[/\{version}]/\{reference}
 ....
 
 [cols="h,2,2",width=70%]
