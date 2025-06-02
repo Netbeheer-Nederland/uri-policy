@@ -67,8 +67,8 @@ Each of these will be explained in the following sections.
 ==== Information resources
 Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
 
-* **_documentation resources_**, colloquially referred to as _web pages_ (indicated by the `www` subdomain)
-* **_data resources_** (indicated by the `data` subdomain)
+* **_documentation resources_**, colloquially referred to as _web pages_ indicated by the `www` subdomain (e.g. `\https://www.{domain}/data-product/netburen`)
+* **_data resources_** indicated by the `data` subdomain (e.g. `\https://data.{domain}/register/substation/001231`)
 
 ==== Real-world entities or concepts
 Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
@@ -105,22 +105,27 @@ First, the real-world concept of a _cat_ needs a IRI so that it becomes a resour
 | `\https://id.example.com/animals/Cat`
 |===
 
-Then, I create a machine-readable model -- which is a _data resource_ -- in which I make statements about cats. This model gets its own IRI:
+The `animals` part of the IRI reflects the ontology in which `Cat` is defined. This _data resource_ can be found at:
 
 [cols="h,3",width=80%]
 |===
 | Model of cats
-| `\https://data.example.com/models/animals`
+| `\https://data.example.com/animals/Cat`
 |===
 
-Finally, there could exist some web page with information about cats as well:
+Finally, there could exist a web page representation with information about cats as well:
 
 [cols="h,3",width=80%]
 |===
 | Web page about cats
-| `\https://www.example.com/my-cats-page`
+| `\https://www.example.com/animals/Cat`
 |===
 ====
+
+[NOTE]
+--
+Other models and web pages can make statements about cats and use the definition of the ontology above simply by using the `\https://id.example.com/animals/Cat` IRI to refer to it.
+--
 
 .Takeaway point
 TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
