@@ -34,7 +34,7 @@ systems, independent of technology, enhancing integration within the power and
 utilities industry.
 
 * _discoverability_: facilitates better data discovery by creating structured
-URIs, making it easier for stakeholders to identify and access relevant
+IRIs, making it easier for stakeholders to identify and access relevant
 information.
 
 * _machine-readability_: enables machines to interpret and process data
