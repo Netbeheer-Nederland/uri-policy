@@ -162,7 +162,7 @@ Resource kind. _MUST_ be one of: +
 `data` | `id` | `www` +
 `\{category}`::
 Resource category. _SHOULD_ be one of: +
-<<data-products,`data-product`>> | <<documentation,`documentation`>> | <<models,`ontology`>> | <<models,`register`>> | <<models,`schema`>> | <<models,`thesaurus`>>
+<<data-product,`data-product`>> | <<documentation,`documentation`>> | <<models,`ontology`>> | <<models,`register`>> | <<models,`schema`>> | <<models,`thesaurus`>>
 `\{namespace}`::
 Path which encodes the namespace of the resource. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
 `\{version}`::
@@ -172,8 +172,8 @@ Local name of some referent in the namespace _(if applicable)_.
 
 == Categories
 
-[#data-products]
-=== Data products
+[#data-product]
+=== Data product
 
 Special category which contains data products.
 
