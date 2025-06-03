@@ -27,7 +27,7 @@ Assigning IRIs to resources -- e.g. models, terms and real-world objects -- enab
 == Background
 A well-defined IRI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
 
-A core challenge within the industry is making data <<FAIR,FAIR>>: _Findable_, _accessible_, _interoperable_ and _reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
+A core challenge within the industry is making data <<FAIR,FAIR>>: _Findable_, _Accessible_, _Interoperable_ and _Reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
 
 * _interoperability_: ensures that data can be exchanged across different
 systems, independent of technology, enhancing integration within the power and
