@@ -4,7 +4,7 @@ v0.1, May 12, 2025
 :description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 :domain: nbnl.info
-:version: 1.0.0 (draft)
+:version: v0.draft
 
 :fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
 
@@ -51,7 +51,7 @@ The keywords _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SH
 
 == Scope
 
-This document is normative for -- and only for -- minting IRIs for resources defined or maintained by Netbeheer Nederland (NBNL).
+This document is normative for -- and only for -- creating IRIs for resources defined or maintained by Netbeheer Nederland (NBNL).
 
 Naming conventions for the variety of categories of resources are not part of the scope of this document, and neither are versioning strategies.
 
