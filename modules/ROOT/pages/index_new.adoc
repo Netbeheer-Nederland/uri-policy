@@ -80,35 +80,134 @@ URIs supsersede URIs, allowing for a much larger character set to be used for in
 
 
 == Rationale
-We strive to make FAIR data and models by utilizing (Semantic) Web technology and standards, particularly the Linked Data principles. By doing so, our data and models become machine-processable, self-describing and easy to unambiguously refer to.
+Managing data can be challenging, especially when data is exchanged across organizational boundaries or integrated from multiple sources. The <<FAIR,FAIR>> (_Findable, Accessible, Interoperable, Reusable_) principles provide guidance to address these challenges. By emphasizing machine-actionability and the extended use of metadata, they help ensure that data can be properly managed, governed, made interopable, and reused.
 
-To make any of this possible, we need identifiers which make it possible to refer to things on the Web. These identifiers are called URIs (Uniform Resource Identifiers).
+To implement FAIR data management, <<dfn-the-web,the Web>> is a fitting foundation, particularly when making use of <<dfn-semamtic-web,Semantic Web>> technologies, <<dfn-linked-data,Linked Data>> principles and other W3C standards. This requires the ability to identify (meta)data on the Web, and for that <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are necessary: they are identifiers of <<dfn-resource,resources>> on the Web.
+
+.FAIR principles
+****
+This document helps satisfy the following FAIR principles ^<<FAIR>>^:
+
+// .FAIR principles
+* _F1. (Meta)data are assigned a globally unique and persistent identifier_
+* _A1. (Meta)data are retrievable by their identifier using a standardised communications protocol_
+* _A3. Metadata are accessible, even when the data are no longer available_
+****
 
 == Scope
-This document will provide general guidelines to help you:
+This document provides the necessary background information and guidance to help one to:
 
-. Decide when to assign a URI to something and when this may not be necessary;
-. Design URIs that conform to best practices;
-. How to interact with URIs to retrieve representations or descriptions.
+* Design stable URIs for resource identification on the Web
+* Implement representation retrieval upon interaction with URIs
 
-CAUTION: Many URI policies provide one or more general URI template to help you design your URIs. We have decided against this, and merely provide guidance on how to create your own URI templates for your use case. This separation of concerns avoids the often hard to use or inflexible general template in favor of more concrete, simpler and often much more readable URI templates fitting your use case.
+Actual design and implementation details are left to the reader. footnote:[This is scoped as such on purpose, because different (kinds of) resources can benefit from vastly different URI designs, and trying to design a general base URI template upfront will end up being either too rigid to fit all cases, or impenetrably abstract and therefore hard to use and potentially useless.]
 
 == Foundational concepts
 
-=== The Web
+<<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on <<dfn-the-web,the Web>>, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
-==== Web architecture and REST
+////
+.URIs, URLs, URNs and IRIs
+****
+* **URIs (Uniform Resource Identifiers)** are generic resource identifiers.
+** **URLs (Uniform Resource Locators)** are URIs that specify how to locate and access a resource, typically through a network protocol such as HTTP.
+** **URNs (Uniform Resource Names)** are URIs using the `urn:` scheme, intended as persistent, opaque identifiers that are not required to be dereferenceable.
+* **IRIs (Internationalized Resource Identifiers)** are a superset of URIs that allow the full range of Unicode characters, making them easier to use in multilingual and human-facing contexts.
 
-==== Semantic Web and Linked Data
+This policy favors IRIs over URIs because they are more human-friendly, while still interoperable with Web standards (IRIs can always be automatically mapped to URIs by systems).
 
-== Resources and URIs
-URIs (Uniform Resource Identifiers) are identifiers for resources on the Web. Anything you want to make present on the Web can be turned into a resource by assigning it a URI so that it can be identified or referred to. Resources can be plain text documents such as Web documents, binary files such as images or things from the real world such as a specific building or the concept of love.
+****
+////
+
+Some resources are purely informational, meaning their essence can be encoded into a stream of bytes which represents the resource on the Web. These resources are called <<dfn-information-resource,information resources>>^<<AWWW>>^ or -- more colloquially -- <<dfn-web-document,web documents>>footnote:[Technically, web documents are information resources which have a representation. The nuance here is that information resources _can_ be represented on the Web, and do not need to have representations at any given time. This is only an academic concern, however, and in practice information resources and web documents are used interchangeably throughout this document].
+
+Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence can never be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]]
+
+.Representations vs descriptions
+[CAUTION]
+--
+Although real-world things cannot be _represented_ on the Web, there can of course be web documents which _describe_ the real-world thing (by referring to it by its URI).footnote:[From a URI assignment point of view, there would be a URI identifying the real-world thing (resource), and distinct URIs for each web document which provides a description of the resource in question.]
+--
+
+////
+Every resource falls in either of the following two categories:^<<COOL-URIS>>^footnote:[The more formal <<AWWW>> bipartitions resources into those which are _information resources_ and those which are not. This parititon closely resembles the one made between _web documents_ and _real-world things_ made in <<COOL-URIS>>, but is not quite equivalent because web documents are a subset of information resources which have a representation. In practice this nuance is hardly ever relevant, so in this document the more accessible jargon from <<COOL-URIS>> is used.]
+
+* *web documents*: documents of which content is available for retrieval on the Web, e.g. web pages, JSON documents and images.
+* *real-world things*: real-world objects or abstract concepts, e.g. the building you live in and the concept of "love".
+
+There are resources which can be represented on the Web, meaning it is possible to encode the essence of the resource into a sequence of bytes.
+////
 
 
 
 
 
 
+////
+Resources can have <<dfn-representation,representations>>, meaning one can retrieve information from the Web which represent the resource.  _ There are also resources which can merely be identified, but do not or even cannot have representations.
+////
+
+
+
+
+////
+// .From URL to URI
+// ****
+Traditionally, the Web consisted of information resources only, namely web pages and assets such as images which were addressable using <<dfn-url,URLs>> (_Uniform Resource Locators_).
+
+On the modern Web, however, URLs have been generalized to <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) whose function is merely that of identification, not necessarily locating. URIs thereby made it possible to identify things other than web documents, allowing information to refer to real-world subjects unambiguously and consistently.
+
+The <<dfn-semantic-web, Semantic Web>> built on this, extending the World Wide Web which consists largely of unstructured data intended for humans with a counterpart revolving around semantically annotated structured data intended for machines.
+// ****
+////
+
+A resources can have multiple representations, in which case <<dfn-content-negotiation,content negotiation>> can be used to specify what representation is preferred. Representations may differ in the <<dfn-media-format,media format>>, language or character set,
+
+The HTTP application protocol also supports redirection from one URI to another. Using `303 See Other` enables redirecting of a URI identifying a real-world thing to a web document providing a description of it. Furthermore, information resources may be redirected using `307 Temporary Redirect` to defer to another location where the representation is to be served from.
+
+
+
+
+== URI design
+
+Thou shalt not.
+
+* Stability
+* Opacity
+
+== Representation retrieval
+
+
+=== Real-world things
+
+* have no representations on the Web
+* hash vs slash (303)
+** 303 redirectsfootnote:[Note that `303 (See Other)` redirects should not be used for any other purpose. ^<<httpRange-14>>^.] to defer representation to an information resource
+*** Generic document pattern (COOL-URIs 4.2) to redirect terms to the authoritative models which provide their normative definitions
+*** URI is replaced by the client to the document one so bookmarking etc. is easier
+
+.Hash vs slash
+****
+Another common pattern to deal with retrieving descriptions of real-world things is to use the hash convention.
+
+In this convention, terms are identified by their defining models URI, followed by a hash symbol and then the term name. Due to how the HTTP protocol is implemented, web servers will truncate the fragment and therefore by default provide the agent with a representation of the entire model. This is welcome behavior in many cases, but there are some issues.
+
+First off, it is ambiguous what the term URI means when retrieving a HTML representation. Fragments are often used as denotations of anchors in the document, which is semantically different of course from the real-world entity.
+
+Furthermore, in the case separate web pages exist for a single term, the aforementioned truncation of the fragment cause web servers to be unable to distinguish between the model and the term for its description.
+
+Slashes therefore provide more server-sided control, more freedom in how URIs are designed, and avoid ambiguity. In fact, using slashes and 303 redirects explicitly states: this resource is not an information resource.
+****
+
+=== Information resources
+* 307 redirects from stable interface URI to implementation specific URI
+** URI is not replaced by the client so that original URI is treated as the canonical
+
+
+
+
+////
+Question!
 
 * What are URIs and what do I need them for?
 ** Identifiers for Web resources
@@ -125,61 +224,9 @@ URIs (Uniform Resource Identifiers) are identifiers for resources on the Web. An
 ** Rely on standard Web and HTTP technology such as verbs, requests/response and redirects
 ** Non-information vs information resources and hash vs slash
 ** Content-negotiation
-'''
+////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-== Resources and representation
-
-=== Real-world things
-
-* have no representations on the Web
-* MUST use 303 redirectsfootnote:[Note that `303 (See Other)` redirects should not be used for any other purpose. ^<<httpRange-14>>^.] to defer representation to an information resource
-** we adopt the Generic document pattern (COOL-URIs 4.2) to redirect terms to the authoritative models which provide their normative definitions
-** URI is replaced by the client to the document one so bookmarking etc. is easier
-
-.Hash vs slash
-****
-Another common pattern to deal with retrieving descriptions of real-world things is to use the hash convention.
-
-In this convention, terms are identified by their defining models URI, followed by a hash symbol and then the term name. Due to how the HTTP protocol is implemented, web servers will truncate the fragment and therefore by default provide the agent with a representation of the entire model. This is welcome behavior in many cases, but there are some issues.
-
-First off, it is ambiguous what the term URI means when retrieving a HTML representation. Fragments are often used as denotations of anchors in the document, which is semantically different of course from the real-world entity.
-
-Furthermore, in the case separate web pages exist for a single term, the aforementioned truncation of the fragment cause web servers to be unable to distinguish between the model and the term for its description.
-
-Slashes therefore provide more server-sided control, more freedom in how URIs are designed, and avoid ambiguity. In fact, using slashes and 303 redirects explicitly states: this resource is not an information resource.
-****
-
-=== Information resources
-
-* can -- and practically always do -- have representations on the Web
-* SHOULD use 307 redirects from stable interface URI to implementation specific URI
-** URI is not replaced by the client so that original URI is treated as the canonical
-
-=== Representation retrieval
-
-Representations can be retrieved through standard HTTP interaction using the `GET` verb on the resource URI. Where applicable, redirections may take place, but eventually the request result in a response body that is a representation of the resource.
-
-If multiple representations are available, content-negotiation can be used to retrieve the appropriate representation.
-
-==== Content-negotation
+=== Content-negotation
 
 * In the case where multiple representations exist of a resource, content-negotiation must be used to discern between what representation is returned.
 

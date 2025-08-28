@@ -25,7 +25,9 @@ This document lays out a standardized way for assigning <<RFC3986,URIs>> (_Unifo
 Assigning URIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data <<FAIR,FAIR>>, specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
 
 == Background
-A well-defined URI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized URI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
+
+
+
 
 A core challenge within the industry is making data <<FAIR,FAIR>>: _Findable_, _Accessible_, _Interoperable_ and _Reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
 

@@ -1,0 +1,299 @@
+= URI Standard
+:lang: nl
+:version: 1.0
+:status: Draft
+// :status: Final
+Bart Kleijngeld <bart.kleijngeld@alliander.com>
+{version}, July 20, 2025
+
+[.meta]
+--
+Author::
+    mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
+Editors::
+    mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander) +
+    mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
+Version::
+    {version}
+Status::
+    {status}
+Type::
+    Standard
+Feedback::
+    https://github.com/Netbeheer-Nederland/doc-iri-strategy/issues[Issue on GitHub] (https://github.com/Netbeheer-Nederland/doc-iri-strategy[`Netbeheer-Nederland/doc-iri-strategy`])
+--
+
+'''
+
+////
+Acceptance criteria.
+
+Goal: Explain and provide options and considerations, but also give committing constraints. Suggest a template one MAY use (NBNL Team Semantiek has an implementation of this standard where that standard is filled.
+
+Outline sketch:
+
+
+////
+
+
+
+== Abstract
+
+#TODO#.
+
+== Scope
+The following goals are in scope of this document:
+
+* Designing URIs for resource identification
+* Implementing URI dereferencing for representation retrieval
+
+Adherence to this document will enable satisfying the following FAIR principles ^<<FAIR>>^:
+
+.FAIR principles
+* _F1. (Meta)data are assigned a globally unique and persistent identifier_
+* _A1. (Meta)data are retrievable by their identifier using a standardised communications protocol_
+* _A3. Metadata are accessible, even when the data are no longer available_
+
+In particular, URIs are a required enabler for implementing the Linked Data ^<<LD>>^ principles.
+
+// URI stability is enhanced by maintaining a high degree of opacity, satisfying _A2_. Making URIs _dereferenceable_ will ensure _A1_.
+
+.Out of scope
+* Classification of resources
+* Local naming conventions
+* Versioning and lifecycle management
+* Governance methods
+
+== Conformance
+
+The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
+
+== Introduction
+
+#TODO#.
+
+== Resource identification
+
+URIs (_Uniform Resource Identifiers_) are identifiers of resources on the Web. There are no bounds to what a resource can be, including web pages, images, ontologies, the North Sea and the concept of 'love'. As soon as a URI is assigned to the thing you wish to refer to, it is a resource on the Web identified by that URI.
+
+[IMPORTANT,caption=recommendation]
+--
+Anything to be identified on the web _MUST_ be assigned a URI.
+--
+
+In the examples given, it is easy to note that we can meaningfully divide resources into two classes:
+
+Information resources::
+    These are resources of which the essence is entirely informational, i.e. it is possible to represent the resource completely using a formal interpretation of bits and bytes.
+Real-world things::
+    These resources are entities or concepts ('things') from the real-world. Their essence cannot be fully captured by information alone, and therefore they do not have representations on the Web.
+
+CAUTION: It is sufficient for such a representation to be possible for the resource to count as an information resource, this representation does not have to actually exist. For example, we might have an ER Diagram drawn on a whiteboard, which is not encoded as a stream of bits and bytes. However, such a representation is possible to make, and therefore this model on the whiteboard is an information resource.
+
+.Information resources versus real-world things.
+====
+Examples of information resources are web pages, images and ontologies. There is no essential difference between what the web page is, and its source code. The same logic applies for ontologies: when
+
+the North Sea and the concept of 'love' are not
+
+====
+
+
+
+
+
+
+
+(<<FAIR,FAIR: F1>>) are of great importance. URIs are the such identifiers:
+
+////
+Scaling an enterprise is notoriously challenging, and for similar reasons enterprise-to-enterprise interoperability is too. At the heart of these difficulties is the fact that in practice, enterprises -- regardless of design and intention -- often behave like distributed systems. Once one acknowledges this reality, theory about and successful implementations of distributed systems can be studied and used
+
+The Web is undoubtedly the most successful distributed system implementation in the history of all computer science, having scaled
+////
+
+
+
+
+
+
+
+
+
+
+
+* URI, URLs, URN and IRI
+** Late-binding
+// Soapbox: versus Semiotic Triangle
+* Resources and representations
+
+* URI design
+** Principles
+*** Stability
+*** Opacity
+*** Hierarchy
+** Design guidance
+*** Technical
+**** Scheme
+**** Domain name
+**** Path
+**** Query parameters
+**** Fragments
+*** Hierarchy
+
+== Resource identification
+
+=== Principles
+
+. To be identified on the web, a resource _MUST_ be assigned a URI.
+. URIs _MUST NOT_ identify more than one resource.
+. URIs _MUST NOT_ be reassigned.
+. Resources _SHOULD NOT_ have more than one URI.footnote:[When multiple URIs exist for a resource, these are called _URI aliases_.]
+. IRIs MAY be used when non-ASCII characters are desired.
+. URIs _SHOULD NOT_ identify resource representations.
+// . URIs _SHOULD NOT_ contain version information.
+. Schemes used in URIs MUST be registered with the IANA ^<<IANA-URI-SCHEMES>>^.
+. HTTP URIs _SHOULD_ use the HTTPS scheme.
+. URIs _SHOULD_ be as opaque as can be reasonably achieved to enhance stability.
+. When encoding meaning into URIs, only information with low volatility (ideally rigid) _SHOULD_ be used.
+//  Agents making use of URIs SHOULD NOT attempt to infer properties of the referenced resource.
+
+'''
+
+////
+* URNs and URLs are URIs.
+* IRIs MAY be used, but are discouraged (not an accepted IETF standard; RFC3987).
+////
+
+
+=== URI template
+
+[source,subs="attributes"]
+....
+https://{domain}/\{path}/\{reference}
+....
+
+[horizontal,labelwidth=25%]
+`\{domain}`::
+    The domain name footnote:[Domain names include subdomains.] can be used to encode ownership, partition logically based on some business domain inspired classification,
+<<data-product,`data-product`>> | <<documentation,`documentation`>> | <<models,`ontology`>> | <<models,`register`>> | <<models,`schema`>> | <<models,`thesaurus`>>
+`\{namespace}`::
+Path which encodes the namespace of the resource. This can be nested as deeply as necessary, and has no formal (nor machine-readable) meaning.
+`\{version}`::
+Version specifier _(if applicable)_.
+`\{reference}`::
+Local name of some referent in the namespace _(if applicable)_.
+
+
+== Representation retrieval
+
+=== Principles
+
+. URIs SHOULD be dereferenceable so that retrieving their representations is trivial.
+. Retrieving representations SHOULD be idempotent and safe.
+. Representations SHOULD specify version metadata.
+. The communication protocol used for transferring SHOULD be secure.
+// . Appropriate representations SHOULD be available for humans and machines.
+// . Resources with no representations MAY deference or redirect to representations of
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+
+////
+
+
+
+
+
+
+== Resources
+
+Anything which can be identified on the web ( an URI)
+
+
+
+=== Information resources
+=== Real-world entities or concepts
+== Discerning between identity and description
+=== Resource and identity
+=== Resource representations
+==== Web pages for humans
+==== Formal descriptions for machines
+== Utilizing web architecture
+=== HTTP, URIs and URLs
+==== Dereferencing of identifiers to obtain descriptions
+*** 303 redirects
+*** Content negotiation
+* URI strategy
+** URI pattern
+*** Scheme
+*** Type
+*** Register
+** Registers and namespaces
+** Real-world objects
+** Information models
+*** Taxonomies
+*** Ontologies
+*** Schemas
+////
+
+
+[glossary]
+== Terms and definitions
+
+[glossary]
+the Web::
+    #TODO#.
+    The union of the _World Wide Web_ and the _Semantic Web_.
+Semantic Web::
+    #TODO#.
+World Wide Web::
+    #TODO#.
+
+
+
+
+
+== References
+
+[bibliography]
+=== Normative references
+
+* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web].
+* [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
+* [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
+* [[[RFC3986]]] W3C/MIT. 2005. https://datatracker.ietf.org/doc/rfc3986[Uniform Resource Identifier (URI): Generic Syntax].
+* [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
+* [[[FAIR]]] GO FAIR. https://www.go-fair.org/fair-principles/[FAIR Principles].
+* [[[RFC6570]]] https://datatracker.ietf.org/doc/html/rfc6570[URI Template].
+* [[[IANA-URI-SCHEMES]]] IANA. https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml[Uniform Resource Identifier (URI) Schemes].
+
+[bibliography]
+=== Informative references
+
+* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns].
+* [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance].
+* [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
+* [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
+* [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus].
+* [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
+* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society, Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f.
+* [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved].
+* [[[REST]]] Fielding, Roy Thomas. Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000.
+* [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources].
+* [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)].
+* [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS].
+* [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data].
+* [[[EUPO]]] https://op.europa.eu/en/web/eu-vocabularies/data-catalogue[Reference data catalogue - EU Vocabularies - Publications Office of the EU]
