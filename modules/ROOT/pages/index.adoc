@@ -1,12 +1,12 @@
-= IRI Strategy
+= URI Strategy
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 v0.1, May 12, 2025
-:description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
+:description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-iri-strategy
 :domain: nbnl.info
 :version: v0.draft
 
-:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` IRI type and the `documentation` category: yes it is. The `www` IRI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` IRI type but an `ontology` container type.]]
+:fn-doc-iri: pass:c,q[footnote:doc-iri[For those who wonder if it is really necessary to specify both the `www` URI type and the `documentation` category: yes it is. The `www` URI type indicates we are requesting a web page representation of the resource. The `documentation` category tells us humans that the resource is a document. Contrast this, for example, with a web page representation of an ontology term, which would have a `www` URI type but an `ontology` container type.]]
 
 Author::
     mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
@@ -20,12 +20,12 @@ Feedback::
 
 == Abstract
 
-This document lays out a standardized way for assigning <<RFC3987,IRIs>> (_Internationalized Resource Identifiers_) to resources for the power and utilities industry in the Netherlands.
+This document lays out a standardized way for assigning <<RFC3986,URIs>> (_Uniform Resource Identifiers_) to resources for the power and utilities industry in the Netherlands.
 
-Assigning IRIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data <<FAIR,FAIR>>, specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
+Assigning URIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data <<FAIR,FAIR>>, specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
 
 == Background
-A well-defined IRI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized IRI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
+A well-defined URI strategy is crucial to ensuring that resources on the web are uniquely and consistently identified, enabling the reliable linking, discovery, and integration of data. As the industry generates and shares large volumes of data across various stakeholders, a standardized URI strategy is essential to achieving data interoperability, scalability, and long-term sustainability.
 
 A core challenge within the industry is making data <<FAIR,FAIR>>: _Findable_, _Accessible_, _Interoperable_ and _Reusable_. The use of Linked Data enables the seamless connection of diverse data sources, ensuring that data is discoverable, accessible, and machine-readable. The adoption of Linked Data within the power and utilities industry delivers the following key benefits:
 
@@ -34,14 +34,14 @@ systems, independent of technology, enhancing integration within the power and
 utilities industry.
 
 * _discoverability_: facilitates better data discovery by creating structured
-IRIs, making it easier for stakeholders to identify and access relevant
+URIs, making it easier for stakeholders to identify and access relevant
 information.
 
 * _machine-readability_: enables machines to interpret and process data
 automatically, supporting advanced querying, analysis, and decision-making,
 which improves operational efficiency.
 
-This IRI strategy is essential to ensuring the consistent identification and
+This URI strategy is essential to ensuring the consistent identification and
 linkage of resources across the industry, advancing the broader goal of making
 data FAIR. This will contribute to a more connected, efficient, and sustainable
 power and utilities data ecosystem.
@@ -51,13 +51,13 @@ The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _S
 
 == Scope
 
-This document is normative for -- and only for -- creating IRIs for resources defined or maintained by Netbeheer Nederland (NBNL).
+This document is normative for -- and only for -- creating URIs for resources defined or maintained by Netbeheer Nederland (NBNL).
 
 Naming conventions for the variety of categories of resources are not part of the scope of this document, and neither are versioning strategies.
 
 [#resources]
 == Resources
-A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its IRI.
+A <<def-resource>> can be anything we wish to state something about on the web: a certain web page, a company or the color "red". To make statements about a resource, one can refer to it by its URI.
 
 === Resource kinds
 Furthermore, following <<COOL-URIS,Cool URIs for the Semantic Web>> (among others), we distinguish between three kinds of resources: _documentation resources_, _data resources_ and _real-world entities or concepts_.
@@ -65,13 +65,13 @@ Furthermore, following <<COOL-URIS,Cool URIs for the Semantic Web>> (among other
 Each of these will be explained in the following sections.
 
 ==== Information resources
-Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying IRIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
+Traditionally, all resources were web documents of some kind or another, and the URLs locating them can serve as their identifying URIs. More formally, those kinds of resources are called <<def-information-resource,_information resources_>> (colloquially referred to as _web documents_). In this document we further distinguish between two types of information resources:
 
 * **_documentation resources_**, colloquially referred to as _web pages_ indicated by the `www` subdomain (e.g. `\https://www.{domain}/data-product/netburen`)
 * **_data resources_** indicated by the `data` subdomain (e.g. `\https://data.{domain}/register/substation/001231`)
 
 ==== Real-world entities or concepts
-Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have IRIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
+Since the dawn of the Semantic Web, however, we want (anyone) to be able to say anything about anything. This includes the ability to make statements about entities or concepts in the real world. Such resources, however, are not information resources and are not on the web. To be able to state things about them, they need to have URIs, but since they are not information resources, they are recognized as their own resource kind with a dedicated subdomain:
 
 * **_real-world entities or concepts_** (indicated by the `id` subdomain)
 
@@ -88,16 +88,16 @@ Ontology terms represent real-world concepts and are therefore of the `id` kind.
 
 === Identity and representations
 
-The IRI that identifies a resource will sometimes be referred to as its _identity IRI_, to distinguish it explicitly from IRIs that identify representations of the resource.
+The URI that identifies a resource will sometimes be referred to as its _identity URI_, to distinguish it explicitly from URIs that identify representations of the resource.
 
-We must be careful not to conflate what an IRI represents. Does it represent the thing itself, or a document describing the thing? The following example might help grasp this point.
+We must be careful not to conflate what an URI represents. Does it represent the thing itself, or a document describing the thing? The following example might help grasp this point.
 
 [%collapsible]
 .Example: _Cats are not descriptions of cats_
 ====
 Suppose I want to say things about _cats_.
 
-First, the real-world concept of a _cat_ needs a IRI so that it becomes a resource on the web I can refer to:
+First, the real-world concept of a _cat_ needs a URI so that it becomes a resource on the web I can refer to:
 
 [cols="h,3",width=80%]
 |===
@@ -105,7 +105,7 @@ First, the real-world concept of a _cat_ needs a IRI so that it becomes a resour
 | `\https://id.example.com/animals/Cat`
 |===
 
-The `animals` part of the IRI reflects the ontology in which `Cat` is defined. This _data resource_ can be found at:
+The `animals` part of the URI reflects the ontology in which `Cat` is defined. This _data resource_ can be found at:
 
 [cols="h,3",width=80%]
 |===
@@ -124,33 +124,33 @@ Finally, there could exist a web page representation with information about cats
 
 [NOTE]
 --
-Other models and web pages can make statements about cats and use the definition of the ontology above simply by using the `\https://id.example.com/animals/Cat` IRI to refer to it.
+Other models and web pages can make statements about cats and use the definition of the ontology above simply by using the `\https://id.example.com/animals/Cat` URI to refer to it.
 --
 
 .Takeaway point
-TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own IRI**.
+TIP: **Things and documents providing descriptions of those things are different (kinds of) resources, each with their own URI**.
 
 ==== Content negotiation
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Content_negotiation[Content negotiation] (or _conneg)_ makes it possible to negotiate what representation to obtain when retrieving a resource.
 
-This becomes a powerful mechanism when retrieving resources using their identity IRI, using 303 redirects which -- based on the provided request headers by the <<USER-AGENT,user agent>> -- to negotiate the appropriate representation which are served at different URLs. Typical parameters for negotiating content are language, media type or format, and version.
+This becomes a powerful mechanism when retrieving resources using their identity URI, using 303 redirects which -- based on the provided request headers by the <<USER-AGENT,user agent>> -- to negotiate the appropriate representation which are served at different URLs. Typical parameters for negotiating content are language, media type or format, and version.
 
 .Example content negotiation for a real-world entity resource
 image::conneg-real-world-entities.svg[]
 
-Note that information resources too can have _several_ representations, even though they are already informational in essence. No different from the previous example, here too, the identity IRI is used for retrieval:
+Note that information resources too can have _several_ representations, even though they are already informational in essence. No different from the previous example, here too, the identity URI is used for retrieval:
 
 .Example content negotiation for an information resource
 image::conneg-information-resources.svg[width=300]
 
 It is especially common for data resources such as ontologies and data products to also have documentation for humans.
 
-NOTE: Of course, if one knows the IRI of some desired representation, this IRI can be used directly instead of using conneg.
+NOTE: Of course, if one knows the URI of some desired representation, this URI can be used directly instead of using conneg.
 
-== IRI syntax
-<<def-resource,Resources>> and their representations are identified by IRIs, each of which _MUST_ be of the following syntax:
+== URI syntax
+<<def-resource,Resources>> and their representations are identified by URIs, each of which _MUST_ be of the following syntax:
 
-.Base IRI syntax
+.Base URI syntax
 [source,subs="attributes"]
 ....
 https://\{kind}.{domain}/\{category}/\{namespace}[/\{version}][/\{reference}]
@@ -179,7 +179,7 @@ Special category which contains data products.
 
 NOTE: This is much like a dedicated register, but data products are <<def-information-resource,information resources>>, whereas register entities are not. Therefore, to avoid confusion, and because data products are important, this special category has been introduced.
 
-.IRI syntax for a data product
+.URI syntax for a data product
 [source,subs="attributes"]
 ....
 https://data.{domain}/data-product/\{reference}[/\{version}]
@@ -208,7 +208,7 @@ _(optional)_
 [%collapsible]
 ====
 
-.Generic (version-less) data product IRIs
+.Generic (version-less) data product URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -218,7 +218,7 @@ _(optional)_
 | `\https://www.{domain}/data-product/netburen`
 |===
 
-.Versioned data product IRIs
+.Versioned data product URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -234,15 +234,15 @@ _(optional)_
 
 Documentation intended for reading by humans, not machines. A documentation project can consist of a mere single-page document, but also be comprised of a complex nested structure containing many pages and potentially many layers of organisation.
 
-NOTE: Do not confuse the category _documentation_ with documentation representations as obtained through using `www` IRIs. See also: {fn-doc-iri}
+NOTE: Do not confuse the category _documentation_ with documentation representations as obtained through using `www` URIs. See also: {fn-doc-iri}
 
-.IRI syntax for a project
+.URI syntax for a project
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/\{version}]
 ....
 
-.IRI syntax for a part
+.URI syntax for a part
 [source,subs="attributes"]
 ....
 https://www.{domain}/documentation/\{namespace}[/\{version}]/\{reference}
@@ -275,7 +275,7 @@ _(optional)_
 [%collapsible]
 ====
 
-.Generic (version-less) documentation IRIs
+.Generic (version-less) documentation URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -287,7 +287,7 @@ _(optional)_
 | Documentation part representation
 |===
 
-.Versioned documentation IRIs
+.Versioned documentation URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -301,18 +301,18 @@ _(optional)_
 ====
 
 [#models]
-=== Models
+=== Ontology
 
-.IRI syntax for a model
+.URI syntax for an ontology
 [source,subs="attributes"]
 ....
-https://data.{domain}/\{category}/\{namespace}[/\{version}]
+https://data.{domain}/ontology/\{namespace}[/\{version}]
 ....
 
-.IRI syntax for a model element
+.URI syntax for an ontology term
 [source,subs="attributes"]
 ....
-https://id.{domain}/\{category}/\{namespace}[/\{version}]/\{reference}
+https://data.{domain}/thesaurus/\{namespace}[/\{version}]/\{reference}
 ....
 
 [cols="h,2,2",width=70%]
@@ -343,13 +343,13 @@ _(optional)_
 
 CAUTION: Generic (version-less) models are information resources too. They can be completely described by information such as what its name, purpose and owner is, and what versions exist of it (like one way DCAT recommends managing versions).
 
-IMPORTANT: Never specify versions in the IRIs of model elements which represent a real-world concept, not even the model version.
+IMPORTANT: Never specify versions in the URIs of model elements which represent a real-world concept, not even the model version.
 
 .Example: Data product _Netburen_ schema
 [%collapsible]
 ====
 
-.Generic (version-less) data product schema IRIs
+.Generic (version-less) data product schema URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -359,7 +359,7 @@ IMPORTANT: Never specify versions in the IRIs of model elements which represent 
 | `\https://www.{domain}/schema/data-product/netburen`
 |===
 
-.Versioned data product schema IRIs
+.Versioned data product schema URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -392,10 +392,10 @@ classes:
     - nbnl:aansluiting # <6>
     is_a: UsagePoint
 ....
-<1> The generic IRI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the IRI.
+<1> The generic URI of the schema, i.e. not a specific version. Note that we have encoded the fact that this schema is tightly coupled to a data product in the namespace of the URI.
 <2> The version of the schema this document represents.
-<3> Technical name of the schema. This has local scope, but it is good practice to keep it equal to the model name in the IRI.
-<4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts. Also: never use versions in IRIs which represent real-world concepts.
+<3> Technical name of the schema. This has local scope, but it is good practice to keep it equal to the model name in the URI.
+<4> Prefixes for easy referring to terms from other models. Note the use of the `id` subdomain because ontology and thesauri terms are not real-world concepts. Also: never use versions in URIs which represent real-world concepts.
 <5> Referring to a term from an ontology.
 <6> Referring to a term from a thesaurus.
 ====
@@ -403,7 +403,7 @@ classes:
 .Example: _CIM NL_ ontology extension
 [%collapsible]
 ====
-.Generic (version-less) ontology IRIs
+.Generic (version-less) ontology URIs
 [cols="h,3,3",width=98%]
 |===
 | | Ontology | Term
@@ -423,13 +423,13 @@ classes:
 
 A register is a logical container of resources which represent entities from the real-world domain. Each register contains one type of entity.
 
-.IRI syntax for a register
+.URI syntax for a register
 [source,subs="attributes"]
 ....
 https://data.{domain}/register/\{namespace}
 ....
 
-.IRI syntax for a register entity
+.URI syntax for a register entity
 [source,subs="attributes"]
 ....
 https://id.{domain}/register/\{namespace}/\{reference}
@@ -461,7 +461,7 @@ a| (`data`) data resource
 [%collapsible]
 ====
 
-.Register IRIs
+.Register URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -472,7 +472,7 @@ a| (`data`) data resource
 | `\https://www.{domain}/register/substation`
 |===
 
-.Entity IRIs
+.Entity URIs
 [cols="h,3",width=99%]
 |===
 | Identity
@@ -508,6 +508,7 @@ a| (`data`) data resource
 * [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns].
 * [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance].
 * [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved].
+* [[[REST]]] Fielding, Roy Thomas. Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000.
 * [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources].
 * [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)].
 * [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS].
@@ -515,3 +516,5 @@ a| (`data`) data resource
 * [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
 * [[[FAIR]]] GO FAIR. https://www.go-fair.org/fair-principles/[FAIR Principles].
 * [[[USER-AGENT]]] W3C. 2011. https://www.w3.org/WAI/UA/work/wiki/Definition_of_User_Agent[Definition of User Agent].
+* [[[EUPO]]] https://op.europa.eu/en/web/eu-vocabularies/data-catalogue[Reference data catalogue - EU Vocabularies - Publications Office of the EU]
+* [[[RFC6570]]] https://datatracker.ietf.org/doc/html/rfc6570[URI Template].

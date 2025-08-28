@@ -1,0 +1,231 @@
+= URI Policy
+Bart Kleijngeld <bart.kleijngeld@alliander.com>
+v0.1, May 12, 2025
+:description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
+:url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
+:domain: nbnl.info
+:version: v2.0.0-rc1
+:uri: https://{domain}/uri-policy
+
+Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
+//Editors::
+//mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
+//mailto:robbert.hardin@alliander.com[Robbert Hardin] (Alliander)
+Version:: {version}
+Feedback:: https://github.com/Netbeheer-Nederland/doc-uri-policy/issues[Issue on GitHub] (https://github.com/Netbeheer-Nederland/doc-uri-policy[`Netbeheer-Nederland/doc-uri-policy`])
+
+////
+== Abstract
+
+This document lays out a standardized way for assigning <<RFC3986,URIs>> (_Uniform Resource Identifiers_) to resources for the power and utilities industry in the Netherlands.
+
+Assigning URIs to resources -- e.g. models, terms and real-world objects -- enables their global identification on the web which is a significant part of making data <<FAIR,FAIR>>, specifically by adhering to the <<LD,Linked Data principles>> which make possible the easy and reliable linking of data and models.
+
+== Concepts
+
+[#resources]
+=== Resources and identification
+
+To make statements about something on the Web it must be assigned a URI which identifies it. Anything that can be identified on the web by a URI is called a _resource_.
+
+Virtually anything can be a resource, e.g. your personal website, a data model, the office building you work in and even the concept of love.
+////
+
+////
+.Philosophical note on identity
+****
+According to the Meaning of Meaning model, symbols -- such as URIs -- are fundamentally limited to symbolizing senses or conceptualizations of things in reality, and can never symbolize those things themselves. Focusing on models, this means the URI `\https://nbnl.info/esb/aansluiting` does refer symbolize the concept _aansluiting_, but rather its conceptualization as defined in the model `esb`.
+
+Interestingly, the Web and the REST architectural view have taken a more pragmatic approach by allowing _late-binding_. This means URIs can symbolize something prior to it having a representation that provides its meaning. This is at odds with the Meaning of Meaning model.
+
+In this policy we favor pragmatism over purity, and since the policy regards identification on the Web, it makes sense to adhere to its principles.
+    
+////
+
+////
+===== URL, URN, URI and IRI
+
+Specializations of URIs exist, such as URLs and URNs, which have narrower definitions.
+
+IRIs are a superset of URIs which set out to extend the character set allowed to be used for internationalization purposes, but because the standard is still in the proposal stage we stick with URIs.
+
+==== Representations
+
+Resources can have representations, which can be thought of as documents which represent the resource on the Web. If available, representations can be retrieve by dereferencing the URI. In the case a resource has multiple representations, content-negotiation can be used negotiate which one to retrieve.
+
+==== Information resources
+
+==== Real-world things
+
+==== Content-negotiation
+
+
+
+=== URL, URN, URI and IRI
+URLs are the subset of URIs which do not only identify a resource, but also locate resource representations.
+
+For identification of resources on the web, URIs SHOULD b
+
+[quote]
+--
+The term "Uniform Resource Locator" (URL) refers to the subset of URIs that, in addition to identifying a resource, provide a means of locating the resource by describing its primary access mechanism (e.g., its network "location").  The term "Uniform Resource Name" (URN) has been used historically to refer to both URIs under the "urn" scheme [RFC2141], which are required to remain globally unique and persistent even when the resource ceases to exist or becomes unavailable, and to any other URI with the properties of a name.
+
+An individual scheme does not have to be classified as being just one of "name" or "locator".  Instances of URIs from any given scheme may have the characteristics of names or locators or both, often depending on the persistence and care in the assignment of identifiers by the naming authority, rather than on any quality of the scheme.  Future specifications and related documentation should use the general term "URI" rather than the more restrictive terms "URL" and "URN" [RFC3305].
+--
+
+URLs are superseded by URIs, although the use of the term remains popular when referring specifically to web addresses and not to resources in a more semantic sense.
+
+URIs supsersede URIs, allowing for a much larger character set to be used for internationalization purposes. However, whereas URIs are formalized in an RFC _Internet standard_, URIs are currently merely a _Proposed standard_, Since the extended character does not solve
+////
+
+
+== Rationale
+We strive to make FAIR data and models by utilizing (Semantic) Web technology and standards, particularly the Linked Data principles. By doing so, our data and models become machine-processable, self-describing and easy to unambiguously refer to.
+
+To make any of this possible, we need identifiers which make it possible to refer to things on the Web. These identifiers are called URIs (Uniform Resource Identifiers).
+
+== Scope
+This document will provide general guidelines to help you:
+
+. Decide when to assign a URI to something and when this may not be necessary;
+. Design URIs that conform to best practices;
+. How to interact with URIs to retrieve representations or descriptions.
+
+CAUTION: Many URI policies provide one or more general URI template to help you design your URIs. We have decided against this, and merely provide guidance on how to create your own URI templates for your use case. This separation of concerns avoids the often hard to use or inflexible general template in favor of more concrete, simpler and often much more readable URI templates fitting your use case.
+
+== Foundational concepts
+
+=== The Web
+
+==== Web architecture and REST
+
+==== Semantic Web and Linked Data
+
+== Resources and URIs
+URIs (Uniform Resource Identifiers) are identifiers for resources on the Web. Anything you want to make present on the Web can be turned into a resource by assigning it a URI so that it can be identified or referred to. Resources can be plain text documents such as Web documents, binary files such as images or things from the real world such as a specific building or the concept of love.
+
+
+
+
+
+
+
+* What are URIs and what do I need them for?
+** Identifiers for Web resources
+** Necessary if you want to identify to something on the Web, such as hosting a software application or making statements about something in the real world
+* What things should or need to be assigned URIs, and when are they not necessary?
+** Anything that needs to be addressable or referable on the Web
+** URIs can form an interface for a Web application
+*** Internal URIs should be exposed as least as possible, and hypermedia-driven discovery should be favored
+* What constitutes a good URI? Any best practices for creating them?
+** Use HTTPS
+** Opacity and stability are very important
+** Simple and without much information encoded in it (meaningful hints are fine sparingly, but make sure the info is non-volatile as possible such as rigid types)
+* How can URIs be interacted with to retrieve representations?
+** Rely on standard Web and HTTP technology such as verbs, requests/response and redirects
+** Non-information vs information resources and hash vs slash
+** Content-negotiation
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== Resources and representation
+
+=== Real-world things
+
+* have no representations on the Web
+* MUST use 303 redirectsfootnote:[Note that `303 (See Other)` redirects should not be used for any other purpose. ^<<httpRange-14>>^.] to defer representation to an information resource
+** we adopt the Generic document pattern (COOL-URIs 4.2) to redirect terms to the authoritative models which provide their normative definitions
+** URI is replaced by the client to the document one so bookmarking etc. is easier
+
+.Hash vs slash
+****
+Another common pattern to deal with retrieving descriptions of real-world things is to use the hash convention.
+
+In this convention, terms are identified by their defining models URI, followed by a hash symbol and then the term name. Due to how the HTTP protocol is implemented, web servers will truncate the fragment and therefore by default provide the agent with a representation of the entire model. This is welcome behavior in many cases, but there are some issues.
+
+First off, it is ambiguous what the term URI means when retrieving a HTML representation. Fragments are often used as denotations of anchors in the document, which is semantically different of course from the real-world entity.
+
+Furthermore, in the case separate web pages exist for a single term, the aforementioned truncation of the fragment cause web servers to be unable to distinguish between the model and the term for its description.
+
+Slashes therefore provide more server-sided control, more freedom in how URIs are designed, and avoid ambiguity. In fact, using slashes and 303 redirects explicitly states: this resource is not an information resource.
+****
+
+=== Information resources
+
+* can -- and practically always do -- have representations on the Web
+* SHOULD use 307 redirects from stable interface URI to implementation specific URI
+** URI is not replaced by the client so that original URI is treated as the canonical
+
+=== Representation retrieval
+
+Representations can be retrieved through standard HTTP interaction using the `GET` verb on the resource URI. Where applicable, redirections may take place, but eventually the request result in a response body that is a representation of the resource.
+
+If multiple representations are available, content-negotiation can be used to retrieve the appropriate representation.
+
+==== Content-negotation
+
+* In the case where multiple representations exist of a resource, content-negotiation must be used to discern between what representation is returned.
+
+'''
+
+== Appendix: URI reference
+
+// #NOTE#: We now have two worlds to keep in sync. The tables here and in the definition type pages. I don't like that. I would much rather refer to hose from here instead of duplicating the tables here.
+
+With the preceding background and guidance in mind, Team Semantiek has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] they are responsible for.
+
+=== Data product application profile
+
+TIP: For more information, see: xref:doc-team-semantiek:projects:application-profile/index.adoc[].
+
+.URI templates for data product application profile
+include::doc-team-semantiek:projects:partial$application-profile/uri-templates-data-product.adoc[]
+
+.Example URIs: Capaciteitskaart
+[%collapsible]
+====
+include::doc-team-semantiek:projects:partial$application-profile/example-uris-capaciteitskaart.adoc[]
+====
+
+=== Controlled vocabulary
+
+TIP: For more information, see: xref:doc-team-semantiek:projects:controlled-vocabulary/index.adoc[].
+
+.URI templates for controlled vocabulary
+include::doc-team-semantiek:projects:partial$controlled-vocabulary/uri-templates.adoc[]
+
+.Example URIs: Energiesysteembeheer
+[%collapsible]
+====
+include::doc-team-semantiek:projects:partial$controlled-vocabulary/example-uris-energiesysteembeheer.adoc[]
+====
+
+=== Documentation
+
+TIP: For more information, see: xref:doc-team-semantiek:projects:documentation/index.adoc[].
+
+.URI templates for documentation
+include::doc-team-semantiek:projects:partial$documentation/uri-templates.adoc[]
+
+.Example URIs
+[%collapsible]
+====
+include::doc-team-semantiek:projects:partial$documentation/example-uris.adoc[]
+====
