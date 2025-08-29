@@ -7,6 +7,10 @@ v0.1, May 12, 2025
 :version: v0.9
 :uri: https://{domain}/uri-policy
 
+:dfn-hash-uri: pass:c,q[These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document.]
+:dfn-303-uri: pass:c,q[These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource.]
+
+
 Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
 //Editors::
 //mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
@@ -15,15 +19,15 @@ Version:: {version}
 Feedback:: https://github.com/Netbeheer-Nederland/doc-uri-policy/issues[Issue on GitHub] (https://github.com/Netbeheer-Nederland/doc-uri-policy[`Netbeheer-Nederland/doc-uri-policy`])
 
 == Abstract
-Managing data can be challenging, especially when it is exchanged across organizational boundaries or integrated from multiple sources. The <<FAIR,FAIR>> (_Findable, Accessible, Interoperable, Reusable_) principles provide guidance to address these challenges. By emphasizing machine-actionability and the extended use of metadata, they help ensure that data can be properly managed, governed, made interoperable, and reused.
+Managing data can be challenging, especially when it is exchanged across organizational boundaries or integrated from multiple sources. The <<dfn-fair,FAIR>> (_Findable, Accessible, Interoperable, Reusable_) principles provide guidance to address these challenges. By emphasizing machine-actionability and the extended use of metadata, they help ensure that data can be properly managed, governed, made interoperable, and reused.
 
-To implement FAIR data management, <<dfn-the-web,the Web>> provides a fitting foundation, particularly when making use of <<dfn-semamtic-web,Semantic Web>> technologies, <<dfn-linked-data,Linked Data>> principles, and other W3C standards. This requires the ability to identify (meta)data on the Web, and for that <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are necessary: they are the identifiers of <<dfn-resource,resources>> on the Web.^<<AWWW>>^
+To implement FAIR data management, the Web provides a fitting foundation, particularly when making use of <<dfn-semantic-web,Semantic Web>> technologies, <<dfn-linked-data,Linked Data>> principles, and other W3C standards. This requires the ability to identify (meta)data on the Web, and for that <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are necessary: they are the identifiers of <<dfn-resource,resources>> on the Web.^<<AWWW>>^
 
 == Scope
 This document provides the necessary background information and guidance to help one to:
 
 * Design URIs for resource identification on the Web
-* Implement representation retrieval upon interaction with those URIs
+* Implement representation retrieval when <<dfn-dereference,dereferencing>> those URIs
 
 Actual design and implementation details are out of scope.footnote:[This is scoped as such on purpose, because different (kinds of) resources can benefit from vastly different URI designs, and trying to design a general base URI template upfront will end up being either too rigid to fit all cases, or impenetrably abstract and therefore hard to use and potentially useless.]
 
@@ -46,33 +50,21 @@ This section will briefly explain the necessary concepts required to be able to 
 [discrete]
 === URIs, resources and representations
 
-<<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on <<dfn-the-web,the Web>>, and resources are all things which have a URI assigned to them^<<AWWW>>^.
+<<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on the Web, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
 Resources can have <<dfn-representation,representations>>, which are streams of bytes which reflect the state of the resource at any given time.
 
 [NOTE]
 --
-Instead of desigining URIs, one can also choose to design <<dfn-iri,IRIs>>.
+Instead of designing URIs, one can also choose to design <<dfn-iri,IRIs>>.
 
-IRIs are an extension of URIs that allow the use of the full range of Unicode characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead.
+IRIs are an extension of URIs that allow the use of the full range of <<dfn-unicode,Unicode>> characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead.
 --
 
 [TIP,caption=see also]
 --
 For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.
 --
-
-
-
-////
-.URI, URL and URN
-****
-The distinction between a URI, URL and URN can be confusing to some. <<RFC31986>> provides a good explanation:
-
-"A URI can be further classified as a locator, a name, or both.  The term "Uniform Resource Locator" (URL) refers to the subset of URIs that, in addition to identifying a resource, provide a means of locating the resource by describing its primary access mechanism (e.g., its network "location").  The term "Uniform Resource Name" (URN) has been used historically to refer to both URIs under the "urn" scheme [RFC2141], which are required to remain globally unique and persistent even when the resource ceases to exist or becomes unavailable, and to any other URI with the properties of a name."
--- <<RFC3986>>, Section 1.1.3. URI, URL and URN
-****
-////
 
 [discrete]
 === Information resources
@@ -97,7 +89,7 @@ For more detail about this refer to that section, including section _3.1 Disting
 //
 // Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its URI):
 //
-// "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside of the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
+// "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
 // -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
 // ****
 
@@ -106,7 +98,7 @@ For more detail about this refer to that section, including section _3.1 Disting
 NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
 
 ==== Information resource representations
-Dereferencing the URI of a Web document will provide a representation.
+<<dfn-dereference,Dereferencing>> the URI of a Web document will provide a representation.
 
 If the representation is served from a different host than the URI of the resource, the server can redirect requests to the URI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
 
@@ -119,7 +111,7 @@ Obtaining descriptions of real-world things is more involved than for Web docume
 Since real-world things have no representations of their own, dereferencing their URIs should provide access to Web documents that describe them. There are two common approaches to achieve this^<<COOL-URIS>>^:
 
 Hash URIs::
-These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document. +
+{dfn-hash-uri}
 +
 .Hash URI
 ====
@@ -131,7 +123,7 @@ The base URI `\http://example.org/animals` identifies the Web document that prov
 NOTE: Hash URIs are easy to use and set up and often used for smaller ontologies.
 
 303 (or slash) URIs::
-These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource. +
+{dfn-303-uri}
 +
 .303 URI
 ====
@@ -173,18 +165,18 @@ The URIs would look as follows:
 ==== Multiple representations and content negotiation
 It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
 
-Content negotiation is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as media type, language, character set, or content encoding.
+Content negotiation is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as <<dfn-media-type,media type>>, language, character set, or content encoding.
 
 Agents can encode their preferences in request headers, and if the HTTP server is set up properly it can serve the most appropriate representation.
 
 [TIP,caption=see also]
 --
-The approaches described in Chapter 4 of <<COOL-URIS>> cover content negotiation as well.
+The approaches described in https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] cover content negotiation as well.
 --
 
-.Content negotiation to obtain an HTML or a JSON-LD representation
+.Content negotiation to obtain an HTML or a <<dfn-json-ld,JSON-LD>> representation
 ====
-Suppose the ontology identified by `\http://example.org/animals` has HTML and JSON-LD representations available.
+Suppose the <<dfn-ontology,ontology>> identified by `\http://example.org/animals` has HTML and JSON-LD representations available.
 
 .Retrieving the HTML representation
 [example%collapsible]
@@ -234,8 +226,6 @@ Server: Apache/2.4.58 (Unix)
 
 This example demonstrated negotiation based on media type using the `Accept` header.
 ====
-
-
 
 == Guidelines
 
@@ -336,10 +326,28 @@ Refer to the _Identification_ section on each of these pages for the URI templat
 == Terms and definitions
 
 [glossary]
-[[dfn-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI. See: <<AWWW>>.
-[[dfn-resource-description]] resource description:: A machine-readable representation of the resource, typically in some serialization of RDF.
-[[dfn-information-resource]] information resource:: A <<dfn-resource>> which has the property that all of its essential characteristics can be conveyed in a message. See also: <<AWWW>>.
+[[dfn-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI.^<<AWWW>>^
+[[dfn-information-resource]] information resource:: A resource whose essential characteristics can be conveyed entirely in a <<dfn-representation,representation>>. See also: <<AWWW>>.
 [[dfn-hierarchical-uri]] hierarchical URI:: URIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
+[[dfn-hash-uri]] hash URI:: {dfn-hash-uri}
+[[dfn-303-uri]] 303 URI:: {dfn-303-uri}
+[[dfn-fair]] FAIR:: Principles for making (meta)data _Findable_, _Accessible_, _Interoperable_, and _Reusable_.
+[[dfn-semantic-web]] Semantic Web:: An extension of the World Wide Web which focuses on enable data to be shared and linked semantically.
+[[dfn-dereference]] dereference:: The process of using a URI in a protocol (e.g. HTTP) to retrieve a representation of the identified resource.
+[[dfn-uri]] URI:: _Uniform Resource Identifier_. A string used to uniquely identify a resource on the Web. See also: <<RFC3986>>.
+[[dfn-representation]] representation:: A concrete, serialised form (e.g. HTML, JSON, RDF) of the state of a resource that can be transmitted over the Web.
+[[dfn-iri]] IRI:: _Internationalized Resource Identifier_. A superset of <<dfn-uri,URIs>> that allows the full range of <<dfn-unicode,Unicode>> characters.
+[[dfn-unicode]] Unicode:: A universal standard for encoding characters from virtually all writing systems.
+[[dfn-real-world-thing]] real-world thing:: Physical entities or abstract concepts that exist outside the Web, but can still be identified on the Web when assigned a URI.
+[[dfn-content-negotiation]] content negotiation:: HTTP mechanism for serving different representations of the same resource based on client preferences (e.g. media type and language).
+[[dfn-media-type]] media type:: A media type (also known as a MIME type) is a two-part identifier used to specify the format of a file or data on the Web, helping systems understand how to process the content.
+[[dfn-json-ld]] JSON-LD:: A JSON-based format for serialising Linked Data.
+[[dfn-ontology]] ontology:: A formal and explicit specification of a shared conceptualization, which includes the categories, properties, and relations between concepts within a specific domain.
+[[dfn-version-control-system]] version control system:: A system (e.g. Git) that records changes to files to manage revisions and collaboration.
+[[dfn-application-domain]] application domain:: The specific context or area of concern in which a system or model operates, closely related to the notion of _bounded context_.
+[[dfn-linked-data]] Linked Data:: The term Linked Data refers to a set of best practices for publishing structured data on the Web. See also: <<LD>>.
+[[dfn-web-document]] Web document:: An information resource retrievable on the Web that can be served in one or more representations.
+
 
 [bibliography]
 == References
