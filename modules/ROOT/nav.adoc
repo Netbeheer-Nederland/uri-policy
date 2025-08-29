@@ -1,1 +1,1 @@
-* xref::index_old.adoc[]
+* xref::index.adoc[]

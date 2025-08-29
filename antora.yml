@@ -1,5 +1,5 @@
-name: doc-iri-strategy
-title: IRI Strategy
+name: doc-uri-policy
+title: URI Policy
 version: true
 nav:
 - modules/ROOT/nav.adoc

@@ -10,7 +10,6 @@ v0.1, May 12, 2025
 :dfn-hash-uri: pass:c,q[These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document.]
 :dfn-303-uri: pass:c,q[These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource.]
 
-
 Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
 //Editors::
 //mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
