@@ -326,26 +326,26 @@ Refer to the _Identification_ section on each of these pages for the URI templat
 == Terms and definitions
 
 [glossary]
-[[dfn-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI.^<<AWWW>>^
-[[dfn-information-resource]] information resource:: A resource whose essential characteristics can be conveyed entirely in a <<dfn-representation,representation>>. See also: <<AWWW>>.
-[[dfn-hierarchical-uri]] hierarchical URI:: URIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
-[[dfn-hash-uri]] hash URI:: {dfn-hash-uri}
 [[dfn-303-uri]] 303 URI:: {dfn-303-uri}
-[[dfn-fair]] FAIR:: Principles for making (meta)data _Findable_, _Accessible_, _Interoperable_, and _Reusable_.
-[[dfn-semantic-web]] Semantic Web:: An extension of the World Wide Web which focuses on enable data to be shared and linked semantically.
-[[dfn-dereference]] dereference:: The process of using a URI in a protocol (e.g. HTTP) to retrieve a representation of the identified resource.
-[[dfn-uri]] URI:: _Uniform Resource Identifier_. A string used to uniquely identify a resource on the Web. See also: <<RFC3986>>.
-[[dfn-representation]] representation:: A concrete, serialised form (e.g. HTML, JSON, RDF) of the state of a resource that can be transmitted over the Web.
-[[dfn-iri]] IRI:: _Internationalized Resource Identifier_. A superset of <<dfn-uri,URIs>> that allows the full range of <<dfn-unicode,Unicode>> characters.
-[[dfn-unicode]] Unicode:: A universal standard for encoding characters from virtually all writing systems.
-[[dfn-real-world-thing]] real-world thing:: Physical entities or abstract concepts that exist outside the Web, but can still be identified on the Web when assigned a URI.
-[[dfn-content-negotiation]] content negotiation:: HTTP mechanism for serving different representations of the same resource based on client preferences (e.g. media type and language).
-[[dfn-media-type]] media type:: A media type (also known as a MIME type) is a two-part identifier used to specify the format of a file or data on the Web, helping systems understand how to process the content.
-[[dfn-json-ld]] JSON-LD:: A JSON-based format for serialising Linked Data.
-[[dfn-ontology]] ontology:: A formal and explicit specification of a shared conceptualization, which includes the categories, properties, and relations between concepts within a specific domain.
-[[dfn-version-control-system]] version control system:: A system (e.g. Git) that records changes to files to manage revisions and collaboration.
 [[dfn-application-domain]] application domain:: The specific context or area of concern in which a system or model operates, closely related to the notion of _bounded context_.
+[[dfn-content-negotiation]] content negotiation:: HTTP mechanism for serving different representations of the same resource based on client preferences (e.g. media type and language).
+[[dfn-dereference]] dereference:: The process of using a URI in a protocol (e.g. HTTP) to retrieve a representation of the identified resource.
+[[dfn-fair]] FAIR:: Principles for making (meta)data _Findable_, _Accessible_, _Interoperable_, and _Reusable_.
+[[dfn-hash-uri]] hash URI:: {dfn-hash-uri}
+[[dfn-hierarchical-uri]] hierarchical URI:: URIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
+[[dfn-iri]] IRI:: _Internationalized Resource Identifier_. A superset of <<dfn-uri,URIs>> that allows the full range of <<dfn-unicode,Unicode>> characters.
+[[dfn-information-resource]] information resource:: A resource whose essential characteristics can be conveyed entirely in a <<dfn-representation,representation>>. See also: <<AWWW>>.
+[[dfn-json-ld]] JSON-LD:: A JSON-based format for serialising Linked Data.
 [[dfn-linked-data]] Linked Data:: The term Linked Data refers to a set of best practices for publishing structured data on the Web. See also: <<LD>>.
+[[dfn-media-type]] media type:: A media type (also known as a MIME type) is a two-part identifier used to specify the format of a file or data on the Web, helping systems understand how to process the content.
+[[dfn-ontology]] ontology:: A formal and explicit specification of a shared conceptualization, which includes the categories, properties, and relations between concepts within a specific domain.
+[[dfn-real-world-thing]] real-world thing:: Physical entities or abstract concepts that exist outside the Web, but can still be identified on the Web when assigned a URI.
+[[dfn-representation]] representation:: A concrete, serialised form (e.g. HTML, JSON, RDF) of the state of a resource that can be transmitted over the Web.
+[[dfn-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI.^<<AWWW>>^
+[[dfn-semantic-web]] Semantic Web:: An extension of the World Wide Web which focuses on enable data to be shared and linked semantically.
+[[dfn-uri]] URI:: _Uniform Resource Identifier_. A string used to uniquely identify a resource on the Web. See also: <<RFC3986>>.
+[[dfn-unicode]] Unicode:: A universal standard for encoding characters from virtually all writing systems.
+[[dfn-version-control-system]] version control system:: A system (e.g. Git) that records changes to files to manage revisions and collaboration.
 [[dfn-web-document]] Web document:: An information resource retrievable on the Web that can be served in one or more representations.
 
 
