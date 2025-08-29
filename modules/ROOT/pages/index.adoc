@@ -315,7 +315,7 @@ TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-polic
 | Principle
 | If a resource has multiple representations, it _SHOULD_ be possible for clients to use content negotiation to select the most appropriate one.
 
-| [[guideline-13]]13
+| [[guideline-14]]14
 | Principle
 | If a 303 URI identifying a resource that is real-world thing is
 |===
@@ -344,25 +344,20 @@ Refer to the _Identification_ section on each of these pages for the URI templat
 [bibliography]
 == References
 
-* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web].
-* [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
-* [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
-* [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
-* [[[LOGIUS]]] Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. https://www.stelselcatalogus.nl/documenten/linked_data_structuur[Linked Data structuur | Logius Stelselcatalogus].
-* [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
-* [[[LD-BP]]] W3C. 2014. https://www.w3.org/TR/ld-bp/#HTTP-URIS[Best Practices for Publishing Linked Data]. Section 5.
-* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society, Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f.
 * [[[RFC2119]]] S. Bradner. 1997. https://www.rfc-editor.org/rfc/rfc2119[Key words for use in RFCs to Indicate Requirement Levels].
+* [[[AWWW]]] W3C. 2004. https://www.w3.org/TR/webarch/[Architecture of the World Wide Web, Volume One].
+* [[[COOL-URIS]]] W3C. 2008. https://www.w3.org/TR/cooluris/[Cool URIs for the Semantic Web].
+* [[[WORKING-ONTOLOGIST]]] Dean Allemang, Jim Hendler, and Fabien Gandon. 2020. https://doi.org/10.1145/3382097[Semantic Web for the Working Ontologist: Effective Modeling for Linked Data, RDFS, and OWL (3rd. ed.)]. Association for Computing Machinery, New York, NY, USA.
+* [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
+* [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
+* [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society, Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f.
 * [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns].
 * [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance].
 * [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved].
 * [[[REST]]] Fielding, Roy Thomas. Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000.
-* [[[TBL-GENERIC]]] Tim Berners-Lee. 1996. https://www.w3.org/DesignIssues/Generic.html[Generic Resources].
-* [[[OWL2-PRIMER]]] W3C. 2012. https://www.w3.org/TR/2012/REC-owl2-primer-20121211/[OWL 2 Web Ontology Language Primer (Second Edition)].
-* [[[OWL-SKOS]]] W3C. 2008. https://www.w3.org/2006/07/SWD/SKOS/skos-and-owl/master.html[Using OWL and SKOS].
 * [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data].
+* [[[RFC3986]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3986/[Uniform Resource Identifier (URI): Generic Syntax].
 * [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
 * [[[FAIR]]] GO FAIR. https://www.go-fair.org/fair-principles/[FAIR Principles].
-* [[[USER-AGENT]]] W3C. 2011. https://www.w3.org/WAI/UA/work/wiki/Definition_of_User_Agent[Definition of User Agent].
-* [[[EUPO]]] https://op.europa.eu/en/web/eu-vocabularies/data-catalogue[Reference data catalogue - EU Vocabularies - Publications Office of the EU]
 * [[[RFC6570]]] https://datatracker.ietf.org/doc/html/rfc6570[URI Template].
+* [[[NEN2660-2]]] https://connect.nen.nl/Standard/Detail/3665979?compId=0&collectionId=0[NEN 2660-2:2022]
