@@ -48,8 +48,6 @@ linkage of resources across the industry, advancing the broader goal of making
 data FAIR. This will contribute to a more connected, efficient, and sustainable
 power and utilities data ecosystem.
 
-== Conformance
-The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
 == Scope
 
