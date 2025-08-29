@@ -1,10 +1,10 @@
-= IRI Policy
+= URI Policy
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 v0.1, May 12, 2025
 :description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
 :domain: nbnl.info
-:version: v2.0.0-rc1
+:version: v0.9
 :uri: https://{domain}/uri-policy
 
 Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
@@ -17,17 +17,15 @@ Feedback:: https://github.com/Netbeheer-Nederland/doc-uri-policy/issues[Issue on
 == Abstract
 Managing data can be challenging, especially when it is exchanged across organizational boundaries or integrated from multiple sources. The <<FAIR,FAIR>> (_Findable, Accessible, Interoperable, Reusable_) principles provide guidance to address these challenges. By emphasizing machine-actionability and the extended use of metadata, they help ensure that data can be properly managed, governed, made interoperable, and reused.
 
-To implement FAIR data management, <<dfn-the-web,the Web>> provides a fitting foundation, particularly when making use of <<dfn-semamtic-web,Semantic Web>> technologies, <<dfn-linked-data,Linked Data>> principles, and other W3C standards. This requires the ability to identify (meta)data on the Web, and for that <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are necessary: they are the identifiers of <<dfn-resource,resources>> on the Web.^<<AWWW>>^footnote:[The purpose of this document is to aid in the designing of IRIs, but from these URIs can be derived.]
-
-In this policy, we will design <<defn-iri,IRIs>> (_Internationalized Resource Identifiers_), which are more human-friendly and can be automatically mapped to URIs by systems in a standardized way.
+To implement FAIR data management, <<dfn-the-web,the Web>> provides a fitting foundation, particularly when making use of <<dfn-semamtic-web,Semantic Web>> technologies, <<dfn-linked-data,Linked Data>> principles, and other W3C standards. This requires the ability to identify (meta)data on the Web, and for that <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are necessary: they are the identifiers of <<dfn-resource,resources>> on the Web.^<<AWWW>>^
 
 == Scope
 This document provides the necessary background information and guidance to help one to:
 
-* Design IRIs for resource identification on the Web
-* Implement representation retrieval upon interaction with those IRIs
+* Design URIs for resource identification on the Web
+* Implement representation retrieval upon interaction with those URIs
 
-Actual design and implementation details are out of scope.footnote:[This is scoped as such on purpose, because different (kinds of) resources can benefit from vastly different IRI designs, and trying to design a general base IRI template upfront will end up being either too rigid to fit all cases, or impenetrably abstract and therefore hard to use and potentially useless.]
+Actual design and implementation details are out of scope.footnote:[This is scoped as such on purpose, because different (kinds of) resources can benefit from vastly different URI designs, and trying to design a general base URI template upfront will end up being either too rigid to fit all cases, or impenetrably abstract and therefore hard to use and potentially useless.]
 
 .FAIR principles
 ****
@@ -44,11 +42,11 @@ The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _S
 
 == Foundational concepts
 
-=== URIs and IRIs
+=== URIs
 
 <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on <<dfn-the-web,the Web>>, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
-<<dfn-iri,IRIs>> (_Internationalized Resource Identifiers_) are an extension of URIs that allow the use of the full range of Unicode characters. This makes them more human-friendly and easier to work with, and it is for that reason this document focuses on designing and interacting with IRIs.footnote:[Each IRI has a corresponding URI form that systems can automatically derive. This ensures compatibility and interoperability across Web standards and protocols.]
+NOTE: <<dfn-iri,IRIs>> can be used as well. IRIs are an extension of URIs that allow the use of the full range of Unicode characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead. In this document the focus will be on URIs.
 
 TIP: For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.
 
@@ -70,7 +68,7 @@ Some resources are purely informational, meaning their essence can be encoded in
 
 ==== Real-world things
 
-Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their IRI.
+Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their URI.
 
 [CAUTION]
 --
@@ -83,7 +81,7 @@ For more detail about this refer to that section, including section _3.1 Disting
 // .Representations vs descriptions
 // ****
 //
-// Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its IRI):
+// Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its URI):
 //
 // "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside of the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
 // -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
@@ -96,7 +94,7 @@ NOTE: Unless specified otherwise, this section assumes the use of the HTTP proto
 ==== Information resource representations
 Web documents can be <<dfn-dereference,dereferenced>> via their URIs to obtain representations.
 
-If the representation is served from a different host than the IRI of the resource, the server can redirect requests to the IRI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
+If the representation is served from a different host than the URI of the resource, the server can redirect requests to the URI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
 
 WARNING: Do not use `303 See Other` redirects for this purpose. These are intended to redirect URIs identifying real-world resources to Web documents that provide their descriptions.
 
@@ -104,15 +102,14 @@ WARNING: Do not use `303 See Other` redirects for this purpose. These are intend
 
 Obtaining descriptions of real-world things is more involved than for Web documents.
 
-Since real-world things have no representations of their own, dereferencing their URIs should provide access to Web documents that describe them.
+Since real-world things have no representations of their own, dereferencing their URIs should provide access to Web documents that describe them. There are two common approaches to achieve this:
 
-There are two common approaches to achieve this:
+Hash URIs:: These URIs make use of <<dfn-fragment,fragments>> (e.g. `\https://{domain}/animals#Cat`) to symbolize a real-world thing. When retrieving such a URI, the fragment is stripped by the server
+footnote:[This is standard behavior conform the HTTP specification.] and the representation of `\https://{domain}/animals` is returned. This is particularly suited for models such as ontologies, whose terms can be identified using hash URI which
 
-Hash IRIs:: These IRIs make use of <<dfn-fragment,fragments>> (e.g. `\https://{domain}/animals#Cat`) to symbolize a real-world thing. When retrieving such a IRI, the fragment is stripped by the server
+Slash (or 303) URIs:: make use of `303 See Other` footnote:[A very useful practical consequence of using `303 See Other` redirects is that clients will replace the original URI with the one being redirected to. This makes working with the document -- e.g. bookmarking -- easier.] redirects^<<HTTPRANGE-14>>^ so that when an agent retrieves the URI, they are being redirected to a Web document which provides a description of the resource.
 
-footnote:[This is standard behavior conform the HTTP specification.] and the representation of `\https://{domain}/animals` is returned. This is particularly suited for models such as ontologies, whose terms can be identified using hash IRI which
 
-Slash (or 303) IRIs:: make use of `303 See Other` footnote:[A very useful practical consequence of using `303 See Other` redirects is that clients will replace the original IRI with the one being redirected to. This makes working with the document -- e.g. bookmarking -- easier.] redirects^<<HTTPRANGE-14>>^ so that when an agent retrieves the IRI, they are being redirected to a Web document which provides a description of the resource.
 
 There are pros and cons to each approach, which you can read more about in <<AWWW>>.
 
@@ -189,7 +186,7 @@ This example demonstrated negotiation based on media type using the `Accept` hea
 
 == Guidelines
 
-The guidelines described in the tables below should constrain and aid one to design stable IRIs and provide predictable and appropriate representations.
+The guidelines described in the tables below should constrain and aid one to design stable URIs and provide predictable and appropriate representations.
 
 ==== Table reading guide
 Each table consists of the following columns:
@@ -204,53 +201,53 @@ Definition:: The definition of the rule.
 
 '''
 
-TIP: Each guideline can be identified by their IRI: `\https://{domain}/iri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
+TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
 
 
 
 
-=== Designing IRIs
+=== Designing URIs
 
-.Guidelines for designing IRIsfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
+.Guidelines for designing URIsfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
 [cols="1,1,8"]
 |===
 | ID | Conformity | Description
 
 | [[guideline-1]]1
 | Constraint
-| Everything we want to refer to on the Web _MUST_ be assigned a IRI.
+| Everything we want to refer to on the Web _MUST_ be assigned a URI.
 
 | [[guideline-4]]4
 | Principle
-| Resources _SHOULD_ be assigned only a single IRI by the resource owner.footnote:[It is perfectly acceptable to have additional transient or vendor-specific URLs which  identify Web documents in some system -- e.g. files served from a <<dfn-version-control-system,version control system>> -- which the authoritative IRI redirects to for the purpose of representation retrieval. Moreover, these are two different domains, and it makes sense to say that technically speaking the URIs refer to different resources, e.g. "my animals ontology" and "Git revision `ecd7636` of file `animals.ontology.jsonld`."]
+| Resources _SHOULD_ be assigned only a single URI by the resource owner.footnote:[It is perfectly acceptable to have additional transient or vendor-specific URLs which  identify Web documents in some system -- e.g. files served from a <<dfn-version-control-system,version control system>> -- which the authoritative URI redirects to for the purpose of representation retrieval. Moreover, these are two different domains, and it makes sense to say that technically speaking the URIs refer to different resources, e.g. "my animals ontology" and "Git revision `ecd7636` of file `animals.ontology.jsonld`."]
 
 | [[guideline-1]]1
 | Constraint
-| Distinct resources _MUST_ be assigned distinct IRIs.
+| Distinct resources _MUST_ be assigned distinct URIs.
 
 | [[guideline-1]]1
 | Principle
-| #TODO#. Resources internal to an <<dfn-application-domain,application domain>> with transient URIs SHOULD NOT be assigned stable IRIs, but be linked to.footnote
+| #TODO#. Resources internal to an <<dfn-application-domain,application domain>> with transient URIs SHOULD NOT be assigned stable URIs, but be linked to.footnote
 
 | [[guideline-1]]1
 | Principle
-| IRIs _SHOULD_ be stable, i.e. their meaning _SHOULD NOT_ change and representations of the resource it identifies -- if available -- _SHOULD_ remain available.
+| URIs _SHOULD_ be stable, i.e. their meaning _SHOULD NOT_ change and representations of the resource it identifies -- if available -- _SHOULD_ remain available.
 
 | [[guideline-2]]2
 | Principle
-| IRIs _SHOULD_ be as opaque as possible to improve stability and discourage agents from inferring information from an identifier.
+| URIs _SHOULD_ be as opaque as possible to improve stability and discourage agents from inferring information from an identifier.
 
 | [[guideline-3]]3
 | Principle
-| IRIs _SHOULD_ favor the HTTPS scheme over the HTTP scheme because of security considerations.^<<HALPIN>>^
+| URIs _SHOULD_ favor the HTTPS scheme over the HTTP scheme because of security considerations.^<<HALPIN>>^
 
 | [[guideline-4]]4
 | Practice
-| IRI _MAY_ encode ownership information in domain names, but this is discouraged since it makes the IRI less opaque.
+| URI _MAY_ encode ownership information in domain names, but this is discouraged since it makes the URI less opaque.
 
 | [[guideline-4]]4
 | Practice
-| <<dfn-hierarchical-iri,Hierarchical IRIs>> _MAY_ be used within a clearly defined application domain.
+| <<dfn-hierarchical-uri,Hierarchical URIs>> _MAY_ be used within a clearly defined application domain.
 
 | [[guideline-4]]4
 | Practice
