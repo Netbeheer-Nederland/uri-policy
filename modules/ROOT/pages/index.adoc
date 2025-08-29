@@ -40,8 +40,9 @@ This document helps satisfy the following FAIR principles ^<<FAIR>>^:
 == Conformance
 The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
-== Foundational concepts
+== Concepts
 
+[discrete]
 === URIs
 
 <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on <<dfn-the-web,the Web>>, and resources are all things which have a URI assigned to them^<<AWWW>>^.
@@ -63,6 +64,7 @@ The distinction between a URI, URL and URN can be confusing to some. <<RFC31986>
 ****
 ////
 
+[discrete]
 === Resources and representations
 
 ==== Information resources
@@ -90,6 +92,7 @@ For more detail about this refer to that section, including section _3.1 Disting
 // -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
 // ****
 
+[discrete]
 === Representations and descriptions
 
 NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
@@ -171,7 +174,7 @@ The approaches described in Chapter 4 of <<COOL-URIS>> cover content negotiation
 
 .Content negotiation to obtain an HTML or a JSON-LD representation
 ====
-Suppose we have an ontology identified by `\http://example.org/animals`, which has HTML and JSON-LD representations available.
+Suppose the ontology identified by `\http://example.org/animals` has HTML and JSON-LD representations available.
 
 .Retrieving the HTML representation
 [example%collapsible]
@@ -184,7 +187,7 @@ Host: example.org
 Accept: text/html
 ....
 
-.Response header
+.Response headers
 [code]
 ....
 HTTP/1.1 200 OK
@@ -226,10 +229,12 @@ This example demonstrated negotiation based on media type using the `Accept` hea
 
 == Guidelines
 
-The guidelines described in the tables below should constrain and aid one to design stable URIs and provide predictable and appropriate representations.
+The guidelines described in the table below should constrain and guide one to design stable URIs and provide predictable and appropriate representations.
+
+NOTE: These guidelines are deliberately presented in compact table form for ease of reference. For more information please refer to the references to other sources which can be found in the table and throughout the document.
 
 ==== Table reading guide
-Each table consists of the following columns:
+The table consists of the following columns:
 
 [horizontal,labelwidth=25%]
 ID:: The guideline number.
@@ -243,85 +248,69 @@ Definition:: The definition of the rule.
 
 TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
 
-
-
-
-=== Designing URIs
-
-.Guidelines for designing URIsfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
+.Guidelinesfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
 [cols="1,1,8"]
 |===
 | ID | Conformity | Description
 
 | [[guideline-1]]1
 | Constraint
-| Everything we want to refer to on the Web _MUST_ be assigned a URI.
+| Anything that needs to be identified on the Web _MUST_ have a URI.
 
-| [[guideline-4]]4
-| Principle
-| Resources _SHOULD_ be assigned only a single URI by the resource owner.footnote:[It is perfectly acceptable to have additional transient or vendor-specific URLs which  identify Web documents in some system -- e.g. files served from a <<dfn-version-control-system,version control system>> -- which the authoritative URI redirects to for the purpose of representation retrieval. Moreover, these are two different domains, and it makes sense to say that technically speaking the URIs refer to different resources, e.g. "my animals ontology" and "Git revision `ecd7636` of file `animals.ontology.jsonld`."]
-
-| [[guideline-1]]1
+| [[guideline-2]]2
 | Constraint
 | Distinct resources _MUST_ be assigned distinct URIs.
 
-| [[guideline-1]]1
+| [[guideline-3]]3
 | Principle
-| #TODO#. Resources internal to an <<dfn-application-domain,application domain>> with transient URIs SHOULD NOT be assigned stable URIs, but be linked to.footnote
+| Resources _SHOULD_ be assigned only a single URI by the resource owner.footnote:[It is perfectly acceptable to have additional transient or vendor-specific URLs which  identify Web documents in some system -- e.g. files served from a <<dfn-version-control-system,version control system>> -- which the authoritative URI redirects to for the purpose of representation retrieval. Moreover, these are two different domains, and it makes sense to say that technically speaking the URIs refer to different resources, e.g. "my animals ontology" and "Git revision `ecd7636` of file `animals.ontology.jsonld`."]
 
-| [[guideline-1]]1
+| [[guideline-4]]4
 | Principle
 | URIs _SHOULD_ be stable, i.e. their meaning _SHOULD NOT_ change and representations of the resource it identifies -- if available -- _SHOULD_ remain available.
 
-| [[guideline-2]]2
+| [[guideline-5]]5
 | Principle
 | URIs _SHOULD_ be as opaque as possible to improve stability and discourage agents from inferring information from an identifier.
 
-| [[guideline-3]]3
+| [[guideline-6]]6
 | Principle
 | URIs _SHOULD_ favor the HTTPS scheme over the HTTP scheme because of security considerations.^<<HALPIN>>^
 
-| [[guideline-4]]4
+| [[guideline-7]]7
 | Practice
-| URI _MAY_ encode ownership information in domain names, but this is discouraged since it makes the URI less opaque.
+| URIs _MAY_ encode ownership information in domain names, but this is discouraged because it makes the URI less opaque.
 
-| [[guideline-4]]4
+| [[guideline-8]]8
 | Practice
-| <<dfn-hierarchical-uri,Hierarchical URIs>> _MAY_ be used within a clearly defined application domain.
+| <<dfn-hierarchical-uri,Hierarchical URIs>> _MAY_ be used within a clearly defined <<dfn-application-domain,application domain>>.
 
-| [[guideline-4]]4
-| Practice
-| IRIs _MAY_ use fragments to identify resources that are real-world things.
+| [[guideline-9]]9
+| Principle
+| To identify resources that are real-world things, either a hash URI or a 303 URI _SHOULD_ be used.
 
-|===
-
-=== Representation retrieval
-
-.Guidelines for resource representation retrieval
-[cols="1,1,8"]
-|===
-| ID | Conformity | Description
-
-| [[guideline-1]]1
+| [[guideline-10]]10
 | Principle
 | The owner of an information resource _SHOULD_ provide representations for it.
 
-| [[guideline-1]]1
+| [[guideline-11]]11
 | Principle
 | Resource representations _SHOULD_ be consistent and predictable to prevent changes which break things.
 
-| [[guideline-1]]1
+| [[guideline-12]]12
 | Practice
-| Redirects -- e.g. `307 Temporary Redirect` footnote:[When using `307 Temporary Redirect` redirects, the original IRI of the request is preserved by the client. This is useful since it stimulates use of the stable, canonical IRI and not the transient URI that is being redirected to.] -- _MAY_ be used upon retrieving IRIs to serve representations from different locations.
+| Redirects -- e.g. `307 Temporary Redirect` footnote:[When using `307 Temporary Redirect` redirects, the original URI of the request is preserved by the client. This is useful since it stimulates use of the stable, canonical URI and not the transient URI that is being redirected to.] -- _MAY_ be used upon dereferencing URIs to serve representations from different locations.
 
-| [[guideline-1]]1
-| Practice
-| Generic documents MAY be introduced to facilitate resources which provide descriptions of real-world things.
-
-| [[guideline-4]]4
+| [[guideline-13]]13
 | Principle
 | If a resource has multiple representations, it _SHOULD_ be possible for clients to use content negotiation to select the most appropriate one.
+
+| [[guideline-13]]13
+| Principle
+| If a 303 URI identifying a resource that is real-world thing is
 |===
+
+TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through hypermedia links rather than permanent URIs.
 
 [appendix]
 == IRI reference
