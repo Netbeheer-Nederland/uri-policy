@@ -1,7 +1,7 @@
 = URI Policy
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 v0.1, May 12, 2025
-:description: This document lays out a standardized way for assigning IRIs to resources for the power and utilities industry in the Netherlands.
+:description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
 :domain: nbnl.info
 :version: v0.9
@@ -41,18 +41,28 @@ This document helps satisfy the following FAIR principles ^<<FAIR>>^:
 The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _SHOULD NOT_, _RECOMMENDED_,  _MAY_, and _OPTIONAL_ in this document are to be interpreted as described in <<RFC2119>>.
 
 == Concepts
+This section will briefly explain the necessary concepts required to be able to apply the guidelines that follow to design URIs and implement representation retrieval.
 
 [discrete]
-=== URIs
+=== URIs, resources and representations
 
 <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on <<dfn-the-web,the Web>>, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
-NOTE: <<dfn-iri,IRIs>> can be used as well. IRIs are an extension of URIs that allow the use of the full range of Unicode characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead. In this document the focus will be on URIs.
+Resources can have <<dfn-representation,representations>>, which are streams of bytes which reflect the state of the resource at any given time.
+
+[NOTE]
+--
+Instead of desigining URIs, one can also choose to design <<dfn-iri,IRIs>>.
+
+IRIs are an extension of URIs that allow the use of the full range of Unicode characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead.
+--
 
 [TIP,caption=see also]
 --
 For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.
 --
+
+
 
 ////
 .URI, URL and URN
@@ -65,13 +75,12 @@ The distinction between a URI, URL and URN can be confusing to some. <<RFC31986>
 ////
 
 [discrete]
-=== Resources
+=== Information resources
 
-==== Information resources
+Some resources are purely informational, meaning their essence can be encoded into a representation. These resources are called <<dfn-information-resource,information resources>>^<<AWWW>>^ or -- more colloquially -- <<dfn-web-document,Web documents>>^<<COOL-URIS>>^footnote:[Technically, Web documents are information resources which have a representation. The nuance here is that information resources _can_ be represented on the Web, and do not need to have representations at any given time. This is only an academic concern, however, and in practice information resources and Web documents are used interchangeably throughout this document].
 
-Some resources are purely informational, meaning their essence can be encoded into a stream of bytes which represents the resource on the Web. These resources are called <<dfn-information-resource,information resources>>^<<AWWW>>^ or -- more colloquially -- <<dfn-web-document,Web documents>>^<<COOL-URIS>>^footnote:[Technically, Web documents are information resources which have a representation. The nuance here is that information resources _can_ be represented on the Web, and do not need to have representations at any given time. This is only an academic concern, however, and in practice information resources and Web documents are used interchangeably throughout this document].
-
-==== Real-world things
+[discrete]
+=== Real-world things
 
 Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their URI.
 
@@ -95,8 +104,6 @@ For more detail about this refer to that section, including section _3.1 Disting
 [discrete]
 === Representations and descriptions
 NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
-
-<<dfn-representation,Representations>> are streams of bytes which reflect the state of a resource at any given time.
 
 ==== Information resource representations
 Dereferencing the URI of a Web document will provide a representation.
@@ -163,8 +170,10 @@ The URIs would look as follows:
 * <<HAWKE>> about ambiguity challenges caused by hash URIs
 --
 
-==== Content negotiation
-<<dfn-content-negotiation,Content negotiation>> is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as media type, language, character set, or content encoding.
+==== Multiple representations and content negotiation
+It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
+
+Content negotiation is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as media type, language, character set, or content encoding.
 
 Agents can encode their preferences in request headers, and if the HTTP server is set up properly it can serve the most appropriate representation.
 
@@ -314,14 +323,14 @@ TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-polic
 TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through hypermedia links rather than permanent URIs.
 
 [appendix]
-== IRI reference
+== URI reference
 
-With the preceding background and guidance in mind, Team Semantiek has designed IRI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for.
+With the preceding background and guidance in mind, Team Semantiek has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for.
 
 .Definition types
 include::doc-team-semantiek:projects:partial$project_types.adoc[]
 
-Refer to the _Identification_ section on each of these pages for the IRI templates to use to identify the corresponding resources.
+Refer to the _Identification_ section on each of these pages for the URI templates to use to identify the corresponding resources.
 
 [glossary]
 == Terms and definitions
@@ -330,7 +339,7 @@ Refer to the _Identification_ section on each of these pages for the IRI templat
 [[dfn-resource]] resource:: The term _resource_ is used in a general sense for whatever might be identified by a URI. See: <<AWWW>>.
 [[dfn-resource-description]] resource description:: A machine-readable representation of the resource, typically in some serialization of RDF.
 [[dfn-information-resource]] information resource:: A <<dfn-resource>> which has the property that all of its essential characteristics can be conveyed in a message. See also: <<AWWW>>.
-[[dfn-hierarchical-iri]] hierarchical IRI:: IRIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
+[[dfn-hierarchical-uri]] hierarchical URI:: URIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
 
 [bibliography]
 == References
