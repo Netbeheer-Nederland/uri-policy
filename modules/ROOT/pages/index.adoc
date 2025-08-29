@@ -65,7 +65,7 @@ The distinction between a URI, URL and URN can be confusing to some. <<RFC31986>
 ////
 
 [discrete]
-=== Resources and representations
+=== Resources
 
 ==== Information resources
 
@@ -94,11 +94,12 @@ For more detail about this refer to that section, including section _3.1 Disting
 
 [discrete]
 === Representations and descriptions
-
 NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
 
+<<dfn-representation,Representations>> are streams of bytes which reflect the state of a resource at any given time.
+
 ==== Information resource representations
-Web documents can be <<dfn-dereference,dereferenced>> via their URIs to obtain representations.
+Dereferencing the URI of a Web document will provide a representation.
 
 If the representation is served from a different host than the URI of the resource, the server can redirect requests to the URI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
 
