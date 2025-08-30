@@ -118,42 +118,11 @@ Dereferencing `\http://example.org/animals/Cat` might result in a `303 See Other
 
 Both approaches are valid and widely used, and come with their own pros and cons.
 
-////
-.Hash URI vs 303 URI
-====
-Suppose you have an ontology _Organisation_ and one of its terms is _Person_.
-
-The URIs would look as follows:
-
-[cols="h,1,1"]
-|===
-| | Ontology | Term
-
-| Hash URIs
-.2+.^| `\http://ontologies.org/organisation`
-| `\http://ontologies.org/organisation#Person`
-
-| 303 URIs
-|`\http://ontologies.org/organisation/Person`
-| `\http://ontologies.org/organisation#Person`
-|===
-====
-////
-
 [TIP,caption=see also]
 --
 * https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] about when to use hash URIs and when to use 303 redirects
 * <<HAWKE>> about ambiguity challenges caused by hash URIs
 --
-
-// .Representations vs descriptions
-// ****
-//
-// Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its URI):
-//
-// "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
-// -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
-// ****
 
 === Content negotiation
 It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
