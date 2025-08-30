@@ -8,7 +8,7 @@ v0.1, May 12, 2025
 :uri: https://{domain}/uri-policy
 
 :dfn-hash-uri: pass:c,q[These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document.]
-:dfn-303-uri: pass:c,q[These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource.]
+:dfn-303-uri: pass:c,q[These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource.]
 
 Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
 //Editors::
@@ -122,7 +122,7 @@ The base URI `\http://example.org/animals` identifies the Web document that prov
 NOTE: Hash URIs are easy to use and set up and often used for smaller ontologies.
 
 303 (or slash) URIs::
-{dfn-303-uri}
+{dfn-303-uri}footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]
 +
 .303 URI
 ====
@@ -173,9 +173,9 @@ Agents can encode their preferences in request headers, and if the HTTP server i
 The approaches described in https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] cover content negotiation as well.
 --
 
-.Content negotiation to obtain an HTML or a <<dfn-json-ld,JSON-LD>> representation
+.Content negotiation to obtain an HTML or a JSON-LD representation
 ====
-Suppose the <<dfn-ontology,ontology>> identified by `\http://example.org/animals` has HTML and JSON-LD representations available.
+Suppose the <<dfn-ontology,ontology>> identified by `\http://example.org/animals` has HTML and <<dfn-json-ld,JSON-LD>> representations available.
 
 .Retrieving the HTML representation
 [example%collapsible]
@@ -358,10 +358,10 @@ Refer to the _Identification_ section on each of these pages for the URI templat
 * [[[PLDN-URI]]] PLDN. https://www.pldn.nl/wiki/Boek/URI-strategie[Aanzet tot een nationale URI-Strategie voor Linked Data van de Nederlandse overheid]. Work in progress.
 * [[[HAWKE]]] Sandro Hawke. 2002. https://www.w3.org/2002/12/rdf-identifiers/[Disambiguating RDF Identifiers]
 * [[[HALPIN]]] Harry Halpin. https://inria.hal.science/hal-01673291/document[Semantic Insecurity: Security and the Semantic Web]. PrivOn 2017 - Workshop Society, Privacy and the Semantic Web - Policy and Technology, Oct 2017, Vienna, Austria. pp.1-10. ffhal01673291f.
-* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book/hierarchical-uris.html[Linked Data Patterns].
+* [[[DODDS-DAVIS]]] Leigh Dodds, Ian Davis. 2022. https://patterns.dataincubator.org/book[Linked Data Patterns].
 * [[[BOOTH]]] David Booth. 2003. https://www.w3.org/2002/11/dbooth-names/dbooth-names_clean.htm[Four Uses of a URL: Name, Concept, Web Location and Document Instance].
 * [[[HTTPRANGE-14]]] Roy Fielding. 2005. https://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html[[httpRange-14\] Resolved].
-* [[[REST]]] Fielding, Roy Thomas. Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000.
+* [[[REST]]] Fielding, Roy Thomas. https://ics.uci.edu/~fielding/pubs/dissertation/top.htm[Architectural Styles and the Design of Network-based Software Architectures]. Doctoral dissertation, University of California, Irvine, 2000.
 * [[[LD]]] W3C. 2006. https://www.w3.org/DesignIssues/LinkedData[Linked Data].
 * [[[RFC3986]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3986/[Uniform Resource Identifier (URI): Generic Syntax].
 * [[[RFC3987]]] W3C. 2005. https://datatracker.ietf.org/doc/rfc3987/[Internationalized Resource Identifiers (IRIs)].
