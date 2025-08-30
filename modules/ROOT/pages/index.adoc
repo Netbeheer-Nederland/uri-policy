@@ -46,8 +46,8 @@ The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _S
 == Concepts
 This section will briefly explain the necessary concepts required to be able to apply the guidelines that follow to design URIs and implement representation retrieval.
 
-[discrete]
 === URIs, resources and representations
+NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
 
 <<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on the Web, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
@@ -65,12 +65,17 @@ IRIs are an extension of URIs that allow the use of the full range of <<dfn-unic
 For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.
 --
 
-[discrete]
 === Information resources
 
 Some resources are purely informational, meaning their essence can be encoded into a representation. These resources are called <<dfn-information-resource,information resources>>^<<AWWW>>^ or -- more colloquially -- <<dfn-web-document,Web documents>>^<<COOL-URIS>>^footnote:[Technically, Web documents are information resources which have a representation. The nuance here is that information resources _can_ be represented on the Web, and do not need to have representations at any given time. This is only an academic concern, however, and in practice information resources and Web documents are used interchangeably throughout this document].
 
-[discrete]
+==== Representations
+<<dfn-dereference,Dereferencing>> the URI of a Web document will provide a representation.
+
+If the representation is served from a different host than the URI of the resource, the server can redirect requests to the URI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
+
+WARNING: Do not use `303 See Other` redirects for this purpose. These are intended to redirect URIs identifying real-world resources to Web documents that provide their descriptions.
+
 === Real-world things
 
 Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their URI.
@@ -83,27 +88,7 @@ Resources which are not information resources are often referred to as <<dfn-rea
 For more detail about this refer to that section, including section _3.1 Distinguishing between Representations and Descriptions_.
 --
 
-// .Representations vs descriptions
-// ****
-//
-// Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its URI):
-//
-// "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
-// -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
-// ****
-
-[discrete]
-=== Representations and descriptions
-NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
-
-==== Information resource representations
-<<dfn-dereference,Dereferencing>> the URI of a Web document will provide a representation.
-
-If the representation is served from a different host than the URI of the resource, the server can redirect requests to the URI where the representation is actually hosted (using a `307 Temporary Redirect` for example).
-
-WARNING: Do not use `303 See Other` redirects for this purpose. These are intended to redirect URIs identifying real-world resources to Web documents that provide their descriptions.
-
-==== Real-world thing descriptions
+==== Descriptions
 
 Obtaining descriptions of real-world things is more involved than for Web documents.
 
@@ -161,7 +146,16 @@ The URIs would look as follows:
 * <<HAWKE>> about ambiguity challenges caused by hash URIs
 --
 
-==== Multiple representations and content negotiation
+// .Representations vs descriptions
+// ****
+//
+// Although real-world things cannot be _represented_ on the Web, there can of course be Web documents which provide _descriptions_ of the real-world thing (by referring to it by its URI):
+//
+// "It is important to understand that using URIs, it is possible to identify both a thing (which may exist outside the Web) and a Web document describing the thing. For example the person Alice is described on her homepage. Bob may not like the look of the homepage, but fancy the person Alice. So two URIs are needed, one for Alice, one for the homepage or a RDF document describing Alice.[...]"
+// -- <<COOL-URIS>>, Section 3.1 Distinguishing between Representations and Descriptions
+// ****
+
+=== Content negotiation
 It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
 
 Content negotiation is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as <<dfn-media-type,media type>>, language, character set, or content encoding.
