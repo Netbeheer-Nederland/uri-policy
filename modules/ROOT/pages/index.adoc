@@ -46,23 +46,19 @@ The key words _MUST_, _MUST NOT_, _REQUIRED_, _SHALL_, _SHALL NOT_, _SHOULD_, _S
 == Concepts
 This section will briefly explain the necessary concepts required to be able to apply the guidelines that follow to design URIs and implement representation retrieval.
 
-=== URIs, resources and representations
 NOTE: Unless specified otherwise, this section assumes the use of the HTTP protocol.
 
-<<dfn-uri,URIs>> (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on the Web, and resources are all things which have a URI assigned to them^<<AWWW>>^.
+=== URIs, resources and representations
+
+<<dfn-uri,URIs>>footnote:[For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.] (_Uniform Resource Identifiers_) are identifiers of <<dfn-resource,resources>> on the Web, and resources are all things which have a URI assigned to them^<<AWWW>>^.
 
 Resources can have <<dfn-representation,representations>>, which are streams of bytes which reflect the state of the resource at any given time.
 
-[NOTE]
+[TIP]
 --
 Instead of designing URIs, one can also choose to design <<dfn-iri,IRIs>>.
 
 IRIs are an extension of URIs that allow the use of the full range of <<dfn-unicode,Unicode>> characters. Since each IRI has a corresponding URI form that systems can automatically derive, it is perfectly safe to use these instead.
---
-
-[TIP,caption=see also]
---
-For a concise but accurate explanation of the difference between URIs, URNs and URLs, refer to <<RFC3986>>, _Section 1.1.3. URI, URL and URN_.
 --
 
 === Information resources
@@ -85,7 +81,7 @@ Resources which are not information resources are often referred to as <<dfn-rea
 "There should be no confusion between identifiers for Web documents and identifiers for other resources. URIs are meant to identify only one of them, so one URI can't stand for both a Web document and a real-world object."
 -- <<COOL-URIS>>, 3. URIs for Real-World Objects
 
-For more detail about this refer to that section, including section _3.1 Distinguishing between Representations and Descriptions_.
+For more detail about this refer to that section.
 --
 
 ==== Descriptions
@@ -97,32 +93,28 @@ Since real-world things have no representations of their own, dereferencing thei
 Hash URIs::
 {dfn-hash-uri}
 +
-.Hash URI
-====
+.Example
+[example%collapsible]
+--
 `\http://example.org/animals#Cat` is a hash URI that identifies the real-world concept _Cat_, as indicated by the fragment identifier `Cat`.
 
 The base URI `\http://example.org/animals` identifies the Web document that provides a description of the concept.
-====
+--
 +
 NOTE: Hash URIs are easy to use and set up and often used for smaller ontologies.
 
 303 (or slash) URIs::
 {dfn-303-uri}footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]
 +
-.303 URI
-====
+.Example
+[example%collapsible]
+--
 `\http://example.org/animals/Cat` is a 303 URI which identifies the real-world concept _Cat_.
 
 Dereferencing `\http://example.org/animals/Cat` might result in a `303 See Other` redirect to the Web document `\http://docs.example.org/animals/Cat.html` which contains an HTML description of the concept.
-====
+--
 
 Both approaches are valid and widely used, and come with their own pros and cons.
-
-[TIP,caption=see also]
---
-* https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] about when to use hash URIs and when to use 303 redirects
-* <<HAWKE>> about ambiguity challenges caused by hash URIs
---
 
 === Content negotiation
 It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
@@ -130,11 +122,6 @@ It may be the case that a resource has multiple representations, in which case <
 Content negotiation is an HTTP mechanism that allows a single URI to serve different representations of the same resource based on parameters such as <<dfn-media-type,media type>>, language, character set, or content encoding.
 
 Agents can encode their preferences in request headers, and if the HTTP server is set up properly it can serve the most appropriate representation.
-
-[TIP,caption=see also]
---
-The approaches described in https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] cover content negotiation as well.
---
 
 .Content negotiation to obtain an HTML or a JSON-LD representation
 ====
@@ -188,6 +175,12 @@ Server: Apache/2.4.58 (Unix)
 
 This example demonstrated negotiation based on media type using the `Accept` header.
 ====
+
+[TIP,caption=see also]
+--
+* https://www.w3.org/TR/cooluris/#solutions[Chapter 4 of <<COOL-URIS>>] about hash URIs and 303 URIs, their trade-offs and how to decide which one to use. Content negotiation is covered as well.
+* <<HAWKE>> about ambiguity challenges caused by hash URIs.
+--
 
 == Guidelines
 
