@@ -37,7 +37,7 @@ This document helps satisfy the following FAIR principles ^<<FAIR>>^:
 // .FAIR principles
 * _F1. (Meta)data are assigned a globally unique and persistent identifier_
 * _A1. (Meta)data are retrievable by their identifier using a standardised communications protocol_
-* _A3. Metadata are accessible, even when the data are no longer available_
+* _A2. Metadata are accessible, even when the data are no longer available_
 ****
 
 == Conformance
@@ -74,7 +74,7 @@ WARNING: Do not use `303 See Other` redirects for this purpose. These are intend
 
 === Real-world things
 
-Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include xref:https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their URI.
+Resources which are not information resources are often referred to as <<dfn-real-world-thing,real-world things>>. These include physical, tangible objects, but also abstract concepts. These resources cannot have representations on the Web, since their essence cannot be fully captured by information.footnote:[Philosophers of language have studied this phenomenon in depth, but further detail is out of scope for this document. Further reading of interest may include https://en.wikipedia.org/wiki/Family_resemblance[Ludwig Wittgenstein's idea of family resemblances.]] However, _descriptions_ of them can be provided by Web documents, which can refer to them by their URI.
 
 [CAUTION]
 --
@@ -186,7 +186,7 @@ This example demonstrated negotiation based on media type using the `Accept` hea
 
 The guidelines described in the table below should constrain and guide one to design stable URIs and provide predictable and appropriate representations.
 
-NOTE: These guidelines are deliberately presented in compact table form for ease of reference. For more information please refer to the references to other sources which can be found in the table and throughout the document.
+NOTE: These guidelines are deliberately presented in compact table form for ease of reference. For more information please refer to the references to other sources which can be found in the table and throughout this document.
 
 ==== Table reading guide
 The table consists of the following columns:
@@ -201,7 +201,8 @@ Definition:: The definition of the rule.
 
 '''
 
-TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
+// #TODO#: As soon as this is implemented, uncomment this line.
+// TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
 
 .Guidelinesfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
 [cols="1,1,8"]
@@ -265,7 +266,7 @@ TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-polic
 | If a 303 URI identifying a resource that is real-world thing is
 |===
 
-TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through hypermedia links rather than permanent URIs.
+TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through <<dfn-hypermedia,hypermedia>> links rather than permanent URIs.
 
 [appendix]
 == URI reference
@@ -288,6 +289,7 @@ Refer to the _Identification_ section on each of these pages for the URI templat
 [[dfn-fair]] FAIR:: Principles for making (meta)data _Findable_, _Accessible_, _Interoperable_, and _Reusable_.
 [[dfn-hash-uri]] hash URI:: {dfn-hash-uri}
 [[dfn-hierarchical-uri]] hierarchical URI:: URIs which deploy hierarchical organisation in their path.^<<DODDS-DAVIS>>^ See also: https://patterns.dataincubator.org/book/hierarchical-uris.html[Hierarchical URIs].
+[[dfn-hypermedia]] hypermedia:: Hypermedia, an extension of hypertext, is a nonlinear medium of information that includes graphics, audio, video, plain text and hyperlinks. See also: https://en.wikipedia.org/wiki/Hypermedia[Hypermedia - Wikipedia].
 [[dfn-iri]] IRI:: _Internationalized Resource Identifier_. A superset of <<dfn-uri,URIs>> that allows the full range of <<dfn-unicode,Unicode>> characters.
 [[dfn-information-resource]] information resource:: A resource whose essential characteristics can be conveyed entirely in a <<dfn-representation,representation>>. See also: <<AWWW>>.
 [[dfn-json-ld]] JSON-LD:: A JSON-based format for serialising Linked Data.
