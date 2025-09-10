@@ -131,7 +131,7 @@ Suppose the <<dfn-ontology,ontology>> identified by `\http://example.org/animals
 [example%collapsible]
 --
 .`GET` request
-[code]
+[source]
 ....
 GET /animals HTTP/1.1
 Host: example.org
@@ -139,7 +139,7 @@ Accept: text/html
 ....
 
 .Response headers
-[code]
+[source]
 ....
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=UTF-8
@@ -154,7 +154,7 @@ Server: Apache/2.4.58 (Unix)
 [example%collapsible]
 --
 .`GET` request
-[code]
+[source]
 ....
 GET /animals HTTP/1.1
 Host: example.org
@@ -162,7 +162,7 @@ Accept: application/ld+json
 ....
 
 .Response headers
-[code]
+[source]
 ....
 HTTP/1.1 200 OK
 Content-Type: application/ld+json; charset=UTF-8
