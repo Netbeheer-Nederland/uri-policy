@@ -1,6 +1,5 @@
 = URI Policy
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
-v0.9, May 12, 2025
 :description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
 :domain: nbnl.info
@@ -302,8 +301,6 @@ CAUTION: Avoid assigning stable URIs to document parts such as pages and section
 ====
 include::doc-team-semantiek:projects:example$/documentation-uris.adoc[]
 ====
-
-include::doc-team-semantiek:projects:example$energiesysteembeheer-thesaurus-uris.adoc[]
 
 [glossary]
 == Terms and definitions
