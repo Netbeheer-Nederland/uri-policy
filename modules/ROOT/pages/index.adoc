@@ -265,14 +265,16 @@ Definition:: The definition of the rule.
 TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through <<dfn-hypermedia,hypermedia>> links rather than permanent URIs.
 
 [appendix]
-== URI reference
+== URI templates
 
-With the preceding background and guidance in mind, Team Semantiek has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for.
+With the preceding background and guidance in mind, Netbeheer Nederland has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for.
 
 .Definition types
 include::doc-team-semantiek:projects:partial$project_types.adoc[]
 
 Refer to the _Identification_ section on each of these pages for the URI templates to use to identify the corresponding resources.
+
+NOTE: Users who wish to create URI templates of their own can obtain inspiration from the examples linked to in this appendix, as long as they make sure to conform to the <<_guidelines,guidelines>>.
 
 [glossary]
 == Terms and definitions
