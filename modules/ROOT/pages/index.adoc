@@ -93,7 +93,7 @@ Since real-world things have no representations of their own, dereferencing thei
 Hash URIs::
 {dfn-hash-uri}
 +
-.Example
+.Example use of hash URI
 [example%collapsible]
 --
 `\http://example.org/animals#Cat` is a hash URI that identifies the real-world concept _Cat_, as indicated by the fragment identifier `Cat`.
@@ -106,7 +106,7 @@ NOTE: Hash URIs are easy to use and set up and often used for smaller ontologies
 303 (or slash) URIs::
 {dfn-303-uri}footnote:[A useful consequence of `303 See Other` redirects is that clients replace the original URI with the redirected one, making actions such as bookmarking or linking more straightforward.]
 +
-.Example
+.Example use of 303 URI
 [example%collapsible]
 --
 `\http://example.org/animals/Cat` is a 303 URI which identifies the real-world concept _Cat_.
@@ -267,14 +267,43 @@ TIP: Do not assign stable URIs to every possible entity. Focus on the resources 
 [appendix]
 == URI templates
 
-With the preceding background and guidance in mind, Netbeheer Nederland has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for.
+With the preceding background and guidance in mind, Netbeheer Nederland has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for. Users can use these for inspiration to design their own, as long as they make sure to conform to the <<_guidelines,guidelines>>.
 
-.Definition types
-include::doc-team-semantiek:projects:partial$project_types.adoc[]
+NOTE: All URI templates in this section conform to <<RFC6570>>.
 
-Refer to the _Identification_ section on each of these pages for the URI templates to use to identify the corresponding resources.
+=== Data product
 
-NOTE: Users who wish to create URI templates of their own can obtain inspiration from the examples linked to in this appendix, as long as they make sure to conform to the <<_guidelines,guidelines>>.
+.URI templates for data products
+include::doc-team-semantiek:projects:partial$application-profile/uri-templates.adoc[]
+
+'''
+
+include::doc-team-semantiek:projects:example$capaciteitskaart-uris.adoc[]
+include::doc-team-semantiek:projects:example$nc13-core-equipment-uris.adoc[]
+
+=== Controlled vocabulary
+.URI templates for controlled vocabulary
+include::doc-team-semantiek:projects:partial$controlled-vocabulary/uri-templates.adoc[]
+
+'''
+
+include::doc-team-semantiek:projects:example$energiesysteembeheer-thesaurus-uris.adoc[]
+
+=== Documentation
+
+include::doc-team-semantiek:projects:partial$documentation/uri-templates.adoc[]
+
+CAUTION: Avoid assigning stable URIs to document parts such as pages and sections.
+
+'''
+
+.Examples
+[%collapsible]
+====
+include::doc-team-semantiek:projects:example$/documentation-uris.adoc[]
+====
+
+include::doc-team-semantiek:projects:example$energiesysteembeheer-thesaurus-uris.adoc[]
 
 [glossary]
 == Terms and definitions
