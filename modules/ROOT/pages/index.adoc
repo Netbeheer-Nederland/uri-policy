@@ -114,7 +114,7 @@ NOTE: Hash URIs are easy to use and set up and often used for smaller ontologies
 Dereferencing `\http://example.org/animals/Cat` might result in a `303 See Other` redirect to the Web document `\http://docs.example.org/animals/Cat.html` which contains an HTML description of the concept.
 --
 
-Both approaches are valid and widely used, and come with their own pros and cons.
+Both approaches are valid and widely used, and come with their own pros and cons. <<guideline-9,303 URIs _SHOULD_ be used>>, however, because it avoids ambiguity and provides more server-sided control.footnote:[At the time of writing, there is documentation generated from schemas created by Netbeheer Nederland where each class has its own web page. To dereference terms defined in such schemas such that they resolve to this document, however, 303 URIs are necessary, since in the case of hash URIs the fragment identifier would be stripped by the server.]
 
 === Content negotiation
 It may be the case that a resource has multiple representations, in which case <<dfn-content-negotiation,content negotiation>> may be used to let agents choose what representation they want.
@@ -243,7 +243,7 @@ Definition:: The definition of the rule.
 
 | [[guideline-9]]9
 | Principle
-| To identify resources that are real-world things, either a hash URI or a 303 URI _SHOULD_ be used.
+| To identify resources that are real-world things, a 303 URI SHOULD be used.
 
 | [[guideline-10]]10
 | Principle
