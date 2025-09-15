@@ -260,10 +260,6 @@ Definition:: The definition of the rule.
 | [[guideline-13]]13
 | Principle
 | If a resource has multiple representations, it _SHOULD_ be possible for clients to use content negotiation to select the most appropriate one.
-
-| [[guideline-14]]14
-| Principle
-| If a 303 URI identifying a resource that is real-world thing is
 |===
 
 TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through <<dfn-hypermedia,hypermedia>> links rather than permanent URIs.
