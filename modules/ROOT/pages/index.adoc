@@ -2,7 +2,7 @@
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 :description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
-:domain: nbnl.info
+:domain: modellen.netbeheernederland.info
 :version: 1.0-rc1
 :uri: https://{domain}/uri-policy
 
