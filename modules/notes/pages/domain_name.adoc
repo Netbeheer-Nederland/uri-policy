@@ -1,0 +1,16 @@
+= Domain Name
+
+WARNING: Work in progress.
+
+== Criteria and considerations
+
+* _Opacity_. The domain name should encode as little information as possible, and avoid highly versatile information such as organisation names and classifications in particular.
+* _Purpose and scope_. The chosen domain name should indicate the purpose of the underlying registers.
+* _Control over DNS records_. Maintenance of DNS records should not be in the hands of some third party. Instead, the maintainers of the products should have full control.
+
+== `w3id`
+
+Although `w3id` provides maximal opacity, it comes with some downsides and risks:
+
+* We won't have control over DNS records.
+* If one of the backing organisations decides to no longer use or support the cause, the continued existence of the service becomes jeopardized.

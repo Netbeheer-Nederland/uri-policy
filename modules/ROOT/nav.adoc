@@ -1,1 +1,1 @@
-* Home
+include::ROOT::partial$nav.adoc[]

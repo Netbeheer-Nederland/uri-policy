@@ -1,0 +1,30 @@
+* Abstract
+* Executive summary
+* Conformance
+* Introduction
+* Identification on the web
+** Resources and URIs
+*** Web documents
+*** Real-world things
+** Discerning between identity and description
+*** Identity
+*** Web pages for humans
+*** Formal descriptions for machines
+*** Types of URIs and appropriate application
+** Utilizing web architecture
+*** HTTP, URIs and URLs
+**** Dereference identifiers to obtain descriptions
+*** HTML and RDF
+*** 303 redirects
+*** Content negotiation
+* URI strategy
+** URI pattern
+*** Scheme
+*** Type
+*** Register
+** Registers and namespaces
+** Real-world objects
+** Information models
+*** Taxonomies
+*** Ontologies
+*** Schemas
