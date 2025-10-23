@@ -2,9 +2,7 @@
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 :description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/uri-policy
-:domain: modellen.netbeheernederland.info
-:version: {page-component-display-version}
-:uri: https://{domain}/uri-policy
+:domain: modellen.netbeheernederland.nl
 
 :dfn-hash-uri: pass:c,q[These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document.]
 :dfn-303-uri: pass:c,q[These URIs use `303 See Other` redirects^<<HTTPRANGE-14>>^. When the URI of a resource that is a real-world thing is dereferenced, the server responds with a `303` redirect to a Web document that provides a description of the resource.]
@@ -13,7 +11,7 @@ Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
 //Editors::
 //mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
 //mailto:robbert.hardin@alliander.com[Robbert Hardin] (Alliander)
-Version:: {version}
+Version:: {page-component-display-version}
 Feedback:: https://github.com/netbeheer-nederland/uri-policy/issues[Issue on GitHub] (https://github.com/netbeheer-nederland/uri-policy[`netbeheer-nederland/uri-policy`])
 
 == Abstract
@@ -200,8 +198,7 @@ Definition:: The definition of the rule.
 
 '''
 
-// #TODO#: As soon as this is implemented, uncomment this line.
-// TIP: Each guideline can be identified by their URI: `\https://{domain}/uri-policy#guideline-\{n}` where `\{n}` is the ID described in the table.
+TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-name}/{page-component-version}#guideline-\{n}` where `\{n}` is the ID described in the table.
 
 .Guidelinesfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
 [cols="1,1,8"]
