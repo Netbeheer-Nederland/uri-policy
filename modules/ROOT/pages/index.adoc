@@ -1,7 +1,7 @@
 = URI Policy
 Bart Kleijngeld <bart.kleijngeld@alliander.com>
 :description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
-:url-repo: https://github.com/Netbeheer-Nederland/doc-uri-policy
+:url-repo: https://github.com/Netbeheer-Nederland/uri-policy
 :domain: modellen.netbeheernederland.info
 :version: 1.0-rc1
 :uri: https://{domain}/uri-policy
@@ -14,7 +14,7 @@ Author:: mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (Alliander)
 //mailto:ritger.teunissen@alliander.com[Ritger Teunissen] (Alliander) +
 //mailto:robbert.hardin@alliander.com[Robbert Hardin] (Alliander)
 Version:: {version}
-Feedback:: https://github.com/Netbeheer-Nederland/doc-uri-policy/issues[Issue on GitHub] (https://github.com/Netbeheer-Nederland/doc-uri-policy[`Netbeheer-Nederland/doc-uri-policy`])
+Feedback:: https://github.com/netbeheer-nederland/uri-policy/issues[Issue on GitHub] (https://github.com/netbeheer-nederland/uri-policy[`netbeheer-nederland/uri-policy`])
 
 == Abstract
 Managing data can be challenging, especially when it is exchanged across organizational boundaries or integrated from multiple sources. The <<dfn-fair,FAIR>> (_Findable, Accessible, Interoperable, Reusable_) principles provide guidance to address these challenges. By emphasizing machine-actionability and the extended use of metadata, they help ensure that data can be properly managed, governed, made interoperable, and reused.
