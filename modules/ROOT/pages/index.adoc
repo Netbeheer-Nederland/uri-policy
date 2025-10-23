@@ -3,7 +3,7 @@ Bart Kleijngeld <bart.kleijngeld@alliander.com>
 :description: This document lays out a standardized way for assigning URIs to resources for the power and utilities industry in the Netherlands.
 :url-repo: https://github.com/Netbeheer-Nederland/uri-policy
 :domain: modellen.netbeheernederland.info
-:version: 1.0-rc1
+:version: {page-component-display-version}
 :uri: https://{domain}/uri-policy
 
 :dfn-hash-uri: pass:c,q[These URIs use a fragment identifier — the part after `\#` — to identify a real-world thing, while the base URI — the part before `#` — identifies the Web document that describes the resource. When the hash URI is dereferenced, only the base URI is sent to the server, so the server returns a representation of that document.]

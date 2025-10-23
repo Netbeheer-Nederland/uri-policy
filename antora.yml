@@ -1,5 +1,6 @@
 name: uri-policy
 title: URI Policy
 version: true
+prerelease: -draft
 nav:
 - modules/ROOT/nav.adoc
