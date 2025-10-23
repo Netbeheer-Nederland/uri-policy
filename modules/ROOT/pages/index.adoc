@@ -263,6 +263,8 @@ TIP: Do not assign stable URIs to every possible entity. Focus on the resources 
 [appendix]
 == URI templates
 
+WARNING: _Work in progress._
+
 With the preceding background and guidance in mind, Netbeheer Nederland has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for. Users can use these for inspiration to design their own, as long as they make sure to conform to the <<_guidelines,guidelines>>.
 
 NOTE: All URI templates in this section conform to <<RFC6570>>.
