@@ -1,5 +1,3 @@
 name: ROOT
 title: URI Policy
 version: true
-nav:
-  - modules/ROOT/nav.adoc
