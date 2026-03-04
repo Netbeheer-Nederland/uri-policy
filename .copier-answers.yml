@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier
+_commit: '0.1'
+_src_path: gh:Netbeheer-Nederland/template-doc
+description: Guideline document in which a strategy is laid out for minting URIs in
+    a standardized and uniform way.
+git_protocol: SSH
+name: uri-policy
+title: URI Policy
