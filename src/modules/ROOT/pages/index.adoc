@@ -260,47 +260,6 @@ TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-
 
 TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through <<dfn-hypermedia,hypermedia>> links rather than permanent URIs.
 
-[appendix]
-== URI templates
-
-WARNING: _Work in progress._
-
-With the preceding background and guidance in mind, Netbeheer Nederland has designed URI templates for all the xref:doc-team-semantiek:projects:index.adoc[types of definitions] it is responsible for. Users can use these for inspiration to design their own, as long as they make sure to conform to the <<_guidelines,guidelines>>.
-
-NOTE: All URI templates in this section conform to <<RFC6570>>.
-
-=== Data product
-
-.URI templates for data products
-include::doc-team-semantiek:projects:partial$application-profile/uri-templates.adoc[]
-
-'''
-
-include::doc-team-semantiek:projects:example$capaciteitskaart-uris.adoc[]
-include::doc-team-semantiek:projects:example$nc13-core-equipment-uris.adoc[]
-
-=== Controlled vocabulary
-.URI templates for controlled vocabulary
-include::doc-team-semantiek:projects:partial$controlled-vocabulary/uri-templates.adoc[]
-
-'''
-
-include::doc-team-semantiek:projects:example$energiesysteembeheer-thesaurus-uris.adoc[]
-
-=== Documentation
-
-include::doc-team-semantiek:projects:partial$documentation/uri-templates.adoc[]
-
-CAUTION: Avoid assigning stable URIs to document parts such as pages and sections.
-
-'''
-
-.Examples
-[%collapsible]
-====
-include::doc-team-semantiek:projects:example$/documentation-uris.adoc[]
-====
-
 [glossary]
 == Terms and definitions
 
