@@ -260,6 +260,96 @@ TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-
 
 TIP: Do not assign stable URIs to every possible entity. Focus on the resources that are part of your public interface and need to be persistently identified. Internal or transient entities should remain within the application domain and be exposed, if at all, through <<dfn-hypermedia,hypermedia>> links rather than permanent URIs.
 
+
+[appendix]
+== URI templates for data product schemas
+
+Netbeheer Nederland has designed URI templates which conform to the <<_guidelines,guidelines>> for schemas they maintain for data products.
+
+NOTE: All URI templates in this section conform to <<RFC6570>>.
+
+.URI templates for data product schemas
+[cols="1,3"]
+|===
+| Thing | URI template
+
+| Schema
+| `\https://{domain}/\{name}`
+
+| Schema version
+| `\https://{domain}/\{name}/\{version}`
+|===
+
+where:
+
+[horizontal,labelwidth=25%]
+`\{name}`:: Name of the data product
+`\{version}`:: Version of the data product schema
+
+'''
+
+.Example: Capaciteitskaart
+[%collapsible]
+====
+[cols="1,3"]
+|===
+| Thing | URI
+
+| Schema
+| `\https://{domain}/capaciteitskaart`
+
+| Schema version
+| `\https://{domain}/capaciteitskaart/1.0`
+|===
+====
+
+[appendix]
+== URI templates for documentation
+
+Netbeheer Nederland has designed URI templates which conform to the <<_guidelines,guidelines>> for documentation.
+
+NOTE: All URI templates in this section conform to <<RFC6570>>.
+
+.URI templates for data product schemas
+[cols="1,3"]
+|===
+| Thing | URI template
+
+| Documentation project
+| `\https://{domain}/\{name}`
+
+| Documentation project version
+| `\https://{domain}/\{name}/\{version}`
+
+|===
+
+where:
+
+[horizontal,labelwidth=25%]
+`\{name}`:: Name of the project
+`\{version}`:: Version of the project
+
+'''
+
+CAUTION: Avoid assigning stable URIs to document parts such as pages and sections.
+
+.Example: URI Policy
+[%collapsible]
+====
+[cols="1,3"]
+|===
+| Thing | URI
+
+| Documentation project
+| `\https://{domain}/uri-policy`
+
+| Documentation project version
+| `\https://{domain}/uri-policy/2.0`
+|===
+====
+
+TIP: Some projects might not make use of versioning and adopt an evolution strategy in which case only the versionless project URI exists.
+
 [glossary]
 == Terms and definitions
 
