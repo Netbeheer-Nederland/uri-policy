@@ -198,7 +198,7 @@ Definition:: The definition of the rule.
 
 '''
 
-TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-name}/{page-component-version}#guideline-\{n}` where `\{n}` is the ID described in the table.
+// TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-version}#guideline-\{n}` where `\{n}` is the ID described in the table.
 
 .Guidelinesfootnote:[These guidelines are heavily inspired by -- and in quite a few cases taken almost verbatim from -- <<AWWW>>, including the conformity classification.]
 [cols="1,1,8"]
@@ -262,13 +262,13 @@ TIP: Do not assign stable URIs to every possible entity. Focus on the resources 
 
 
 [appendix]
-== URI templates for data product schemas
+== URI templates for data product models
 
-Netbeheer Nederland has designed URI templates which conform to the <<_guidelines,guidelines>> for schemas they maintain for data products.
+Netbeheer Nederland has designed URI templates which conform to the <<_guidelines,guidelines>> for information models they maintain for data products.
 
 NOTE: All URI templates in this section conform to <<RFC6570>>.
 
-.URI templates for data product schemas
+.URI templates for data product models
 [cols="1,3"]
 |===
 | Thing | URI template
@@ -284,7 +284,7 @@ where:
 
 [horizontal,labelwidth=25%]
 `\{name}`:: Name of the data product
-`\{version}`:: Version of the data product schema
+`\{version}`:: Version of the data product model
 
 '''
 
@@ -310,7 +310,7 @@ Netbeheer Nederland has designed URI templates which conform to the <<_guideline
 
 NOTE: All URI templates in this section conform to <<RFC6570>>.
 
-.URI templates for data product schemas
+.URI templates for documentation
 [cols="1,3"]
 |===
 | Thing | URI template
