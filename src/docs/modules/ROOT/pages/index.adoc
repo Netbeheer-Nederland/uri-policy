@@ -239,7 +239,7 @@ TIP: Each guideline can be identified by their URI: `{site-url}/{page-component-
 
 | [[guideline-9]]9
 | Principle
-| To identify resources that are real-world things, a 303 URI SHOULD be used.
+| To identify resources that are real-world things, a 303 URI _SHOULD_ be used.
 
 | [[guideline-10]]10
 | Principle
